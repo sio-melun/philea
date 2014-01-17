@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+
+        <link rel="stylesheet"
+              href="{{ asset('css/modele.css') }}" type="text/css"/>
+    {% endblock %}
+    <script src="{{ asset('js/jquery-2.0.3.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+
+</head>
+
+<body>
+<div id="menu">
+    <div style="position: relative; color: white;font-size:20px;top:20px; width: 100%; z-index:200;"><span id="fermer" style="position: absolute;cursor:pointer;width:100px; right:100px;">FERMER</span></div>
+
+<div style="width: 1200px; margin-left: auto; margin-right: auto;">
+    <div id="kinetic" style="background: url('{{ asset('img/site/bg.jpg') }}') top left;">
+        <ul id="menu-1">
+            <li class="pr"><a href="#">projet refonte</a></li>
+            <li class="pr-1"><a href="#">maquette</a></li>
+            <li class="pr-1-1">
+                <ul id="menu-1-3">
+                    <li><a href="#">ads</a></li>
+                    <li><a href="#">landing gear</a></li>
+                    <li><a href="#">caisse</a></li>
+                    <li><a href="#">balcon</a></li>
+                    <li><a href="#">ondes</a></li>
+                    <li><a href="#">anchor</a></li>
+                </ul>
+            </li>
+            <li class="pr-1"><a href="#">annexe</a></li>
+            <li class="pr-1-1">
+                <ul id="menu-1-5">
+                    <li><a href="#">treuil portique</a></li>
+                    <li><a href="#">transport</a></li>
+                    <li><a href="#">site web</a></li>
+                    <li><a href="#">decor</a></li>
+                </ul>
+            </li>
+            <li class="av"><a href="#">avancement</a></li>
+            <li class="vp"><a href="#">vrai projet</a></li>
+            <li class="vp-1"><a href="#">comete</a></li>
+            <li class="vp-1"><a href="#">cnes</a></li>
+        </ul>
+    </div>
+
+        <script language="Javascript" src="{{ asset('js/kinetic-v4.7.2.min.js') }}"></script>
+
+        <script language="Javascript">
+            var sources_img = [];
+            // Chargement de la page
+            window.onload = function() {
+
+                //sources_img.push([url,x,y,width,height,rotation,nom, +xText, +yText, tailleText,lien]);
+                sources_img.push(["{{ asset('img/site/lien.png') }}",723,576,340,19,(Math.PI*7.8)/180, "lien",0,0,0,"#"]);
+                sources_img.push(["{{ asset('img/site/lien.png') }}",710,560,440,19,-(Math.PI*51)/180, "lien",0,0,0,"#"]);
+                sources_img.push(["{{ asset('img/site/lien.png') }}",680,560,440,19,-(Math.PI*119)/180,"lien",0,0,0,"#"]);
+                sources_img.push(["{{ asset('img/site/lien.png') }}",267,610,200,19,-(Math.PI*119)/180, "lien",0,0,0,"#"]);
+                sources_img.push(["{{ asset('img/site/lien.png') }}",267,640,200,19,(Math.PI*157)/180,"lien",0,0,0,"#"]);
+
+                sources_img.push(["{{ asset('img/site/ic_annexe.png') }}",940,155,127,127,0,"support",0,100,24,"#"]);
+                sources_img.push(["{{ asset('img/site/ic_a_decor.png') }}",830,183,75,67,0,"decor",10,70,16,"{{ path('cnes_philae_default_page',{'page' : '7'}) }}"]);
+                sources_img.push(["{{ asset('img/site/ic_a_siteweb.png') }}",981,315,75,67,0,"siteweb",0,70,16,"{{ path('cnes_philae_default_site_web') }}"]);
+                sources_img.push(["{{ asset('img/site/ic_a_transport.png') }}",1073,137,75,67,0,"transport",-10,70,16,"{{ path('cnes_philae_default_page',{'page' : '9'}) }}"]);
+                sources_img.push(["{{ asset('img/site/ic_a_treuil.png') }}",915,45,75,67,0, "treuil & portique",-20,70,16,"{{ path('cnes_philae_default_page',{'page' : '8'}) }}"]);
+
+                sources_img.push(["{{ asset('img/site/ic_maquette.png') }}",435,156,127,127,0, "maquette",-15,100,24,"#"]);
+                sources_img.push(["{{ asset('img/site/ic_m_ads.png') }}",387,317,75,67,0, "ads",20,67,16,"{{ path('cnes_philae_default_page',{'page' : '1'}) }}"]);
+                sources_img.push(["{{ asset('img/site/ic_m_anchor.png') }}",587,260,75,67,0, "anchor",10,67,16,"{{ path('cnes_philae_default_page',{'page' : '6'}) }}"]);
+                sources_img.push(["{{ asset('img/site/ic_m_balcon.png') }}",464,45,75,67,0, "balcon",10,67,16,"{{ path('cnes_philae_default_page',{'page' : '4'}) }}"]);
+                sources_img.push(["{{ asset('img/site/ic_m_caisse.png') }}",333,72,75,67,0, "caisse",10,67,16,"{{ path('cnes_philae_default_page',{'page' : '3'}) }}"]);
+                sources_img.push(["{{ asset('img/site/ic_m_landing_gear.png') }}",293,197,75,67,0, "langing gear",-20,67,16,"{{ path('cnes_philae_default_page',{'page' : '2'}) }}"]);
+                sources_img.push(["{{ asset('img/site/ic_m_onde.png') }}",590,108,75,67,0, "ondes",10,67,16,"{{ path('cnes_philae_default_page',{'page' : '5'}) }}"]);
+
+                sources_img.push(["{{ asset('img/site/ic_projet_refonte.png') }}",608,490,177,177,0, "maquette projet philae",-80,150,24,"./projet_refonte.php"]);
+
+                sources_img.push(["{{ asset('img/site/ic_avancement.png') }}",981,575,141,141,0, "avancement",-10,115,24,"#"]);
+
+                sources_img.push(["{{ asset('img/site/ic_vrai_projet.png') }}",190,545,175,175,0, "projet cnes",15,155,24,"{{ path('cnes_philae_default_projet_cnes') }}"]);
+                sources_img.push(["{{ asset('img/site/ic_comete.png') }}",80,340,188,119,0, "comete",40,100,24,"{{ path('cnes_philae_default_comete') }}"]);
+                sources_img.push(["{{ asset('img/site/ic_cnes.png') }}",15,635,127,127,0, "cnes",25,105,24,"http://www.cnes.fr/web/CNES-fr/7097-toutes-les-actualites.php"]);
+
+                sources_img.push(["{{ asset('img/site/test.png') }}",0,50,50,50,50, "Admin",0,40,14,"{{ path('fos_user_security_login') }}"]);
+
+
+                load_images(sources_img, init_scene);
+            };
+        </script>
+    </div>
+
+</div>
+<div id ="div">
+    <header class="header">
+        <div id="divMenu">
+
+        </div>
+    </header>
+
+    <div class="cadre">
+
+{% block body %}{% endblock %}
+
+
+
+    </div>
+
+    <footer id="footer" >
+        <div id="divCopyright">Copyright SIO22</div>
+        <div id="divInfo">  <a href="contact.php">Contact</a>
+            <a href="">Mentions légales</a> </div>
+    </footer>
+</div>
+<script type="text/javascript">
+    var menu = $("#menu");
+    var btnMenu = $("#divMenu");
+    var btnClose = $("#fermer");
+
+    btnMenu.click(function(){
+        menu.animate({
+            top: "0px",
+        },2000 ,'easeOutExpo');
+    });
+
+    btnClose.click(function(){
+        menu.animate({
+            top: "-900px",
+        },2000,'easeOutExpo');
+    });
+
+
+
+</script>
+</body>
+
+</html>

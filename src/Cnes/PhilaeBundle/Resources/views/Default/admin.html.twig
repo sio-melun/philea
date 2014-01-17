@@ -1,0 +1,44 @@
+{# src/Cnes/PhilaeBundle/Resources/views/Default/admin.html.twig #}
+{% extends "::layout.html.twig" %}
+{% block title %}Projet Philae - La comète{% endblock%}
+{% block body %}
+
+    <h1 style="text-align:center;">Administration</h1>
+
+    <div class="clear"></div>
+
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+       Connecté en tant que {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+
+
+
+
+        <br /><br /><br />
+        Ajouter des étapes aux Projets :<br />
+        <table border="1">
+            <tr>
+                <td>Ajouter des étapes</td>
+                <td>Modifier l'avancement du projet</td>
+            </tr>
+
+        {% for user in projets %}
+            <tr>
+                <td><a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': user.id }) }}">-Projet {{user.nom}}</a></td>
+                <td style="text-align: right;"><a href="#">-Projet {{user.nom}}</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </table>
+
+
+    {% else %}
+
+        Vous n'êtes pas connecté ! <br />
+        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+    {% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{# src/Cnes/PhilaeBundle/Resources/views/Default/admin.html.twig #}
+{% extends "::layout.html.twig" %}
+{% block title %}Projet Philae{% endblock%}
+{% block body %}
+
+    <h1 style="text-align:center;">Allo</h1>
+
+       Projet de l'user 1
+    <br />
+    {% for user in users %}
+        {{  user.nom}}
+    {% endfor %}
+
+
+
+
+    <div class="clear"></div>
+
+{% endblock %}

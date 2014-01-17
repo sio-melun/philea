@@ -1,0 +1,139 @@
+html, body {
+ margin: 0;
+ padding: 0;
+ }
+body {
+background:url('../img/site/bg.jpg');
+ font-family: DejaVu Sans,sans-serif; 
+ font-size: 100%;
+ width:100%; 
+}
+.clear{
+clear:both;
+}
+/*conteneurs*/
+#div{
+width:910px; 
+margin-left : auto; 
+margin-right : auto; 
+color: white;
+ }
+
+#divCopyright{
+left:10px;
+top:0px;
+width:210px;
+position:absolute;
+}
+
+#divInfo{
+right:10px;
+top:0px;
+width:400px;
+position:absolute;
+text-align: right;
+}
+
+#divMenu{
+background :url('../img/site/menu.png') 0px 0px no-repeat;
+position:relative;
+height:161px;
+width:389px;
+top:49px;
+left:256px;
+cursor: pointer;
+}
+#divMenu:hover{
+background :url('./img/site/menu_hover.png')0px 0px no-repeat;
+}
+.cadre{
+background-color :#e6dfc5;
+border:12px solid;
+border-color:#171920;
+position:relative;
+min-height:400px;
+}
+ 
+.header{
+background:url('../img/site/header.png')0px 0px no-repeat ;
+height: 192px;
+}
+
+/*************************************************/
+/*images*/
+
+#ros{
+	width="300px";
+	height="150px";
+	float:left;
+}
+/*************************************************/
+
+/*menus*/
+
+#menu{
+/*background:url('img/site/menu_site3.jpg')  0px 0px no-repeat ;*/
+position:absolute;
+height:900px;
+width:1200px;
+z-index:400;
+top:-900px;
+left: 50%;
+margin-left: -600px;
+}
+
+/*******************************************/
+
+
+/*Autres*/
+p,ul,li,td {
+     color: gray;
+
+     padding-top:10px;
+ }
+
+a:link {
+ color: gray;
+ text-decoration:none;
+  }
+a:visited {
+ color: gray;
+ }
+a:hover {
+ color: #FFFFF0;
+ text-shadow: 0 0 0.2em #4169E1, 0 0 0.2em #4169E1 ;
+}
+
+a:active, a:focus {
+ color: red;
+}
+ 
+footer{
+ padding-top:10px;
+margin-top:10px;
+ position:relative;
+height: 30px;
+}
+
+/*************************************************/
+
+/* menu horizantal glissant vers le bas */
+
+.cbp-spmenu-top {
+	top: -150px;
+}
+
+/*************************************************/
+
+/* Pousser le menu */
+
+.cbp-spmenu-push {
+	overflow-x: hidden;
+	position: relative;
+	left: 0;
+}
+
+/*************************************************/
+#personnel td{
+vertical-align: middle;
+}

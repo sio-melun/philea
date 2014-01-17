@@ -1,0 +1,29 @@
+{# src/Cnes/PhilaeBundle/Resources/views/Default/comete.html.twig #}
+{% extends "::layout.html.twig" %}
+{% block title %}Projet Philae{% endblock%}
+{% block body %}
+
+
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        Connecté en tant que {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+
+        <br /><br />
+        {{ form(form) }}
+
+    {% else %}
+
+        Vous n'êtes pas connecté ! <br />
+        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+    {% endif %}
+
+
+    <div class="clear"></div>
+
+
+
+
+
+
+{% endblock %}
+
