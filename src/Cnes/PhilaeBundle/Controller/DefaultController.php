@@ -17,8 +17,18 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('PhilaeBundle:Default:index.html.twig');
+        return $this->render('PhilaeBundle:Default:accueil.html.twig');
     }
+    /**
+     * @Route("/structure/")
+     * @Template()
+     */
+    public function structureAction()
+    {
+        return $this->render('PhilaeBundle:Default:structure.html.twig');
+    }
+
+
 
     /**
      * @Route("/comete/")
