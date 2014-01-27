@@ -12,6 +12,8 @@
             width:50%;
             margin:auto;
             text-align: right;
+            line-height:1;
+            color:white;
         }
 
         #progressbar > div {
@@ -25,6 +27,7 @@
             {% endif %} ;/* Adjust with JavaScript */
             height: 20px;
             border-radius: 10px;
+            line-height:1;
 
         }
     </style>
@@ -50,7 +53,7 @@
             <tr>
 
                 <td width="20%">
-                    <img src="{{ asset('img/upload/'~ etape.lienImage) }}" width="100%" style="max-height: 150px;"></td>
+                    <img src="{{ asset('img/upload/'~ etape.lienImage) }}" width="100%" style="max-height: 200px;"></td>
                 <td width="50%">{{ etape.contenu }}</td>
             </tr>
         </table>

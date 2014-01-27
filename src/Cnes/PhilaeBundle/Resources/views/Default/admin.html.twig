@@ -19,19 +19,36 @@
         <table border="1">
             <tr>
                 <td>Ajouter des étapes</td>
-                <td>Modifier l'avancement du projet</td>
+
             </tr>
 
         {% for user in projets %}
             <tr>
                 <td><a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': user.id }) }}">-Projet {{user.nom}}</a></td>
-                <td style="text-align: right;"><a href="#">-Projet {{user.nom}}</a></td>
+
             </tr>
 
         {% endfor %}
 
         </table>
 
+        <table>
+            <tr>
+                <td>Titre</td>
+                <td>Modifier</td>
+                <td>Supprimer</td>
+
+            </tr>
+
+        {%  for etape in etapes %}
+            <tr>
+                <td>{{ etape.titre}}</td>
+                <td><a href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">X</a></td>
+                <td><a href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">X</a></td>
+            </tr>
+        {% endfor %}
+
+        </table>
 
     {% else %}
 

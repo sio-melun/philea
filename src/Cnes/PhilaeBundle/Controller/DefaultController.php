@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cnes\PhilaeBundle\Entity\Etape;
 use Cnes\PhilaeBundle\Entity\UserProjet;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
@@ -17,7 +18,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('PhilaeBundle:Default:accueil.html.twig');
+        return $this->render('PhilaeBundle:Default:index.html.twig');
     }
     /**
      * @Route("/structure/")
@@ -67,8 +68,10 @@ class DefaultController extends Controller
         $projets = $this->getDoctrine()
             ->getRepository('PhilaeBundle:User')
             ->find($user);
-
-        return $this->render('PhilaeBundle:Default:admin.html.twig', array('projets' => $projets->getProjets()));
+        $etapes = $this->getDoctrine()
+            ->getRepository('PhilaeBundle:Etape')
+            ->findByidUser($user);
+        return $this->render('PhilaeBundle:Default:admin.html.twig', array('projets' => $projets->getProjets(), 'etapes' =>$etapes));
     }
 
 
@@ -129,6 +132,62 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/admin/modifEtape/{id}/")
+     * @Template()
+     */
+    public function modifierAction($id)
+    {
+        // On récupère l'EntityManager
+        $em = $this->getDoctrine()->getManager();
+
+        // On récupère l'entité correspondant à l'id $id
+        $article = $em->getRepository('PhilaeBundle:Etape')
+            ->find($id);
+
+        // Si l'article n'existe pas, on affiche une erreur 404
+        if ($article == null) {
+            throw $this->createNotFoundException('Article[id='.$id.'] inexistant');
+        }
+
+        // J'ai raccourci cette partie, car c'est plus rapide à écrire !
+        $form = $this->createFormBuilder($article)
+
+            ->add('titre', 'text')
+            ->add('contenu', 'text')
+            ->add('date', 'date')
+            ->add('lienImage', 'text')
+            ->add('avancement', 'integer')
+            ->add('save', 'submit')
+            ->getForm();
+
+        // On récupère la requête
+        $request = $this->get('request');
+
+        // On vérifie qu'elle est de type POST
+        if ($request->getMethod() == 'POST') {
+            // On fait le lien Requête <-> Formulaire
+            // À partir de maintenant, la variable $article contient les valeurs entrées dans le formulaire par le visiteur
+            $form->bind($request);
+
+            // On vérifie que les valeurs entrées sont correctes
+            // (Nous verrons la validation des objets en détail dans le prochain chapitre)
+            if ($form->isValid()) {
+                // On l'enregistre notre objet $article dans la base de données
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($article);
+                $em->flush();
+
+                // On redirige vers la page de visualisation de l'article nouvellement créé
+                return $this->redirect($this->generateUrl('cnes_philae_default_admin'));
+            }
+        }
+
+        return $this->render('PhilaeBundle:Default:ajoutEtape.html.twig', array(
+            'form' => $form->createView()));
+    }
+
+
+    /**
      * @Route("/projets/{page}/")
      * @Template()
      */
@@ -141,6 +200,19 @@ class DefaultController extends Controller
         $lesAvancements = $this -> getDoctrine() -> getRepository('PhilaeBundle:Avancement') -> findBy(
             array('idProjet' => $page));
         return array('lesProjets' => $lesProjets,'lesEtapes' => $lesEtapes, 'lesAvancements' => $lesAvancements);
+    }
+
+    /**
+     * @Route("/admin/delete/etape/{id}/")
+     * @Template()
+     */
+    public function deleteEtapeAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $etape = $this -> getDoctrine() -> getRepository('PhilaeBundle:Etape') -> find($id);
+        $em->remove($etape);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('cnes_philae_default_admin'));
     }
 
 }

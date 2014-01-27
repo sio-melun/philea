@@ -21,7 +21,7 @@ class User extends BaseUser
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="Nom", type="string", length=25)
+	 * @ORM\Column(name="Nom", type="string", length=25 , nullable=true)
 	 */
   	private $nom;
     /**
@@ -33,9 +33,10 @@ class User extends BaseUser
      */
     public function __construct()
     {
+        parent::__construct();
         $this->projets = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *

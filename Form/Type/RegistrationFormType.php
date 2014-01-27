@@ -29,6 +29,8 @@ class RegistrationFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        parent::buildForm($builder, $options);
         $builder
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
@@ -39,8 +41,19 @@ class RegistrationFormType extends AbstractType
                 'second_options' => array('label' => 'form.password_confirmation'),
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
+            ->add('roles', 'collection', array(
+                    'type' => 'choice',
+                    'options' => array(
+                        'choices' => array(
+                            'ROLE_ADMIN' => 'Admin',
+                            'ROLE_EDITOR' => 'Editor'
+                        )
+                    )
+                )
+            )
         ;
     }
+
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
