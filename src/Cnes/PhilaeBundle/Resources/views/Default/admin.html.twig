@@ -4,7 +4,7 @@
 {% block body %}
 
     <h1 style="text-align:center;"><span id="titre">Mes étapes</span></h1>
-
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"
 
 
     Ajouter des étapes aux Projets :<br/>
@@ -24,8 +24,13 @@
 
         {% endfor %}
 
-    </table>
-    <h2> Etape en Attende de Validation</h2>
+   </table>
+
+
+    <div id="accordion">
+
+<h3> Etape en Attende de Validation</h3>
+    <div>
 
         {% for etape in etapes %}
             {% if (etape.isValide==0) %}
@@ -51,15 +56,14 @@
                         <td width="5%"><a href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">Supprimer</a>
                         </td>
                     </tr>
-
-
                 </table>
                 <br/>
 
             {% endif %}
         {% endfor %}
-
-    <h2>Etape Validé</h2>
+    </div>
+    <h3>Etape Validé</h3>
+    <div>
                 {% for etape in etapes %}
                     {% if (etape.isValide==1) %}
 
@@ -88,13 +92,16 @@
 
                     {% endif %}
                 {% endfor %}
-
+    </div>
+    </div>
 
 
 
     <!-- </table>  ???-->
+        <script>
+            $( "#accordion" ).accordion();
+        </script>
 
 
+        {% endblock %}
 
-
-{% endblock %}

@@ -1,10 +1,22 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>accordion demo</title>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    </head>
 
-    <h1 style="text-align:center;"><span id="titre">Validation</span></h1>
 
+<h1 style="text-align:center;"><span id="titre">Validation</span></h1>
+
+    <div id="accordion">
     <h3> Etape en Attende de Validation</h3>
+    <div>
     {%  for etape in lesEtapes %}
         {% if (etape.isValide==0) %}
 
@@ -30,9 +42,10 @@
 
         {% endif %}
     {% endfor %}
-
+    </div>
 
     <h3> Etape Validé</h3>
+    <div>
     {%  for etape in lesEtapes %}
         {% if (etape.isValide==1) %}
 
@@ -53,7 +66,10 @@
 
         {% endif %}
     {% endfor %}
+
+    </div>
     <h3> Etape Supprimé</h3>
+    <div>
     {%  for etape in lesEtapes %}
         {% if (etape.isValide=="-1") %}
 
@@ -76,12 +92,16 @@
             <br />
         {% endif %}
     {% endfor %}
-
+    </div>
+    </div>
 
 
     </table>
 
 
+    <script>
+        $( "#accordion" ).accordion();
+    </script>
 
 
 {% endblock %}
