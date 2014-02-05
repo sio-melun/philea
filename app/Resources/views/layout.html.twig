@@ -39,7 +39,8 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active" class="dropdown">
+                <li><a href="{{ path('cnes_philae_default_index') }}"><b>Accueil</b></a></li>
+                <li  class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Académie</b> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-submenu">
@@ -85,34 +86,34 @@
                         <li class="dropdown-submenu">
                             <a href="#">Structure</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '1'}) }}">Balcon</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '2'}) }}">Caisse</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '3'}) }}">Train D'atérissage</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '4'}) }}">ADS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '5'}) }}">Anchor</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '6'}) }}">Radio</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '1'}) }}">Balcon</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '2'}) }}">Caisse</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '3'}) }}">Train D'atérissage</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '4'}) }}">ADS</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '5'}) }}">Anchor</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '6'}) }}">Radio</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
                             <a href="#">Instrument d'éxploration</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '7'}) }}">CIVA</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '8'}) }}">SD2</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '9'}) }}">ROMAP</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '10'}) }}">MUPUS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '11'}) }}">ROLIS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '12'}) }}">APXS</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '7'}) }}">CIVA</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '8'}) }}">SD2</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '9'}) }}">ROMAP</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '10'}) }}">MUPUS</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '11'}) }}">ROLIS</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '12'}) }}">APXS</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
                             <a href="#">Support</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '13'}) }}">Fabrication</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '14'}) }}">Energie</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '15'}) }}">Transport</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '16'}) }}">Treuil & Portique</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '17'}) }}">Site</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'page' : '18'}) }}">Décor</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '13'}) }}">Fabrication</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '14'}) }}">Energie</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '15'}) }}">Transport</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '16'}) }}">Treuil & Portique</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '17'}) }}">Site</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '18'}) }}">Décor</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -122,7 +123,16 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('fos_user_security_login') }}"><b>Connexion</b></a></li>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {% if is_granted('ROLE_GESTIONNAIRE') %}
+                            <li><a href="{{ path('cnes_philae_default_gestion') }}"><b>Validation</b></a></li>
+                        {% endif %}
+                    <li><a href="{{ path('cnes_philae_default_admin') }}"><b>Mes étapes</b></a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><b>Deconnexion</b></a></li>
+                {% else %}
+                 <li><a href="{{ path('fos_user_security_login') }}"><b>Connexion</b></a></li>
+
+                {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -140,5 +150,16 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{{ tinymce_init() }}
+<script>
+    $(document).ready(function(){
+        $(".cacher").click(function(){
+            $("#cacher").fadeToggle();
+            //$("table").toggle(3000);
+            var $el = $(this);
+            $el.text($el.text() == "Cacher" ? "Afficher": "Cacher");
+        });
+    });
+</script>
 </body>
 </html>

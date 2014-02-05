@@ -34,6 +34,7 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->roles = array('ROLE_REDACTEUR');
         $this->projets = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -102,4 +103,8 @@ class User extends BaseUser
     {
         return $this->projets;
     }
+
+
+
+
 }

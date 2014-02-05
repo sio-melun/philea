@@ -1,63 +1,74 @@
 <?php
 
 namespace Cnes\PhilaeBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Etape
  *
  * @ORM\Table(name="Etape")
  * @ORM\Entity(repositoryClass="Cnes\PhilaeBundle\Entity\EtapeRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class Etape {
-	/**
-	 * @var integer
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	protected $id;
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="Titre", type="string", length=70)
-	 */
-	private $titre;
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="Contenu", type="string")
-	 */
-	private $contenu;
-	/**
-	 * @var datetime
-	 *
-	 * @ORM\Column(name="Date", type="datetime")
-	 */
-	private $date;
-	 /**
-	 * @var string
-	 *
-	 * @ORM\Column(name="lienImage", type="string", length=60)
-	 */
-	private $lienImage;
-	/**
-	 * @var integer
-	 * @ORM\OneToOne(targetEntity="User")
-	 * @ORM\JoinColumn(nullable=true, name="Id",
-	 referencedColumnName="id")
-	 * @ORM\Column(name="idUser", type="integer", length=3)*/
+class Etape
+{
+    const SUPPRIMER = "-1";
+    const ATTENTE_VALIDATION = 0;
+    const VALIDE = 1;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Titre", type="string", length=70)
+     */
+    private $titre;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Contenu", type="string")
+     */
+    private $contenu;
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="Date", type="datetime")
+     */
+    private $date;
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $path;
+    /**
+     * @var integer
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(nullable=true, name="Id",
+    referencedColumnName="id")
+     * @ORM\Column(name="idUser", type="integer", length=3)*/
     protected $idUser;
     /**
-	 * @var integer
-	 * @ORM\OneToOne(targetEntity="Projet")
-	 * @ORM\JoinColumn(nullable=true, name="id",
-	 referencedColumnName="id")
-	 * @ORM\Column(name="idProjet", type="integer", length=3)
-	 */
+     * @var integer
+     * @ORM\OneToOne(targetEntity="Projet")
+     * @ORM\JoinColumn(nullable=true, name="id",
+    referencedColumnName="id")
+     * @ORM\Column(name="idProjet", type="integer", length=3)
+     */
 	protected $idProjet;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="isValide", nullable=true)
+     */
+    protected $isValide;
 
     /**
      * @var integer
@@ -65,18 +76,25 @@ class Etape {
      * @ORM\Column(name="Avancement", type="integer", length=3)
      */
 	private $avancement;
-    
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    public $file;
+
+
+
 public function __construct()
 {
-    $this->date         = new \Datetime;
+    $this->date = new \Datetime;
 
 }
 
      /**
-     * Get id
-     *
-     * @return integer 
-     */
+      * Get id
+      *
+      * @return integer
+      */
     public function getId()
     {
         return $this->id;
@@ -91,13 +109,13 @@ public function __construct()
     public function setTitre($titre)
     {
         $this->titre = $titre;
-    
+
         return $this;
     }
     /**
      * Get titre
      *
-     * @return string 
+     * @return string
      */
     public function getTitre()
     {
@@ -113,13 +131,13 @@ public function __construct()
     public function setName($contenu)
     {
         $this->contenu = $contenu;
-    
+
         return $this;
     }
 	/**
      * Get contenu
      *
-     * @return string 
+     * @return string
      */
     public function getContenu()
     {
@@ -131,7 +149,7 @@ public function __construct()
     /**
      * Get Date
      *
-     * @return datetime 
+     * @return datetime
      */
     public function getDate()
     {
@@ -139,24 +157,24 @@ public function __construct()
     }
 
      /**
-     * Get idUser
-     *
-     * @return \Cnes\PhilaeBundle\Entity\User
-     */
+      * Get idUser
+      *
+      * @return \Cnes\PhilaeBundle\Entity\User
+      */
     public function getIdUser()
     {
         return $this->id;
     }
 
 	/**
-     	* Get idProjet
-     	*
-     	* @return \Cnes\PhilaeBundle\Entity\Projet
-     	*/
+     * Get idProjet
+     *
+     * @return \Cnes\PhilaeBundle\Entity\Projet
+     */
    	 public function getIdProjet()
-    	{
-        return $this->id;
-   	 }
+     {
+         return $this->idProjet;
+     }
 
     /**
      * Set contenu
@@ -167,7 +185,7 @@ public function __construct()
     public function setContenu($contenu)
     {
         $this->contenu = $contenu;
-    
+
         return $this;
     }
 
@@ -180,7 +198,7 @@ public function __construct()
     public function setDate($date)
     {
         $this->date = $date;
-    
+
         return $this;
     }
 
@@ -193,7 +211,7 @@ public function __construct()
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
-    
+
         return $this;
     }
 
@@ -206,31 +224,8 @@ public function __construct()
     public function setIdProjet($idProjet)
     {
         $this->idProjet = $idProjet;
-    
-        return $this;
-    }
 
-    /**
-     * Set lienImage
-     *
-     * @param string $lienImage
-     * @return Etape
-     */
-    public function setLienImage($lienImage)
-    {
-        $this->lienImage = $lienImage;
-    
         return $this;
-    }
-
-    /**
-     * Get lienImage
-     *
-     * @return string 
-     */
-    public function getLienImage()
-    {
-        return $this->lienImage;
     }
 
     /**
@@ -242,17 +237,131 @@ public function __construct()
     public function setAvancement($avancement)
     {
         $this->avancement = $avancement;
-    
+
         return $this;
     }
 
     /**
      * Get avancement
      *
-     * @return integer 
+     * @return integer
      */
     public function getAvancement()
     {
         return $this->avancement;
+    }
+
+    /**
+     * Set isValide
+     *
+     * @param string $isValide
+     * @return Etape
+     */
+    public function setIsValide($isValide)
+    {
+        $this->isValide = $isValide;
+
+        return $this;
+    }
+
+    /**
+     * Get isValide
+     *
+     * @return string
+     */
+    public function getIsValide()
+    {
+        return $this->isValide;
+    }
+
+
+    //Upload d'image à partir d'ici
+    public function getAbsolutePath()
+    {
+        return null === $this->path ? null : $this->getUploadRootDir() . '/' . $this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path ? null : $this->getUploadDir() . '/' . $this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__ . '/../../../../web/' . $this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'img/upload';
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file) {
+            // faites ce que vous voulez pour générer un nom unique
+            $this->path = sha1(uniqid(mt_rand(), true)) . '.' . $this->file->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) {
+            return;
+        }
+
+        // s'il y a une erreur lors du déplacement du fichier, une exception
+        // va automatiquement être lancée par la méthode move(). Cela va empêcher
+        // proprement l'entité d'être persistée dans la base de données si
+        // erreur il y a
+        $this->file->move($this->getUploadRootDir(), $this->path);
+
+        unset($this->file);
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+
+
+    /**
+     * Set path
+     *
+     * @param string $path
+     * @return Etape
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }

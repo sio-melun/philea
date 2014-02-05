@@ -1,9 +1,9 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-    <h1 style="text-align:center;">{{lesProjets[0].Nom}}</h1>
+    <center><span id="titre">{{projet.Nom}}</span><br />
 
-    {{lesProjets[0].description}}
+    {{projet.description}}</center>
     <br /><br />
     <style>  #progressbar {
             background-color: black;
@@ -48,13 +48,13 @@
         <!--<center><h3>{{  etape.titre}}</h3></center> -->
         <table width="100%">
             <tr>
-                <th colspan="2"> <font size="+1" color="#000066">{{etape.titre}}</font></th>
+                <th colspan="2" style="text-align: center;"><font size="+1" color="#000066">{{etape.titre}}</font></th>
             </tr>
             <tr>
 
                 <td width="20%">
-                    <img src="{{ asset('img/upload/'~ etape.lienImage) }}" width="100%" style="max-height: 200px;"></td>
-                <td width="50%">{{ etape.contenu }}</td>
+                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%" style="max-height: 200px;"></td>
+                <td width="50%">{{ etape.contenu|raw }}</td>
             </tr>
         </table>
         <br /><br />

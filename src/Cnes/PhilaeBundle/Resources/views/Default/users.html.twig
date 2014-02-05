@@ -1,0 +1,21 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+
+    <h1 style="text-align:center;">Users</h1>
+
+    <h3> Etape en Attende de Validation</h3>
+    {%  for user in users %}
+
+            <table width="100%" border="1">
+                <tr>
+                    <th > {{user.username}}</th>
+                    <th > {{user.email}}</th>
+
+
+
+
+    {% endfor %}
+
+
+{% endblock %}

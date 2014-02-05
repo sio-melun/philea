@@ -1,60 +1,99 @@
 {# src/Cnes/PhilaeBundle/Resources/views/Default/admin.html.twig #}
 {% extends "::layout.html.twig" %}
-{% block title %}Projet Philae - La comète{% endblock%}
+{% block title %}Projet Philae - La comète{% endblock %}
 {% block body %}
 
-    <h1 style="text-align:center;">Administration</h1>
-
-    <div class="clear"></div>
-
-
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-       Connecté en tant que {{ app.user.username }} - <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+    <h1 style="text-align:center;"><span id="titre">Mes étapes</span></h1>
 
 
 
+    Ajouter des étapes aux Projets :<br/>
+    <table border="1">
+        <tr>
+            <td>Ajouter des étapes</td>
 
-        <br /><br /><br />
-        Ajouter des étapes aux Projets :<br />
-        <table border="1">
-            <tr>
-                <td>Ajouter des étapes</td>
-
-            </tr>
+        </tr>
 
         {% for user in projets %}
             <tr>
-                <td><a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': user.id }) }}">-Projet {{user.nom}}</a></td>
+                <td>
+                    <a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': user.id }) }}">-Projet {{ user.nom }}</a>
+                </td>
 
             </tr>
 
         {% endfor %}
 
-        </table>
+    </table>
+    <h2> Etape en Attende de Validation</h2>
 
-        <table>
-            <tr>
-                <td>Titre</td>
-                <td>Modifier</td>
-                <td>Supprimer</td>
+        {% for etape in etapes %}
+            {% if (etape.isValide==0) %}
 
-            </tr>
 
-        {%  for etape in etapes %}
-            <tr>
-                <td>{{ etape.titre}}</td>
-                <td><a href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">X</a></td>
-                <td><a href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">X</a></td>
-            </tr>
+
+
+                <table width="100%" border="1">
+                    <tr>
+                        <th colspan="5">
+                            <center><font size="+1" color="#000066">{{ etape.titre }}</font></center>
+                        </th>
+                    </tr>
+                    <tr>
+
+                        <td width="20%">
+                            <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%" style="max-height: 200px;">
+                        </td>
+                        <td width="50%">{{ etape.contenu|raw }}</td>
+                        <td width="5%"><a
+                                    href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">Modifier</a>
+                        </td>
+                        <td width="5%"><a href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">Supprimer</a>
+                        </td>
+                    </tr>
+
+
+                </table>
+                <br/>
+
+            {% endif %}
         {% endfor %}
 
-        </table>
+    <h2>Etape Validé</h2>
+                {% for etape in etapes %}
+                    {% if (etape.isValide==1) %}
 
-    {% else %}
+                        <table width="100%" border="1">
+                            <tr>
+                                <th colspan="5">
+                                    <center><font size="+1" color="#000066">{{ etape.titre }}</font></center>
+                                </th>
+                            </tr>
+                            <tr>
 
-        Vous n'êtes pas connecté ! <br />
-        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
-    {% endif %}
+                                <td width="20%">
+                                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
+                                         style="max-height: 200px;"></td>
+                                <td width="50%">{{ etape.contenu|raw }}</td>
+                                <td width="5%"><a href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">Modifier</a>
+                                </td>
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">Supprimer</a>
+                                </td>
+                            </tr>
+
+
+                        </table>
+                        <br/>
+
+                    {% endif %}
+                {% endfor %}
+
+
+
+
+    <!-- </table>  ???-->
+
 
 
 

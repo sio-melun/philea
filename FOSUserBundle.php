@@ -63,4 +63,9 @@ class FOSUserBundle extends Bundle
             $container->addCompilerPass(RegisterMappingsPass::createCouchDBMappingDriver($mappings));
         }
     }
+
+
+
+
+
 }
