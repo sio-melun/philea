@@ -47,21 +47,20 @@ class Etape
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $path;
+
+
     /**
-     * @var integer
-     * @ORM\OneToOne(targetEntity="User")
-     * @ORM\JoinColumn(nullable=true, name="Id",
-    referencedColumnName="id")
-     * @ORM\Column(name="idUser", type="integer", length=3)*/
-    protected $idUser;
-    /**
-     * @var integer
-     * @ORM\OneToOne(targetEntity="Projet")
-     * @ORM\JoinColumn(nullable=true, name="id",
-    referencedColumnName="id")
-     * @ORM\Column(name="idProjet", type="integer", length=3)
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(nullable=true, name="idUser", referencedColumnName="id")
      */
-	protected $idProjet;
+    protected $user;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Projet")
+     * @ORM\JoinColumn(nullable=true, name="idProjet", referencedColumnName="id")
+     */
+    protected $projet;
 
     /**
      * @var int
@@ -75,7 +74,7 @@ class Etape
      *
      * @ORM\Column(name="Avancement", type="integer", length=3)
      */
-	private $avancement;
+    private $avancement;
 
     /**
      * @Assert\File(maxSize="6000000")
@@ -84,17 +83,17 @@ class Etape
 
 
 
-public function __construct()
-{
-    $this->date = new \Datetime;
+    public function __construct()
+    {
+        $this->date = new \Datetime;
 
-}
+    }
 
-     /**
-      * Get id
-      *
-      * @return integer
-      */
+    /**
+     * Get id
+     *
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
@@ -122,7 +121,7 @@ public function __construct()
         return $this->titre;
     }
 
-	/**
+    /**
      * Set contenu
      *
      * @param string $contenu
@@ -134,7 +133,7 @@ public function __construct()
 
         return $this;
     }
-	/**
+    /**
      * Get contenu
      *
      * @return string
@@ -156,25 +155,7 @@ public function __construct()
         return $this->date;
     }
 
-     /**
-      * Get idUser
-      *
-      * @return \Cnes\PhilaeBundle\Entity\User
-      */
-    public function getIdUser()
-    {
-        return $this->id;
-    }
 
-	/**
-     * Get idProjet
-     *
-     * @return \Cnes\PhilaeBundle\Entity\Projet
-     */
-   	 public function getIdProjet()
-     {
-         return $this->idProjet;
-     }
 
     /**
      * Set contenu
@@ -198,32 +179,6 @@ public function __construct()
     public function setDate($date)
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     * @return Etape
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Set idProjet
-     *
-     * @param integer $idProjet
-     * @return Etape
-     */
-    public function setIdProjet($idProjet)
-    {
-        $this->idProjet = $idProjet;
 
         return $this;
     }
@@ -363,5 +318,56 @@ public function __construct()
     public function getPath()
     {
         return $this->path;
+    }
+
+    public function __toString()
+    {
+        return strval($this->id);
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Cnes\PhilaeBundle\Entity\User $user
+     * @return Etape
+     */
+    public function setUser(\Cnes\PhilaeBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Cnes\PhilaeBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set projet
+     *
+     * @param \Cnes\PhilaeBundle\Entity\Projet $projet
+     * @return Etape
+     */
+    public function setProjet(\Cnes\PhilaeBundle\Entity\Projet $projet = null)
+    {
+        $this->projet = $projet;
+
+        return $this;
+    }
+
+    /**
+     * Get projet
+     *
+     * @return \Cnes\PhilaeBundle\Entity\Projet
+     */
+    public function getProjet()
+    {
+        return $this->projet;
     }
 }

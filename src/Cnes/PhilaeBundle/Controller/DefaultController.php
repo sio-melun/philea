@@ -29,11 +29,12 @@ class DefaultController extends Controller
     {
         $projet = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')
             ->find($idProjet);
+
         if (!$projet) {
             throw $this->createNotFoundException('Aucun projet trouvé');
         }
         $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findBy(
-            array('idProjet' => $idProjet, 'isValide'=> 1 ),
+            array('projet' => $projet, 'isValide'=> 1),
             array('avancement' => 'DESC'));
         return array('projet' => $projet, 'lesEtapes' => $lesEtapes);
     }
@@ -44,17 +45,13 @@ class DefaultController extends Controller
      */
     public function adminAction()
     {
-        $user = $this->container->get('security.context')->getToken()->getUser()->getId();
-        $projets = $this->getDoctrine()
-            ->getRepository('PhilaeBundle:User')
-            ->find($user);
-
-
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $projets = $user->getProjets();
         $etapes = $this->getDoctrine()
         ->getRepository('PhilaeBundle:Etape')
-        ->findByidUser($user);
+        ->findByUser($user->getId());
 
-        return $this->render('PhilaeBundle:Default:admin.html.twig', array('projets' => $projets->getProjets(), 'etapes' => $etapes ));
+        return $this->render('PhilaeBundle:Default:admin.html.twig', array('projets' => $projets, 'etapes' => $etapes ));
     }
 
 
@@ -67,29 +64,28 @@ class DefaultController extends Controller
     {
 
         $user = $this->getUser();
-        $projets = $user->getProjets();
 
-        //Récupère l'idProjet selon l'étape en cours
-        $idEtape = $this->getDoctrine()
-            ->getRepository('PhilaeBundle:Projet')
-            ->find($idProjet)->getId();
+        $projet = $this->getDoctrine()
+            ->getRepository('PhilaeBundle:Projet')->find($idProjet);
+
+        $projets = $user->getProjets();
 
         $ajoutApprouve = false;
 
         for ($i = 0; $i <= count($projets); $i++) {
             if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $idEtape) {
+                if ($projets[$i]->getId() == $projet->getId()) {
                     $ajoutApprouve = true;
                 }
             }
         }
         if ($ajoutApprouve) {
-                    $userId = $this->getUser()->getId();
+                    $user = $this->getUser();
 
                     // On crée un objet Article
                     $article = new Etape();
-                    $article->setIdUser($userId);
-                    $article->setIdProjet($idProjet);
+                    $article->setUser($user);
+                    $article->setProjet($projet);
                     $article->setIsValide(Etape::ATTENTE_VALIDATION);
                     // J'ai raccourci cette partie, car c'est plus rapide à écrire !
                     $form = $this->createFormBuilder($article)
@@ -151,22 +147,20 @@ class DefaultController extends Controller
      */
     public function modifierAction($id)
     {
-
         $user = $this->getUser();
-
 
         $projets = $user->getProjets();
 
         //Récupère l'idProjet selon l'étape en cours
-        $idProjetEtape = $this->getDoctrine()
+        $projetEtape = $this->getDoctrine()
             ->getRepository('PhilaeBundle:Etape')
-            ->find($id)->getIdProjet();
+            ->find($id)->getProjet();
 
         $modificationApprouve = false;
 
         for ($i = 0; $i <= count($projets); $i++) {
             if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $idProjetEtape) {
+                if ($projets[$i]->getId() == $projetEtape->getId()) {
                     $modificationApprouve = true;
                 }
             }
@@ -255,15 +249,15 @@ function deleteEtapeAction($id)
     $projets = $user->getProjets();
 
     //Récupère l'idProjet selon l'étape en cours
-    $idProjetEtape = $this->getDoctrine()
+    $projetEtape = $this->getDoctrine()
         ->getRepository('PhilaeBundle:Etape')
-        ->find($id)->getIdProjet();
+        ->find($id)->getProjet();
 
     $deleteApprouve = false;
 
     for ($i = 0; $i <= count($projets); $i++) {
         if (isset($projets[$i])) {
-            if ($projets[$i]->getId() == $idProjetEtape) {
+            if ($projets[$i]->getId() == $projetEtape->getId()) {
                 $deleteApprouve = true;
             }
         }
@@ -290,18 +284,13 @@ function deleteEtapeAction($id)
      */
     public function gestionAction()
     {
-        //idUser
-        $idUser = $this->getUser();
-        //projet autorisé
-        $userProjets = $idUser->getProjets();
+        $user = $this->getUser();
+        $projets = $user->getProjets();
+        $etapes = $this->getDoctrine()
+            ->getRepository('PhilaeBundle:Etape')
+            ->findByUser($user->getId());
 
-
-        $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findBy(
-            array('idProjet' => $userProjets[0] ));
-
-
-
-        return $this->render('PhilaeBundle:Default:gestion.html.twig', array('lesEtapes' =>$lesEtapes));
+        return $this->render('PhilaeBundle:Default:gestion.html.twig', array('projets' => $projets, 'lesEtapes' => $etapes ));
     }
 
     /**
@@ -313,19 +302,19 @@ function deleteEtapeAction($id)
 
         $user = $this->getUser();
 
-
         $projets = $user->getProjets();
 
         //Récupère l'idProjet selon l'étape en cours
-        $idProjetEtape = $this->getDoctrine()
+        $projetEtape = $this->getDoctrine()
             ->getRepository('PhilaeBundle:Etape')
-            ->find($id)->getIdProjet();
+            ->find($id)->getProjet();
+
 
         $publierApprouve = false;
 
         for ($i = 0; $i <= count($projets); $i++) {
             if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $idProjetEtape) {
+                if ($projets[$i]->getId() == $projetEtape->getId()) {
                     $publierApprouve = true;
                 }
             }
@@ -357,19 +346,18 @@ function deleteEtapeAction($id)
 
         $user = $this->getUser();
 
-
         $projets = $user->getProjets();
 
         //Récupère l'idProjet selon l'étape en cours
-        $idProjetEtape = $this->getDoctrine()
+        $projetEtape = $this->getDoctrine()
             ->getRepository('PhilaeBundle:Etape')
-            ->find($id)->getIdProjet();
+            ->find($id)->getProjet();
 
         $modificationApprouve = false;
 
         for ($i = 0; $i <= count($projets); $i++) {
             if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $idProjetEtape) {
+                if ($projets[$i]->getId() == $projetEtape->getId()) {
                     $modificationApprouve = true;
                 }
             }
@@ -444,19 +432,18 @@ function deleteEtapeAction($id)
 
         $user = $this->getUser();
 
-
         $projets = $user->getProjets();
 
         //Récupère l'idProjet selon l'étape en cours
-        $idProjetEtape = $this->getDoctrine()
+        $projetEtape = $this->getDoctrine()
             ->getRepository('PhilaeBundle:Etape')
-            ->find($id)->getIdProjet();
+            ->find($id)->getProjet();
 
         $deleteApprouve = false;
 
         for ($i = 0; $i <= count($projets); $i++) {
             if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $idProjetEtape) {
+                if ($projets[$i]->getId() == $projetEtape->getId()) {
                     $deleteApprouve = true;
                 }
             }

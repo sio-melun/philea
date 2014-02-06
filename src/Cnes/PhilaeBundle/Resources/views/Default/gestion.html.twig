@@ -1,19 +1,12 @@
 {% extends "::layout.html.twig" %}
-
+{% block title %}Projet Philae - Validation{% endblock %}
 {% block body %}
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>accordion demo</title>
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-        <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-    </head>
-
-
 <h1 style="text-align:center;"><span id="titre">Validation</span></h1>
 
+    {% for user in projets %}
+
+
+    {% endfor %}
     <div id="accordion">
     <h3> Etape en Attende de Validation</h3>
     <div>
@@ -25,7 +18,7 @@
                     <th colspan="5"> <center><font size="+1" color="#000066">{{etape.titre}}</font></center></th>
 
                 </tr>
-                <tr><th colspan="5"> <center> Avancement : {{etape.avancement}}%</center></th></tr>
+                <tr><th colspan="5"> <center> Avancement : {{etape.avancement}}% {{etape.projet.nom}}</center></th></tr>
                 <tr>
 
                     <td width="20%">

@@ -1,13 +1,11 @@
 {# src/Cnes/PhilaeBundle/Resources/views/Default/admin.html.twig #}
 {% extends "::layout.html.twig" %}
-{% block title %}Projet Philae - La comète{% endblock %}
+{% block title %}Projet Philae - Rédaction{% endblock %}
 {% block body %}
 
     <h1 style="text-align:center;"><span id="titre">Mes étapes</span></h1>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"
 
-
-    Ajouter des étapes aux Projets :<br/>
+    Ajouter des étapes aux Projets :<br />
     <table border="1">
         <tr>
             <td>Ajouter des étapes</td>
@@ -41,7 +39,7 @@
                 <table width="100%" border="1">
                     <tr>
                         <th colspan="5">
-                            <center><font size="+1" color="#000066">{{ etape.titre }}</font></center>
+                            <center><font size="+1" color="#000066">{{ etape.titre }} {{ etape.projet.nom }}</font></center>
                         </th>
                     </tr>
                     <tr>
