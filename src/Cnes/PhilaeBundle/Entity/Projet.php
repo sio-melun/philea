@@ -118,26 +118,4 @@ class Projet
         return $this->classe;
     }
 
-    /**
-     * Set typeprojv
-     *
-     * @param string $typeprojv
-     * @return Projet
-     */
-    public function setTypeprojv($typeprojv)
-    {
-        $this->typeprojv = $typeprojv;
-    
-        return $this;
-    }
-
-    /**
-     * Get typeprojv
-     *
-     * @return string 
-     */
-    public function getTypeprojv()
-    {
-        return $this->typeprojv;
-    }
 }
