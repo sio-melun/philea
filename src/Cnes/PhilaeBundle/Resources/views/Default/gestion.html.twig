@@ -5,31 +5,50 @@
 
     <div id="accordion">
         <h3> Etape en Attende de Validation</h3>
+
         <div>
-            {%  for etape in lesEtapes %}
-                {%  for p1 in userProjets %}
+            {% for etape in lesEtapes %}
+                {% for p1 in userProjets %}
                     {% if (etape.isValide==0 and p1.id==etape.projet.id) %}
 
-                        <table width="100%" border="1">
+                        <table width="100%" class="table">
                             <tr>
-                                <th colspan="5"><span style="float:left;">Projet : {{etape.projet.domaine.nom}}</span><span style="float:right;">USERNAME :{{etape.user.username}}</span></th></tr>
+                                <th colspan="5"><span style="float:left;">Projet : {{ etape.projet.domaine.nom }}</span><span
+                                            style="float:right;">Rédacteur : {{ etape.user.username }}</span></th>
+                            </tr>
                             <tr>
-                                <th colspan="5"><span style="float:left;">{{etape.titre}}</span> <span style="float:right;">Avancement : {{etape.avancement}}%</span> </th>
-
+                                <th colspan="5"><span style="float:left;">{{ etape.titre }}</span> <span
+                                            style="float:right;">Avancement : {{ etape.avancement }}%</span></th>
                             </tr>
                             <tr>
 
                                 <td width="20%">
-                                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%" style="max-height: 200px;"></td>
+                                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
+                                         style="max-height: 200px;"></td>
                                 <td width="50%">{{ etape.contenu|raw }}</td>
-                                <td width="5%"><a href="{{ path('cnes_philae_default_modifiergestion',{'id' : etape.id}) }}"><button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i> Modifier</button></a></td>
-                                <td width="5%"><a href="{{ path('cnes_philae_default_publiergestion',{'id' : etape.id}) }}"><button class="btn btn-success btn-small"><i class="icon-white icon-ok-sign"></i> Publier</button></a></td>
-                                <td width="5%"><a href="{{ path('cnes_philae_default_deletegestion',{'id' : etape.id}) }}"><button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i> Supprimer</button></a></td>
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_modifiergestion',{'id' : etape.id}) }}">
+                                        <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
+                                            Modifier
+                                        </button>
+                                    </a></td>
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_publiergestion',{'id' : etape.id}) }}">
+                                        <button class="btn btn-success btn-small"><i
+                                                    class="icon-white icon-ok-sign"></i> Publier
+                                        </button>
+                                    </a></td>
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_deletegestion',{'id' : etape.id}) }}">
+                                        <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
+                                            Supprimer
+                                        </button>
+                                    </a></td>
                             </tr>
 
 
                         </table>
-                        <br />
+                        <br/>
 
                     {% endif %}
                 {% endfor %}
@@ -37,52 +56,84 @@
         </div>
 
         <h3> Etape Validé</h3>
+
         <div>
-            {%  for etape in lesEtapes %}
-                {% if (etape.isValide==1) %}
+            {% for etape in lesEtapes %}
+                {% for p1 in userProjets %}
+                    {% if (etape.isValide==1 and p1.id==etape.projet.id) %}
 
-                    <table width="100%" border="1">
-                        <tr>
-                            <th colspan="5"> <center><font size="+1" color="#000066">{{etape.titre}}</font></center></th>
-                        </tr>
-                        <tr>
+                        <table width="100%" border="1">
+                            <tr>
+                                <th colspan="5"><span style="float:left;">Projet : {{ etape.projet.domaine.nom }}</span><span
+                                            style="float:right;">Rédacteur : {{ etape.user.username }}</span></th>
+                            </tr>
+                            <tr>
+                                <th colspan="5"><span style="float:left;">{{ etape.titre }}</span> <span
+                                            style="float:right;">Avancement : {{ etape.avancement }}%</span></th>
+                            </tr>
+                            <tr>
 
-                            <td width="20%">
-                                <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%" style="max-height: 200px;"></td>
-                            <td width="50%">{{ etape.contenu|raw }}</td>
-                            <td width="5%"><a href="{{ path('cnes_philae_default_modifiergestion',{'id' : etape.id}) }}">Modifier</a></td>
-                            <td width="5%"><a href="{{ path('cnes_philae_default_deletegestion',{'id' : etape.id}) }}">Supprimer</a></td>
-                        </tr>
-                    </table>
-                    <br />
+                                <td width="20%">
+                                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
+                                         style="max-height: 200px;"></td>
+                                <td width="50%">{{ etape.contenu|raw }}</td>
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_modifiergestion',{'id' : etape.id}) }}">
+                                        <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
+                                            Modifier
+                                        </button>
+                                    </a></td>
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_deletegestion',{'id' : etape.id}) }}">
+                                        <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
+                                            Supprimer
+                                        </button>
+                                    </a></td>
+                            </tr>
+                        </table>
+                        <br/>
 
-                {% endif %}
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
 
         </div>
         <h3> Etape Supprimé</h3>
+
         <div>
-            {%  for etape in lesEtapes %}
-                {% if (etape.isValide=="-1") %}
+            {% for etape in lesEtapes %}
+                {% for p1 in userProjets %}
+                    {% if (etape.isValide==-1 and p1.id==etape.projet.id) %}
 
-                    <table width="100%" border="1">
-                        <tr>
-                            <th colspan="5"> <center><font size="+1" color="#000066">{{etape.titre}}</font></center></th>
-                        </tr>
-                        <tr>
+                        <table width="100%" border="1">
+                            <tr>
+                                <th colspan="5"><span style="float:left;">Projet : {{ etape.projet.domaine.nom }}</span><span
+                                            style="float:right;">Rédacteur : {{ etape.user.username }}</span></th>
+                            </tr>
+                            <tr>
+                                <th colspan="5"><span style="float:left;">{{ etape.titre }}</span> <span
+                                            style="float:right;">Avancement : {{ etape.avancement }}%</span></th>
+                            </tr>
+                            <tr>
 
-                            <td width="20%">
-                                <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%" style="max-height: 200px;"></td>
-                            <td width="50%">{{ etape.contenu|raw }}</td>
-                            <td width="5%"><a href="{{ path('cnes_philae_default_modifiergestion',{'id' : etape.id}) }}">Modifier</a></td>
-                            <td width="5%"><a href="{{ path('cnes_philae_default_publiergestion',{'id' : etape.id}) }}">Publier</a></td>
+                                <td width="20%">
+                                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
+                                         style="max-height: 200px;"></td>
+                                <td width="50%">{{ etape.contenu|raw }}</td>
+                                <!--<td width="5%"><a
+                                            href="{{ path('cnes_philae_default_modifiergestion',{'id' : etape.id}) }}">Modifier</a>
+                                </td>
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_publiergestion',{'id' : etape.id}) }}">Publier</a>
+                                </td>-->
 
-                        </tr>
+                            </tr>
 
 
-                    </table>
-                    <br />
-                {% endif %}
+                        </table>
+                        <br/>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
         </div>
     </div>
@@ -91,6 +142,6 @@
     </table>
 
     <script>
-        $( "#accordion" ).accordion({autoHeight: false, header: "h3", collapsible : true, active:false,heightStyle: false});
+        $("#accordion").accordion({autoHeight: false, header: "h3", collapsible: true, active: false, heightStyle: false});
     </script>
 {% endblock %}
