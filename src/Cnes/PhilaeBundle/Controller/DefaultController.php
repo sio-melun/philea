@@ -293,23 +293,15 @@ function deleteEtapeAction($id)
      */
     public function gestionAction()
     {
+        //Vérification dans la vue
+
         $user = $this->getUser();
-
-        //plusieurs projets 1 user
-        $etapes = $this->getDoctrine()
-            ->getRepository('PhilaeBundle:Etape')
-            ->findByUser($user->getId());
-
-
 
         $userProjets = $user->getProjets();
 
+        $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findAll();
 
-        //plusieurs user 1 projet
-        $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findBy(
-         array('projet' => $userProjets[1] ));
-
-        return $this->render('PhilaeBundle:Default:gestion.html.twig', array('lesEtapes' => $lesEtapes ));
+        return $this->render('PhilaeBundle:Default:gestion.html.twig', array('lesEtapes' => $lesEtapes,'userProjets' =>$userProjets));
     }
 
     /**
