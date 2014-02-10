@@ -12,10 +12,10 @@
 
         </tr>
 
-        {% for user in projets %}
+        {% for projet in projets %}
             <tr>
                 <td>
-                    <a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': user.id }) }}">-Projet {{ user.nom }}</a>
+                    <a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': projet.id }) }}">-Projet {{ projet.domaine.nom }}</a>
                 </td>
 
             </tr>
@@ -39,7 +39,7 @@
                 <table width="100%" border="1">
                     <tr>
                         <th colspan="5">
-                            <center><font size="+1" color="#000066">{{ etape.titre }} {{ etape.projet.nom }}</font></center>
+                            <center><font size="+1" color="#000066">{{ etape.titre }} {{ etape.projet.domaine.nom }}</font></center>
                         </th>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                         <table width="100%" border="1">
                             <tr>
                                 <th colspan="5">
-                                    <center><font size="+1" color="#000066">{{ etape.titre }}</font></center>
+                                    <center><font size="+1" color="#000066">{{ etape.titre }} {{ etape.projet.domaine.nom }}</font></center>
                                 </th>
                             </tr>
                             <tr>
@@ -92,13 +92,10 @@
                 {% endfor %}
     </div>
     </div>
-
-
-
-    <!-- </table>  ???-->
         <script>
-            $( "#accordion" ).accordion();
+            $( "#accordion" ).accordion({autoHeight: false, header: "h3", collapsible : true, active:false,heightStyle: false});
         </script>
+
 
 
         {% endblock %}

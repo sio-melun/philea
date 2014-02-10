@@ -3,10 +3,6 @@
 {% block body %}
 <h1 style="text-align:center;"><span id="titre">Validation</span></h1>
 
-    {% for user in projets %}
-
-
-    {% endfor %}
     <div id="accordion">
     <h3> Etape en Attende de Validation</h3>
     <div>
@@ -15,18 +11,19 @@
 
             <table width="100%" border="1">
                 <tr>
-                    <th colspan="5"> <center><font size="+1" color="#000066">{{etape.titre}}</font></center></th>
+                    <th colspan="5"><span style="float:left;">Projet : {{etape.projet.domaine.nom}}</span><span style="float:right;">USERNAME :{{etape.user.username}}</span></th></tr>
+                <tr>
+                    <th colspan="5"><span style="float:left;">{{etape.titre}}</span> <span style="float:right;">Avancement : {{etape.avancement}}%</span> </th>
 
                 </tr>
-                <tr><th colspan="5"> <center> Avancement : {{etape.avancement}}% {{etape.projet.nom}}</center></th></tr>
                 <tr>
 
                     <td width="20%">
                         <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%" style="max-height: 200px;"></td>
                     <td width="50%">{{ etape.contenu|raw }}</td>
-                    <td width="5%"><a href="{{ path('cnes_philae_default_modifiergestion',{'id' : etape.id}) }}">Modifier</a></td>
-                    <td width="5%"><a href="{{ path('cnes_philae_default_publiergestion',{'id' : etape.id}) }}">Publier</a></td>
-                    <td width="5%"><a href="{{ path('cnes_philae_default_deletegestion',{'id' : etape.id}) }}">Supprimer</a></td>
+                    <td width="5%"><a href="{{ path('cnes_philae_default_modifiergestion',{'id' : etape.id}) }}"><button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i> Modifier</button></a></td>
+                    <td width="5%"><a href="{{ path('cnes_philae_default_publiergestion',{'id' : etape.id}) }}"><button class="btn btn-success btn-small"><i class="icon-white icon-ok-sign"></i> Publier</button></a></td>
+                    <td width="5%"><a href="{{ path('cnes_philae_default_deletegestion',{'id' : etape.id}) }}"><button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i> Supprimer</button></a></td>
                 </tr>
 
 
@@ -91,10 +88,7 @@
 
     </table>
 
-
     <script>
-        $( "#accordion" ).accordion();
+        $( "#accordion" ).accordion({autoHeight: false, header: "h3", collapsible : true, active:false,heightStyle: false});
     </script>
-
-
 {% endblock %}

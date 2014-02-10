@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cnes\PhilaeBundle\Entity\Etape;
+use Cnes\PhilaeBundle\Entity\EtapeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
@@ -22,21 +23,29 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/projets/{idProjet}/")
+     * @Route("/projets/{idDomaine}/")
      * @Template()
      */
-    public function pageAction($idProjet)
+    public function pageAction($idDomaine)
     {
-        $projet = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')
-            ->find($idProjet);
+        $domaine = $this->getDoctrine()->getRepository('PhilaeBundle:Domaine')
+            ->find($idDomaine);
 
-        if (!$projet) {
+        if (!$domaine) {
             throw $this->createNotFoundException('Aucun projet trouvé');
         }
-        $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findBy(
-            array('projet' => $projet, 'isValide'=> 1),
-            array('avancement' => 'DESC'));
-        return array('projet' => $projet, 'lesEtapes' => $lesEtapes);
+
+
+        $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->getEtapes($idDomaine);
+
+         /*$this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findBy(
+            array('projet' => array('kyukyukyu' =>$idDomaine), 'isValide'=> 1),
+            array('avancement' => 'DESC'));*/
+
+        /*$query = $this->_em->createQuery('SELECT e, p FROM PhilaeBundle:Etape e JOIN e.projet p LEFTJOIN p.domaine d WHERE d.id = :id');
+        $resultats = $query->getResult();*/
+
+        return array('domaine' => $domaine, 'lesEtapes' => $lesEtapes);
     }
 
     /**
@@ -285,12 +294,22 @@ function deleteEtapeAction($id)
     public function gestionAction()
     {
         $user = $this->getUser();
-        $projets = $user->getProjets();
+
+        //plusieurs projets 1 user
         $etapes = $this->getDoctrine()
             ->getRepository('PhilaeBundle:Etape')
             ->findByUser($user->getId());
 
-        return $this->render('PhilaeBundle:Default:gestion.html.twig', array('projets' => $projets, 'lesEtapes' => $etapes ));
+
+
+        $userProjets = $user->getProjets();
+
+
+        //plusieurs user 1 projet
+        $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findBy(
+         array('projet' => $userProjets[1] ));
+
+        return $this->render('PhilaeBundle:Default:gestion.html.twig', array('lesEtapes' => $lesEtapes ));
     }
 
     /**

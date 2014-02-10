@@ -12,5 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class EtapeRepository extends EntityRepository
 {
+    public function getEtapes($id)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery('SELECT e, p FROM PhilaeBundle:Etape e JOIN e.projet p LEFT JOIN p.domaine d WHERE d.id = :id ORDER BY e.avancement DESC')
+            ->setParameter('id', $id);
 
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }

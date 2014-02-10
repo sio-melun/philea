@@ -20,18 +20,24 @@ class Projet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string")
+     * @ORM\ManyToOne(targetEntity="Domaine")
+     * @ORM\JoinColumn(nullable=true, name="idDomaine", referencedColumnName="id")
      */
-    private $nom;
+    protected $domaine;
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Description", type="string", length=50)
+     * @ORM\ManyToOne(targetEntity="Etablissement")
+     * @ORM\JoinColumn(nullable=true, name="idEtablissement", referencedColumnName="id")
      */
-    private $description;
+    protected $etablissement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Classe")
+     * @ORM\JoinColumn(nullable=true, name="idClasse", referencedColumnName="id")
+     */
+    protected $classe;
 
     /**
      * Get id
@@ -44,48 +50,94 @@ class Projet
     }
 
     /**
-     * Set nom
+     * Set domaine
      *
-     * @param string $nom
+     * @param \Cnes\PhilaeBundle\Entity\Domaine $domaine
      * @return Projet
      */
-    public function setNom($nom)
+    public function setDomaine(\Cnes\PhilaeBundle\Entity\Domaine $domaine = null)
     {
-        $this->nom = $nom;
+        $this->domaine = $domaine;
     
         return $this;
     }
 
     /**
-     * Get nom
+     * Get domaine
      *
-     * @return string 
+     * @return \Cnes\PhilaeBundle\Entity\Domaine 
      */
-    public function getNom()
+    public function getDomaine()
     {
-        return $this->nom;
+        return $this->domaine;
     }
 
     /**
-     * Set description
+     * Set etablissement
      *
-     * @param string $description
+     * @param \Cnes\PhilaeBundle\Entity\Etablissement $etablissement
      * @return Projet
      */
-    public function setDescription($description)
+    public function setEtablissement(\Cnes\PhilaeBundle\Entity\Etablissement $etablissement = null)
     {
-        $this->description = $description;
+        $this->etablissement = $etablissement;
     
         return $this;
     }
 
     /**
-     * Get description
+     * Get etablissement
+     *
+     * @return \Cnes\PhilaeBundle\Entity\Etablissement 
+     */
+    public function getEtablissement()
+    {
+        return $this->etablissement;
+    }
+
+    /**
+     * Set classe
+     *
+     * @param \Cnes\PhilaeBundle\Entity\Classe $classe
+     * @return Projet
+     */
+    public function setClasse(\Cnes\PhilaeBundle\Entity\Classe $classe = null)
+    {
+        $this->classe = $classe;
+    
+        return $this;
+    }
+
+    /**
+     * Get classe
+     *
+     * @return \Cnes\PhilaeBundle\Entity\Classe 
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
+    /**
+     * Set typeprojv
+     *
+     * @param string $typeprojv
+     * @return Projet
+     */
+    public function setTypeprojv($typeprojv)
+    {
+        $this->typeprojv = $typeprojv;
+    
+        return $this;
+    }
+
+    /**
+     * Get typeprojv
      *
      * @return string 
      */
-    public function getDescription()
+    public function getTypeprojv()
     {
-        return $this->description;
+        return $this->typeprojv;
     }
 }

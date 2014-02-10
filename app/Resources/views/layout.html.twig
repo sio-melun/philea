@@ -29,7 +29,7 @@
 <body>
 
 <div class="container">
-    <img src="{{ asset('header3.png') }}" />
+    <img src="{{ asset('img/site/header.png') }}" />
     <!-- Static navbar -->
     <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
@@ -90,34 +90,34 @@
                         <li class="dropdown-submenu">
                             <a href="#">Structure</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '1'}) }}">Balcon</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '2'}) }}">Caisse</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '3'}) }}">Train D'atérissage</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '4'}) }}">ADS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '5'}) }}">Anchor</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '6'}) }}">Radio</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '1'}) }}">Balcon</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '2'}) }}">Caisse</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '3'}) }}">Train D'atérissage</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '4'}) }}">ADS</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '5'}) }}">Anchor</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '6'}) }}">Radio</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
                             <a href="#">Instrument d'éxploration</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '7'}) }}">CIVA</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '8'}) }}">SD2</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '9'}) }}">ROMAP</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '10'}) }}">MUPUS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '11'}) }}">ROLIS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '12'}) }}">APXS</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '7'}) }}">CIVA</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '8'}) }}">SD2</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '9'}) }}">ROMAP</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '10'}) }}">MUPUS</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '11'}) }}">ROLIS</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '12'}) }}">APXS</a></li>
                             </ul>
                         </li>
                         <li class="dropdown-submenu">
                             <a href="#">Support</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '13'}) }}">Fabrication</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '14'}) }}">Energie</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '15'}) }}">Transport</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '16'}) }}">Treuil & Portique</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '17'}) }}">Site</a></li>
-                                <li><a href="{{ path('cnes_philae_default_page',{'idProjet' : '18'}) }}">Décor</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '13'}) }}">Fabrication</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '14'}) }}">Energie</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '15'}) }}">Transport</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '16'}) }}">Treuil & Portique</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '17'}) }}">Site</a></li>
+                                <li><a href="{{ path('cnes_philae_default_page',{'idDomaine' : '18'}) }}">Décor</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -155,8 +155,15 @@
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 {{ tinymce_init() }}
+
 <script>
-    $( "#accordion" ).accordion();
+    $(function(){
+        // Accordion
+        $("#accordion").accordion({autoHeight: false, header: "h3",  event: "click", collapsible : "true", active:"false"});
+        $("#accordion2").accordion({autoHeight: false, header: "h3",  event: "click", collapsible : "true", active:"false"});
+        $("#accordion3").accordion({autoHeight: false, header: "h3",  event: "click", collapsible : "true", active:"false"});
+
+    });
 </script>
 </body>
 </html>

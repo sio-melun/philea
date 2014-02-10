@@ -1,21 +1,36 @@
 {% extends "::layout.html.twig" %}
+{% block head %}
+
+    <link rel="stylesheet" href="{{ asset('css/demo_table.css') }}" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="{{ asset('js/jquery.dataTables.js') }}"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#example').dataTable();
+        } );
+    </script>
+{% endblock %}
+
 
 {% block body %}
 
     <h1 style="text-align:center;">Users</h1>
 
     <h3> Etape en Attende de Validation</h3>
+
+    <table cellpadding="0" cellspacing="0" class="display" id="example"  border="0"width="100%">
+        <thead>
+        <tr>
+            <th>Pseudo</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
     {%  for user in users %}
-
-            <table width="100%" border="1">
-                <tr>
-                    <th > {{user.username}}</th>
-                    <th > {{user.email}}</th>
-
-
-
-
+        <tr>
+           <td> {{user.username}}</td>
+           <td> {{user.email}}</td>
+        </tr>
     {% endfor %}
-
+    </table>
 
 {% endblock %}
