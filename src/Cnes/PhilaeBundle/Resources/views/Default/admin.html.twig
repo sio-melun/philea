@@ -6,7 +6,7 @@
     <h1 style="text-align:center;"><span id="titre">Mes étapes</span></h1>
 
     Ajouter des étapes aux Projets :<br />
-    <table border="1">
+    <table class="table">
         <tr>
             <td>Ajouter des étapes</td>
 
@@ -36,7 +36,7 @@
 
 
 
-                <table width="100%" border="1">
+                <table width="100%" class="table">
                     <tr>
                         <th colspan="5">
                             <center><font size="+1" color="#000066">{{ etape.titre }} {{ etape.projet.domaine.nom }}</font></center>
@@ -49,9 +49,13 @@
                         </td>
                         <td width="50%">{{ etape.contenu|raw }}</td>
                         <td width="5%"><a
-                                    href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">Modifier</a>
+                                    href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}"><button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
+                                    Modifier
+                                </button></a>
                         </td>
-                        <td width="5%"><a href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">Supprimer</a>
+                        <td width="5%"><a href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}"><button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
+                                    Supprimer
+                                </button></a>
                         </td>
                     </tr>
                 </table>
@@ -65,7 +69,7 @@
                 {% for etape in etapes %}
                     {% if (etape.isValide==1) %}
 
-                        <table width="100%" border="1">
+                        <table width="100%" class="table">
                             <tr>
                                 <th colspan="5">
                                     <center><font size="+1" color="#000066">{{ etape.titre }} {{ etape.projet.domaine.nom }}</font></center>
@@ -77,10 +81,14 @@
                                     <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
                                          style="max-height: 200px;"></td>
                                 <td width="50%">{{ etape.contenu|raw }}</td>
-                                <td width="5%"><a href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">Modifier</a>
+                                <td width="5%"><a href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}"><button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
+                                            Modifier
+                                        </button></a>
                                 </td>
                                 <td width="5%"><a
-                                            href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">Supprimer</a>
+                                            href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}"><button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
+                                            Supprimer
+                                        </button></a>
                                 </td>
                             </tr>
 
