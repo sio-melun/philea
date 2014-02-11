@@ -4,11 +4,77 @@
 <h2>Accueil</h2>
 
     <div>
-        <div>
-            <div>imgStructure</div>
-            <div>imgInstrumetns</div>
+
+        <style type="text/css">
+            /* General styles */
+            html, body {padding:0; margin:0; width:100%; min-height:100%;}
+            .wrapper {width:100%; height:100%;}
+            .page {width:100%; margin:0 auto;}
+            h1,h3,h4,p {margin:0; padding:3px 0;}
+
+            /* Image map styles */
+            .imageMap {width:100%; position:relative; margin-bottom:200px;}
+            .imageMap img {display:block; width:100%; border-radius:20px;}
+            .imageMap .hotspots {width:100%; height:100%; position:absolute; left:0; top:0; visibility:hidden;}
+            .imageMap a {display:block; position:absolute; background:#000; z-index:100; opacity:0; filter: alpha(opacity=20); border:1px solid transparent; border-radius:10px;}
+            .imageMap a.p1 {left:1%; top:13%; width:4.5%; height:2.5%;}
+            .imageMap a.p2 {left:2%; top:26.3%; width:4.5%; height:2.5%;}
+            .imageMap a.p3 {left:-0.5%; top:50%; width:10%; height:2.5%;}
+            .imageMap a.p4 {left:85.3%; top:-0.5%; width:14%; height:5.8%;}
+            .imageMap a.p5 {left:87%; top:8%; width:11%; height:5.8%;}
+            .imageMap a.p6 {left:84.5%; top:22%; width:16%; height:5.8%;}
+            .imageMap a.p7 {left:85.6%; top:42.7%; width:14%; height:5.8%;}
+            .imageMap a.p8 {left:85.2%; top:55%; width:12%; height:8%;}
+            .imageMap a.p9 {left:0.5%; top:79%; width:8.2%; height:22%;}
+            .imageMap a.p10 {left:17.5%; top:79%; width:8.4%; height:22%;}
+            .imageMap a.p11 {left:35%; top:79%; width:8.6%; height:22%;}
+            .imageMap a.p12 {left:50.5%; top:79%; width:12.5%; height:22%;}
+            .imageMap a.p13 {left:70.5%; top:79%; width:8.2%; height:22%;}
+            .imageMap a.p14 {left:88%; top:79%; width:8%; height:22%;}
+
+            .imageMap a + p {position:absolute; left:0%; top:102%; width:100%; color:#000; display:none;}
+
+            .imageMap:hover .hotspots {visibility:visible;}
+            .imageMap p strong {display:block; padding:0; margin:0; font: bold 25px/30px 'times new roman',serif; color:#000;}
+            .imageMap p {padding:0; margin:0; font: normal 18px/22px 'times new roman',serif; color:#444;}
+
+
+            .imageMap .hotspots div:hover a {background:#fff; z-index:100; opacity:0.3; filter: alpha(opacity=30); border:1px solid #000;}
+        </style>
+        </head>
+
+        <body>
+        <div class="wrapper" onclick="">
+            <div class="page">
+
+                <div class="imageMap" aria-haspopup="true">
+                    <img src="{{ asset('img/bg.png') }}" alt="" />
+                    <div class="hotspots">
+                        <div title="click/tap to go to the monkey page"><a href="http://en.wikipedia.org/wiki/Monkey" class="p1" rel="nofollow" aria-haspopup="false"></a><p><strong>Balcon</strong></p><b class="b1"></b></div>
+                        <div title="click/tap to go to the vulture page"><a href="http://en.wikipedia.org/wiki/Vulture" class="p2" rel="nofollow" aria-haspopup="false"></a><p><strong>Caisse</strong></p><b class="b2"></b></div>
+                        <div title="click/tap to go to the ostrich page"><a href="http://en.wikipedia.org/wiki/Ostrich" class="p3" rel="nofollow" aria-haspopup="false"></a><p><strong>Train d'atterisage</strong>.</p><b class="b3"></b></div>
+                        <div title="click/tap to go to the zebra page"><a href="http://en.wikipedia.org/wiki/Zebra" class="p4" rel="nofollow" aria-haspopup="false"></a><p><strong>SD2</strong></p><b class="b4"></b></div>
+                        <div title="click/tap to go to the snake page"><a href="http://en.wikipedia.org/wiki/Snake" class="p5" rel="nofollow" aria-haspopup="false"></a><p><strong>CIVA</strong></p><b class="b5"></b></div>
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p6" rel="nofollow" aria-haspopup="false"></a><p><strong>ROMAP</strong></p><b class="b6"></b></div>
+
+
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p7" rel="nofollow" aria-haspopup="false"></a><p><strong>MUPUS</strong></p><b class="b7"></b></div>
+
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p8" rel="nofollow" aria-haspopup="false"></a><p><strong>ROLIS</strong></p><b class="b8"></b></div>
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p9" rel="nofollow" aria-haspopup="false"></a><p><strong>Décor</strong></p><b class="b9"></b></div>
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p10" rel="nofollow" aria-haspopup="false"></a><p><strong>Energie</strong></p><b class="b10"></b></div>
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p11" rel="nofollow" aria-haspopup="false"></a><p><strong>Fabrication</strong></p><b class="b11"></b></div>
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p12" rel="nofollow" aria-haspopup="false"></a><p><strong>Treuil & Portique</strong></p><b class="b12"></b></div>
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p13" rel="nofollow" aria-haspopup="false"></a><p><strong>Transport</strong></p><b class="b13"></b></div>
+                        <div title="click/tap to go to the tiger page"><a href="http://en.wikipedia.org/wiki/Tiger" class="p14" rel="nofollow" aria-haspopup="false"></a><p><strong>Site Web</strong></p><b class="b14"></b></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-        <div>imgSupport</div>
+        </body>
+        </html>
+
     </div>
 
 
