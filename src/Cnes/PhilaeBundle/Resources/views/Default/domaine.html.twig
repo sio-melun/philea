@@ -1,0 +1,32 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+        <center><span id="titre">{{domaine.nom}}</span><br />
+
+        {{domaine.description}}</center>
+  
+    <br /><br />
+    <table class="table"> 
+        <tr>
+            <td>Discipline</td>
+            <td>Etablissement</td>
+            <td>Classe</td>
+            <td>Académie</td>
+            <td>Projet</td>
+            <td>Avancement</td>
+        </tr>
+        
+        {% for projet in projets %}
+            <tr>
+            <td>{{ projet.domaine.typeDomaine}}</td>
+            <td>{{ projet.etablissement.nom}}</td>
+            <td>{{ projet.classe.nomcourt}}</td>
+            <td>{{ projet.etablissement.academie}}</td>            
+            <td><a href="">Voir les étapes</a></td>
+            <td></td>
+            </tr>
+        {% endfor %}
+        
+    </table>
+{% endblock %}
+    

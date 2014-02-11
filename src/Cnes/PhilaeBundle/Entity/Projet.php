@@ -38,6 +38,7 @@ class Projet
      * @ORM\JoinColumn(nullable=true, name="idClasse", referencedColumnName="id")
      */
     protected $classe;
+    
 
     /**
      * Get id

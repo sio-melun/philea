@@ -23,29 +23,26 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/projets/{idDomaine}/")
+     * @Route("/domaine/{idDomaine}/")
      * @Template()
      */
-    public function pageAction($idDomaine)
+    public function domaineAction($idDomaine)
     {
         $domaine = $this->getDoctrine()->getRepository('PhilaeBundle:Domaine')
             ->find($idDomaine);
-
+        
+        
+        //POUR l'AVANCEMENT .Récupère les étapes en cours selon le domaine actuel. NON FONCTIONNEL
+        //$etapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->getEtapes($idDomaine);
+        
         if (!$domaine) {
             throw $this->createNotFoundException('Aucun projet trouvé');
         }
 
+        $projets = $this->getDoctrine()->getRepository('PhilaeBundle:Domaine')->find($idDomaine)->getProjets();
 
-        $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->getEtapes($idDomaine);
 
-         /*$this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findBy(
-            array('projet' => array('kyukyukyu' =>$idDomaine), 'isValide'=> 1),
-            array('avancement' => 'DESC'));*/
-
-        /*$query = $this->_em->createQuery('SELECT e, p FROM PhilaeBundle:Etape e JOIN e.projet p LEFTJOIN p.domaine d WHERE d.id = :id');
-        $resultats = $query->getResult();*/
-
-        return array('domaine' => $domaine, 'lesEtapes' => $lesEtapes);
+        return array('domaine' => $domaine, 'projets' => $projets,/* 'etapes' => $etapes*/);
     }
 
     /**

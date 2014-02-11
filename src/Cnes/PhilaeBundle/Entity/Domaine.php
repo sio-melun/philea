@@ -48,7 +48,11 @@ class Domaine
      * @ORM\Column(name="typeDomaine", type="string", length=50)
      */
     private $typeDomaine;
-
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Cnes\PhilaeBundle\Entity\Projet", mappedBy="domaine")
+    */
+    private $projets;
 
     /**
      * Get id
@@ -150,5 +154,46 @@ class Domaine
     public function getTypeDomaine()
     {
         return $this->typeDomaine;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projets = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add projets
+     *
+     * @param \Cnes\PhilaeBundle\Entity\Projet $projets
+     * @return Domaine
+     */
+    public function addProjet(\Cnes\PhilaeBundle\Entity\Projet $projets)
+    {
+        $this->projets[] = $projets;
+    
+        return $this;
+    }
+
+    /**
+     * Remove projets
+     *
+     * @param \Cnes\PhilaeBundle\Entity\Projet $projets
+     */
+    public function removeProjet(\Cnes\PhilaeBundle\Entity\Projet $projets)
+    {
+        $this->projets->removeElement($projets);
+    }
+
+    /**
+     * Get projets
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProjets()
+    {
+        return $this->projets;
     }
 }

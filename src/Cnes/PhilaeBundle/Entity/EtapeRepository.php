@@ -15,7 +15,7 @@ class EtapeRepository extends EntityRepository
     public function getEtapes($id)
     {
         $query = $this->getEntityManager()
-            ->createQuery('SELECT e, p FROM PhilaeBundle:Etape e JOIN e.projet p LEFT JOIN p.domaine d WHERE d.id = :id ORDER BY e.avancement DESC')
+            ->createQuery('SELECT e, MAX(e.avancement), p FROM PhilaeBundle:Etape e JOIN e.projet p LEFT JOIN p.domaine d WHERE d.id = :id GROUP BY p.id')
             ->setParameter('id', $id);
 
         try {
