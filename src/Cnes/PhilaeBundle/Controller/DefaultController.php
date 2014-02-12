@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cnes\PhilaeBundle\Entity\Etape;
-use Cnes\PhilaeBundle\Entity\EtapeRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
@@ -33,7 +32,7 @@ class DefaultController extends Controller
         
         
         //POUR l'AVANCEMENT .Récupère les étapes en cours selon le domaine actuel. NON FONCTIONNEL
-        //$etapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->getEtapes($idDomaine);
+        //$etapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->getAvancement($idDomaine);
         
         if (!$domaine) {
             throw $this->createNotFoundException('Aucun projet trouvé');
@@ -42,7 +41,7 @@ class DefaultController extends Controller
         $projets = $this->getDoctrine()->getRepository('PhilaeBundle:Domaine')->find($idDomaine)->getProjets();
 
 
-        return array('domaine' => $domaine, 'projets' => $projets,/* 'etapes' => $etapes*/);
+        return array('domaine' => $domaine, 'projets' => $projets/*, 'etapes' => $etapes*/);
     }
     
     /**
@@ -217,6 +216,10 @@ class DefaultController extends Controller
             $form = $this->createFormBuilder($article)
 
                 ->add('titre', 'text')
+                ->add('categorie', 'choice', array(
+                           'choices'   => array('Libre' => 'Libre', 'Analyse/Conception' => 'Analyse/Conception','Réalisation' => 'Réalisation'),
+                            'required'  => true,
+                            ))
                 ->add('contenu', 'textarea', array(
                 'attr' => array(
                     'class' => 'tinymce',
@@ -225,7 +228,7 @@ class DefaultController extends Controller
             ))
                 ->add('date', 'date')
                 ->add('file')
-                ->add('avancement', 'integer')
+                ->add('avancement')
                 ->add('save', 'submit')
 
                 ->getForm();
@@ -416,6 +419,10 @@ function deleteEtapeAction($id)
             $form = $this->createFormBuilder($article)
 
                 ->add('titre', 'text')
+                ->add('categorie', 'choice', array(
+                           'choices'   => array('Libre' => 'Libre', 'Analyse/Conception' => 'Analyse/Conception','Réalisation' => 'Réalisation'),
+                            'required'  => true,
+                            ))
                 ->add('contenu', 'textarea', array(
                     'attr' => array(
                         'class' => 'tinymce',
@@ -424,7 +431,7 @@ function deleteEtapeAction($id)
                 ))
                 ->add('date', 'date')
                 ->add('file')
-                ->add('avancement', 'integer')
+                ->add('avancement')
                 ->add('save', 'submit')
                 ->getForm();
 
@@ -513,9 +520,44 @@ function deleteEtapeAction($id)
         return $this->render('PhilaeBundle:Default:users.html.twig', array('users' =>$users));
 
     }
+    
+    /**
+     * @Route("/utilisateurs/projetsuser/{idUser}")
+     * @Template()
+     */
+    public
+    function ProjetsUserAction($idUser)
+    {   
+        
+        $projets = $this->getDoctrine()
+            ->getRepository('PhilaeBundle:User')
+            ->find($idUser)->getProjets();
+        
+        /*$userManager=$this->get('fos_user.user_manager');
+        $users=$userManager->findUsers();*/
 
+        return $this->render('PhilaeBundle:Default:projetsuser.html.twig', array('projets' =>$projets, 'idUser'=>$idUser));
 
+    }
 
+    /**
+     * @Route("/utilisateurs/projetsuser/delete/{idUser}/{idProjet}")
+     * @Template()
+     */
+    public function projetsUserDeleteAction($idUser, $idProjet)
+    { 
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->getDoctrine()->getRepository('PhilaeBundle:User')->find($idUser);
+        $projet  = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')->find($idProjet);
+        $user->removeProjet($projet);
+        $em->flush();
+        
+        
+
+        return $this->redirect($this->generateUrl('cnes_philae_default_admin'));
+
+    }
 
 }
 

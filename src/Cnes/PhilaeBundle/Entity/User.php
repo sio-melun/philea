@@ -28,6 +28,8 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="Cnes\PhilaeBundle\Entity\Projet", cascade={"persist"})
      */
     private $projets;
+    
+    
     /**
      * Constructor
      */
@@ -74,12 +76,12 @@ class User extends BaseUser
     /**
      * Add projets
      *
-     * @param \Cnes\PhilaeBundle\Entity\Projet $projets
+     * @param \Cnes\PhilaeBundle\Entity\Projet $projet
      * @return User
      */
-    public function addProjet(\Cnes\PhilaeBundle\Entity\Projet $projets)
+    public function addProjet(\Cnes\PhilaeBundle\Entity\Projet $projet)
     {
-        $this->projets[] = $projets;
+        $this->projets[] = $projet;
     
         return $this;
     }
@@ -87,11 +89,11 @@ class User extends BaseUser
     /**
      * Remove projets
      *
-     * @param \Cnes\PhilaeBundle\Entity\Projet $projets
+     * @param \Cnes\PhilaeBundle\Entity\Projet $projet
      */
-    public function removeProjet(\Cnes\PhilaeBundle\Entity\Projet $projets)
+    public function removeProjet(\Cnes\PhilaeBundle\Entity\Projet $projet)
     {
-        $this->projets->removeElement($projets);
+        $this->projets->removeElement($projet);
     }
 
     /**

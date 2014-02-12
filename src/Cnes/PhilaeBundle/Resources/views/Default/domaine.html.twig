@@ -4,7 +4,6 @@
         <center><span id="titre">{{domaine.nom}}</span><br />
 
         {{domaine.description}}</center>
-  
     <br /><br />
     <table class="table"> 
         <tr>
@@ -23,7 +22,7 @@
             <td>{{ projet.classe.nomcourt}}</td>
             <td>{{ projet.etablissement.academie}}</td>            
             <td><a href="{{ path('cnes_philae_default_projet',{'idProjet' : projet.id}) }}">Voir les étapes</a></td>
-            <td></td>
+            <td>{{ projet.avancementMax}}</td>
             </tr>
         {% endfor %}
         

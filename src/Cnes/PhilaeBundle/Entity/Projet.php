@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Projet
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Cnes\PhilaeBundle\Entity\ProjetRepository")
  */
 class Projet
 {
@@ -43,6 +43,17 @@ class Projet
     * @ORM\OneToMany(targetEntity="Cnes\PhilaeBundle\Entity\Etape", mappedBy="projet")
     */
     private $etapes;
+   /**
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="projet")
+     **/
+    private $users;
+
+
+    public function __construct() {
+        $this->etapes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     
     /**
      * Get id
@@ -124,14 +135,6 @@ class Projet
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->etapes = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
      * Add etapes
      *
      * @param \Cnes\PhilaeBundle\Entity\Etape $etapes
@@ -163,4 +166,48 @@ class Projet
     {
         return $this->etapes;
     }
+
+
+    /**
+     * Add users
+     *
+     * @param \Cnes\PhilaeBundle\Entity\User $users
+     * @return Projet
+     */
+    public function addUser(\Cnes\PhilaeBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+    
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Cnes\PhilaeBundle\Entity\User $users
+     */
+    public function removeUser(\Cnes\PhilaeBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+    
+    public function getAvancementMax() {
+        $max = 0;
+        foreach ($this->getEtapes() as $etape){
+            if($etape->getAvancement()>$max)
+                $max=$etape->getAvancement();
+        }
+        return $max;
+    }
+ 
 }
