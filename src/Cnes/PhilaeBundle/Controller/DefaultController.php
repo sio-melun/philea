@@ -533,10 +533,11 @@ function deleteEtapeAction($id)
             ->getRepository('PhilaeBundle:User')
             ->find($idUser)->getProjets();
         
-        /*$userManager=$this->get('fos_user.user_manager');
-        $users=$userManager->findUsers();*/
+        $user=$this->getDoctrine()
+            ->getRepository('PhilaeBundle:User')
+            ->find($idUser);
 
-        return $this->render('PhilaeBundle:Default:projetsuser.html.twig', array('projets' =>$projets, 'idUser'=>$idUser));
+        return $this->render('PhilaeBundle:Default:projetsuser.html.twig', array('projets' =>$projets, 'user'=> $user));
 
     }
 
@@ -555,7 +556,7 @@ function deleteEtapeAction($id)
         
         
 
-        return $this->redirect($this->generateUrl('cnes_philae_default_admin'));
+        return $this->redirect($this->generateUrl('cnes_philae_default_projetsuser', array( 'idUser' => $idUser)));
 
     }
 
