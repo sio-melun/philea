@@ -37,29 +37,37 @@
 
 
                 <table width="100%" class="table">
-                    <tr>
-                        <th colspan="5">
-                            <center><font size="+1" color="#000066">{{ etape.titre }} {{ etape.projet.domaine.nom }}</font></center>
-                        </th>
-                    </tr>
-                    <tr>
+                            <tr>
+                                <th colspan="5"><span style="float:left;">Projet : {{ etape.projet.domaine.nom }}</span>
+                            </tr>
+                            <tr>
+                                <th colspan="5"><span style="float:left;">{{ etape.titre }}</span> <span
+                                            style="float:right;">Avancement : {{ etape.avancement }}%</span></th>
+                            </tr>
+                            <tr>
 
-                        <td width="20%">
-                            <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%" style="max-height: 200px;">
-                        </td>
-                        <td width="50%">{{ etape.contenu|raw }}</td>
-                        <td width="5%"><a
-                                    href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}"><button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
-                                    Modifier
-                                </button></a>
-                        </td>
-                        <td width="5%"><a href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}"><button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
-                                    Supprimer
-                                </button></a>
-                        </td>
-                    </tr>
-                </table>
-                <br/>
+                                <td width="20%">
+                                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
+                                         style="max-height: 200px;"></td>
+                                <td width="50%">{{ etape.contenu|raw }}</td>
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">
+                                        <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
+                                            Modifier
+                                        </button>
+                                    </a></td>
+                                
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">
+                                        <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
+                                            Supprimer
+                                        </button>
+                                    </a></td>
+                            </tr>
+
+
+                        </table>
+                        <br/>
 
             {% endif %}
         {% endfor %}
@@ -71,9 +79,11 @@
 
                         <table width="100%" class="table">
                             <tr>
-                                <th colspan="5">
-                                    <center><font size="+1" color="#000066">{{ etape.titre }} {{ etape.projet.domaine.nom }}</font></center>
-                                </th>
+                                <th colspan="5"><span style="float:left;">Projet : {{ etape.projet.domaine.nom }}</span>
+                            </tr>
+                            <tr>
+                                <th colspan="5"><span style="float:left;">{{ etape.titre }}</span> <span
+                                            style="float:right;">Avancement : {{ etape.avancement }}%</span></th>
                             </tr>
                             <tr>
 
@@ -81,15 +91,19 @@
                                     <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
                                          style="max-height: 200px;"></td>
                                 <td width="50%">{{ etape.contenu|raw }}</td>
-                                <td width="5%"><a href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}"><button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
-                                            Modifier
-                                        </button></a>
-                                </td>
                                 <td width="5%"><a
-                                            href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}"><button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
+                                            href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">
+                                        <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
+                                            Modifier
+                                        </button>
+                                    </a></td>
+                                
+                                <td width="5%"><a
+                                            href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">
+                                        <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
                                             Supprimer
-                                        </button></a>
-                                </td>
+                                        </button>
+                                    </a></td>
                             </tr>
 
 
