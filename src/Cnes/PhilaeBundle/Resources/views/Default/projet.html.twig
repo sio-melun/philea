@@ -1,0 +1,65 @@
+    {% extends "::layout.html.twig" %}
+
+{% block body %}
+    <center><span id="titre">{{domaine.nom}}</span><br />
+
+        {{domaine.description}}</center>
+    <br />
+    
+     <style>  #progressbar {
+            background-color: black;
+            border-radius: 13px; /* (height of inner div) / 2 + padding */
+            padding: 3px;
+            width:50%;
+            margin:auto;
+            text-align: right;
+            line-height:1;
+            color:white;
+        }
+
+        #progressbar > div {
+            background-color: #01B0F0;
+            width:  {% if etapes[0].avancement is defined %}
+
+            {{etapes[0].avancement}}%
+
+            {% else %}
+            0%
+            {% endif %} ;/* Adjust with JavaScript */
+            height: 20px;
+            border-radius: 10px;
+            line-height:1;
+
+        }
+    </style>
+
+    <div id="progressbar">
+
+        <div>{% if etapes[0].avancement is defined %}
+
+                {{etapes[0].avancement}}%
+
+        {% else %}
+        0%
+            {% endif %}</div>
+
+    </div>
+    <br /><br />
+    {% for etape in etapes %}
+        <!--<center><h3>{{  etape.titre}}</h3></center> -->
+        <table width="100%" class="table">
+            <tr>
+                <th colspan="2" style="text-align: center;"><font size="+1" color="#000066">{{etape.titre}}</font></th>
+            </tr>
+            <tr>
+
+                <td width="20%">
+                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%" style="max-height: 200px;"></td>
+                <td width="50%">{{ etape.contenu|raw }}</td>
+            </tr>
+        </table>
+        <br /><br />
+    {% endfor %}
+
+
+{% endblock %}

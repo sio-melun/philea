@@ -39,7 +39,11 @@ class Projet
      */
     protected $classe;
     
-
+    /**
+    * @ORM\OneToMany(targetEntity="Cnes\PhilaeBundle\Entity\Etape", mappedBy="projet")
+    */
+    private $etapes;
+    
     /**
      * Get id
      *
@@ -119,4 +123,44 @@ class Projet
         return $this->classe;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->etapes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add etapes
+     *
+     * @param \Cnes\PhilaeBundle\Entity\Etape $etapes
+     * @return Projet
+     */
+    public function addEtape(\Cnes\PhilaeBundle\Entity\Etape $etapes)
+    {
+        $this->etapes[] = $etapes;
+    
+        return $this;
+    }
+
+    /**
+     * Remove etapes
+     *
+     * @param \Cnes\PhilaeBundle\Entity\Etape $etapes
+     */
+    public function removeEtape(\Cnes\PhilaeBundle\Entity\Etape $etapes)
+    {
+        $this->etapes->removeElement($etapes);
+    }
+
+    /**
+     * Get etapes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEtapes()
+    {
+        return $this->etapes;
+    }
 }

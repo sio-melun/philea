@@ -28,19 +28,25 @@ class Etape
     /**
      * @var string
      *
-     * @ORM\Column(name="Titre", type="string", length=70)
+     * @ORM\Column(name="titre", type="string", length=70)
      */
     private $titre;
     /**
      * @var string
      *
-     * @ORM\Column(name="Contenu", type="string")
+     * @ORM\Column(name="categorie", type="string", length=70)
+     */
+    private $categorie;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contenu", type="string", length=2048)
      */
     private $contenu;
     /**
      * @var datetime
      *
-     * @ORM\Column(name="Date", type="datetime")
+     * @ORM\Column(name="dateEntre", type="datetime")
      */
     private $date;
     /**
@@ -72,21 +78,19 @@ class Etape
     /**
      * @var integer
      *
-     * @ORM\Column(name="Avancement", type="integer", length=3)
+     * @ORM\Column(name="Avancement", type="decimal", scale=2)
      */
     private $avancement;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(maxSize="5M")
      */
     public $file;
-
-
 
     public function __construct()
     {
         $this->date = new \Datetime;
-
+        $this->path = 'no-picture.jpg';
     }
 
     /**
@@ -369,5 +373,28 @@ class Etape
     public function getProjet()
     {
         return $this->projet;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param string $categorie
+     * @return Etape
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return string 
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }

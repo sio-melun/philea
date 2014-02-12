@@ -44,7 +44,31 @@ class DefaultController extends Controller
 
         return array('domaine' => $domaine, 'projets' => $projets,/* 'etapes' => $etapes*/);
     }
+    
+    /**
+     * @Route("/projets/{idProjet}/")
+     * @Template()
+     */
+    public function projetAction($idProjet)
+    {
+        /*$projet = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')
+            ->find($idProjet);*/
+        
+        $domaine = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')
+            ->find($idProjet)->getDomaine();
+        $projet = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')
+            ->findBy(
+            array('projet' => $idProjet, 'isValide'=> 1),
+            array('avancement' => 'DESC'));
+       
+        if (!$projet) {
+            throw $this->createNotFoundException('Aucun projet trouvé');
+        }
+       
 
+        return array('domaine' => $domaine, 'etapes' => $projet);
+    }
+    
     /**
      * @Route("/admin/")
      * @Template()
@@ -97,6 +121,10 @@ class DefaultController extends Controller
                     $form = $this->createFormBuilder($article)
 
                         ->add('titre', 'text')
+                        ->add('categorie', 'choice', array(
+                           'choices'   => array('Libre' => 'Libre', 'Analyse/Conception' => 'Analyse/Conception','Réalisation' => 'Réalisation'),
+                            'required'  => true,
+                            ))
                         ->add('contenu', 'textarea', array(
                             'attr' => array(
                                 'class' => 'tinymce',
@@ -105,7 +133,7 @@ class DefaultController extends Controller
                         ))
                         ->add('date', 'date')
                         ->add('file')
-                        ->add('avancement', 'integer')
+                        ->add('avancement')
                         ->add('save', 'submit')
                         ->getForm();
 
