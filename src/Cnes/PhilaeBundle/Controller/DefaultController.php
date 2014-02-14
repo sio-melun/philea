@@ -531,15 +531,24 @@ class DefaultController extends Controller {
         // 
         // Passer à la vue userRedacteur et les projets (non encore liés à userReadacteur)
         //
-        $projets = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:Projet')->findAll();
-        $projetUser = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:User')->find($idUser)->getProjets();
+        $projetsGestionnaire = $this->getDoctrine()
+                        ->getRepository('PhilaeBundle:User')->find($this->getUser())->getProjets();
 
         $form = $this->createFormBuilder()
-                //->add('user_id', 'integer')
-                ->add('projet_id', 'integer')
-                ->add('save', 'submit')
+                ->add('projet_id', 'choice', array(
+                        'choices' => array('1' => '1', '2' => '2', '3' => '3'
+                                            , '4' => '4', '5' => '5', '6' => '6'
+                                            , '7' => '7', '8' => '8', '9' => '9'
+                                            , '10' => '10', '11' => '11', '12' => '12'
+                                            , '13' => '13', '14' => '14', '15' => '15'
+                                            , '16' => '16', '17' => '17', '18' => '18'
+                                            , '19' => '19', '20' => '20', '21' => '21'
+                                            , '22' => '22', '23' => '23', '24' => '24'
+                                            , '25' => '25', '26' => '26', '27' => '27'
+                                            , '28' => '28', '29' => '29', '30' => '30'
+                        ,'required' => true,
+                    )))
+                ->add('Ajouter', 'submit')
                 ->getForm();
 
         if ($request->isMethod('POST')) {
@@ -562,8 +571,8 @@ class DefaultController extends Controller {
             }
         }
 
-        return $this->render('PhilaeBundle:Default:ajoutEtape.html.twig', array(
-                    'form' => $form->createView(),
+        return $this->render('PhilaeBundle:Default:formAddUserProjet.html.twig', array(
+                    'form' => $form->createView(), 'idUser' => $idUser, 'projetsGestionnaire' =>$projetsGestionnaire
         ));
     }
 

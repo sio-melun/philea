@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le : Lun 10 Février 2014 à 15:26
--- Version du serveur: 5.5.32
+-- Généré le : Ven 14 Février 2014 à 14:33
+-- Version du serveur: 5.5.35
 -- Version de PHP: 5.3.10-1ubuntu3.9
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -136,30 +136,29 @@ INSERT INTO `Etablissement` (`id`, `nom`, `ville`, `region`, `academie`) VALUES
 
 CREATE TABLE IF NOT EXISTS `Etape` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Titre` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
-  `Contenu` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Date` datetime NOT NULL,
+  `titre` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
+  `categorie` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
+  `contenu` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
+  `dateEntre` datetime NOT NULL,
   `path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `isValide` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Avancement` int(11) NOT NULL,
+  `Avancement` decimal(10,2) NOT NULL,
   `idUser` int(11) DEFAULT NULL,
   `idProjet` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_E99E5AD9FE6E88D7` (`idUser`),
   KEY `IDX_E99E5AD933043433` (`idProjet`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
 -- Contenu de la table `Etape`
 --
 
-INSERT INTO `Etape` (`id`, `Titre`, `Contenu`, `Date`, `path`, `isValide`, `Avancement`, `idUser`, `idProjet`) VALUES
-(19, 'kpu', 'kpu', '2014-01-30 00:00:00', 'kpu', '1', 48, 11, 29),
-(48, 'kyu', '<p>kyuliuliu</p>', '2014-02-10 00:00:00', NULL, '1', 42, 9, 29),
-(49, 'gf"''', '<p>g''g''</p>', '2014-02-10 00:00:00', NULL, '-1', 45, 9, 29),
-(51, ',ty,yt', '<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia volu', '2014-02-10 00:00:00', '8fc56b0f7a5f7e43a65a7bdfc101d935161e7882.jpeg', '1', 4, 12, 29),
-(52, 'fez', '<p>fezfez</p>', '2014-02-10 00:00:00', NULL, '1', 9, 12, 33),
-(53, 'testkpu', '<p>testkpu</p>', '2014-02-10 00:00:00', NULL, '0', 8, 9, 29);
+INSERT INTO `Etape` (`id`, `titre`, `categorie`, `contenu`, `dateEntre`, `path`, `isValide`, `Avancement`, `idUser`, `idProjet`) VALUES
+(1, 'Changement complet d''interface', 'Réalisation', '<p>Nous avons pris la d&eacute;cision de chang&eacute; compl&egrave;tement l''interface du site. Nous passons d''une interface certe tr&egrave;s tape-&agrave;-l''oeil mais assez bricol&eacute; &agrave; quelques chose de sobre. Nous retrouvons aussi un menu plus fonctionelle. Mais le gros plus r&eacute;side dans le fait que le site est maintenant responsive, c''est &agrave; dire qu''il s''adapte &agrave; toutes les r&eacute;solutions et les tailles d''&eacute;cran (PC/Mobile/Tablette).</p>\r\n<p>&nbsp;</p>\r\n<p>Voir l''image de la nouvelle interface &agrave; gauche.</p>', '2014-02-12 00:00:00', 'c5ead195a470331d93bd66854227cb551220ac70.png', '1', 10.00, 12, 29),
+(15, 'Première version du site', 'Réalisation', '<p>La premi&egrave;re version du site a &eacute;t&eacute; r&eacute;alis&eacute; par un groupe de 12 &eacute;tudiants de la classe. Il &eacute;tait assez esth&eacute;tique, peu fonctionnelle. De plus, il a &eacute;t&eacute; b&acirc;cl&eacute; au niveau de l''analyse des besoins. Il manque beaucoup de cat&eacute;gorie.</p>', '2014-02-13 00:00:00', 'dfb25c55df968976768fb9d68dd17a50c305ec7d.png', '1', 0.00, 11, 29),
+(16, 'Mise en forme de la liste des étapes', 'Libre', '<p>Nous avons travaill&eacute; sur un belle pr&eacute;sentation de la liste des &eacute;tapes</p>', '2014-02-13 00:00:00', '97f84f2e4e8367ccc79562cd3e7bb4a105b552cf.png', '1', 20.00, 12, 29),
+(17, 'Nouveauté sur la page d''ajout d''étape', 'Réalisation', '<p>Nous avons rajout&eacute; plusieurs &eacute;l&eacute;ments sur la page d''ajout d''&eacute;tape.</p>\r\n<p>-Nous avons mis en place la gestion d''upload d''image (avec changement automatique de nom d''images)</p>\r\n<p>-Mis en place de cat&eacute;gorie pour une &eacute;tape (Libre, Analyse/conception, r&eacute;alisation)</p>\r\n<p>Il nous faut rajouter une bonne mise en forme, enlever la date, et ajouter du texte pour aider les r&eacute;dacteurs.</p>', '2014-02-13 00:00:00', 'f73333aa61475120a3e075dd2831987dd49d62ff.png', '1', 30.00, 11, 29);
 
 -- --------------------------------------------------------
 
@@ -215,7 +214,6 @@ INSERT INTO `Projet` (`id`, `idDomaine`, `idEtablissement`, `idClasse`) VALUES
 (30, 18, 5, 10),
 (31, 18, 5, 18),
 (32, 18, 4, 10),
-(33, 18, 4, 18),
 (34, 18, 4, 9);
 
 -- --------------------------------------------------------
@@ -254,10 +252,10 @@ CREATE TABLE IF NOT EXISTS `User` (
 
 INSERT INTO `User` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`, `Nom`) VALUES
 (1, 'sio', 'sio', 'sio@gmail.com', 'sio@gmail.com', 1, 'te1b57b6vrkc04gsc4gcwcsoco8cwww', 'qrKOJB3diDQbp68xP3fVwhz8r9eH13gtfFHfwHKyQ+++CQV4r/9eon3lZtkEv9T4SAQCTd05m9TRk/CfFx5xUQ==', '2014-01-31 10:33:49', 0, 0, NULL, NULL, NULL, 'a:2:{i:0;s:10:"ROLE_ADMIN";i:1;s:14:"ROLE_REDACTEUR";}', 0, NULL, ''),
-(8, 'admin', 'admin', 'admin@admin.com', 'admin@admin.com', 1, 'dqmi8q8lsc8w4g4kow4oc8s88k0cksg', 'VWpjEUdg0MvttSnf5hgzAqhJ50X7GgUVlRBgt8FTbNdUk4QcJy9HsKr6/rtk6fZDsqu5cAwP1hl7DTx5hTe2dg==', '2014-02-10 15:22:53', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, NULL),
-(9, 'kpu', 'kpu', 'kpu@gmail.com', 'kpu@gmail.com', 1, 'hn0rpxn1hpckg0c4kososgw0k80w8ow', 'B3h+aHJniSuRwGHNSDWkeu8u2UlduJSk52QYZyNasXRZrZM/H8fRVsMMfFhg3F40H344kwxYmFPMNLT4KkuA5A==', '2014-02-10 15:15:08', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:17:"ROLE_GESTIONNAIRE";}', 0, NULL, NULL),
-(11, 'slisik', 'slisik', 'slisik', 'slisik', 1, 'teg10qxnm1wwg4cs0wksg088cw44w8s', 'toP24r3h6HOuheIaecwejKQfISca0EU55Mfs/sR9nEzaPjomOyifbrwLTGHvHJvOdLmXd1qLYHG2pl0L4BLpKg==', '2014-02-07 11:17:14', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:14:"ROLE_REDACTEUR";}', 0, NULL, NULL),
-(12, 'fcho', 'fcho', 'fcho', 'fcho', 1, 'srwp4ac9sms8c0wgw400c00404ow0ck', 'ntIQGmT+5vtN2SyDPF6bVGy8qXT8tw4K0XnAXMEvV4ujRJZ5bpmoXf9jZE5M78TyDgE+qYFvUzvPZWJfvDpclw==', '2014-02-10 14:13:50', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:14:"ROLE_REDACTEUR";}', 0, NULL, NULL),
+(8, 'admin', 'admin', 'admin@admin.com', 'admin@admin.com', 1, 'dqmi8q8lsc8w4g4kow4oc8s88k0cksg', 'VWpjEUdg0MvttSnf5hgzAqhJ50X7GgUVlRBgt8FTbNdUk4QcJy9HsKr6/rtk6fZDsqu5cAwP1hl7DTx5hTe2dg==', '2014-02-12 10:58:03', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, NULL),
+(9, 'kpu', 'kpu', 'kpu@gmail.com', 'kpu@gmail.com', 1, 'hn0rpxn1hpckg0c4kososgw0k80w8ow', 'B3h+aHJniSuRwGHNSDWkeu8u2UlduJSk52QYZyNasXRZrZM/H8fRVsMMfFhg3F40H344kwxYmFPMNLT4KkuA5A==', '2014-02-13 14:16:21', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:17:"ROLE_GESTIONNAIRE";}', 0, NULL, NULL),
+(11, 'slisik', 'slisik', 'slisik', 'slisik', 1, 'teg10qxnm1wwg4cs0wksg088cw44w8s', 'toP24r3h6HOuheIaecwejKQfISca0EU55Mfs/sR9nEzaPjomOyifbrwLTGHvHJvOdLmXd1qLYHG2pl0L4BLpKg==', '2014-02-13 14:10:48', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:14:"ROLE_REDACTEUR";}', 0, NULL, NULL),
+(12, 'fcho', 'fcho', 'fcho', 'fcho', 1, 'srwp4ac9sms8c0wgw400c00404ow0ck', 'ntIQGmT+5vtN2SyDPF6bVGy8qXT8tw4K0XnAXMEvV4ujRJZ5bpmoXf9jZE5M78TyDgE+qYFvUzvPZWJfvDpclw==', '2014-02-13 14:08:54', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:14:"ROLE_REDACTEUR";}', 0, NULL, NULL),
 (13, 'test', 'test', 'tes@gmail.fr', 'tes@gmail.fr', 1, 'k9fgdieeiq8csws800kss0c0owwwo88', 'K1C6xtV06uQMU7DUXRvgClhe0dHS1mOCrIQ6v8CTNrXMW8Bb+tVwRrvKttjV1QsDNWgGs5LITFrT117EUBxfLQ==', '2014-02-05 10:09:53', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:14:"ROLE_REDACTEUR";}', 0, NULL, NULL),
 (14, 'ok', 'ok', 'ok@ok.ok', 'ok@ok.ok', 1, '6p33kpuq1dc8884cgskc40o4g4s4ggk', 'v15iGAC9v7kEsDtjAS6wIyp0+FKWZEiCzQN1azmG3I0Ec3JhZ1h4kfj2U7or2NTkWSa9VYMEf+jvcwXl8Ud34g==', '2014-02-05 09:20:37', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:14:"ROLE_REDACTEUR";}', 0, NULL, NULL),
 (15, 'aka', 'aka', 'ak@gfzer.fr', 'ak@gfzer.fr', 1, 's4lyhy16b8gko48ko0g0wwoc0so8ks0', 'imqIumLV9ZmD3KnBP5YC9qOZBLbYOZMdDH2A4oh1iqq8dN2/CbsZGBc2ebRHNQ1hOqRwNlDgm4536PDmXVzAlg==', '2014-02-10 15:16:40', 0, 0, NULL, NULL, NULL, 'a:1:{i:0;s:14:"ROLE_REDACTEUR";}', 0, NULL, NULL),
@@ -282,11 +280,10 @@ CREATE TABLE IF NOT EXISTS `user_projet` (
 --
 
 INSERT INTO `user_projet` (`user_id`, `projet_id`) VALUES
+(9, 1),
 (9, 29),
-(9, 33),
 (11, 29),
-(12, 29),
-(12, 33);
+(12, 29);
 
 --
 -- Contraintes pour les tables exportées
@@ -311,8 +308,8 @@ ALTER TABLE `Projet`
 -- Contraintes pour la table `user_projet`
 --
 ALTER TABLE `user_projet`
-  ADD CONSTRAINT `FK_35478794A76ED395` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `FK_35478794C18272` FOREIGN KEY (`projet_id`) REFERENCES `Projet` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_35478794C18272` FOREIGN KEY (`projet_id`) REFERENCES `Projet` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_35478794A76ED395` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
