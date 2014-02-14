@@ -1,4 +1,5 @@
 <?php
+
 // src/Cnes/PhilaeBundle/Entity/User.php
 
 namespace Cnes\PhilaeBundle\Entity;
@@ -10,31 +11,31 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="User")
  */
-class User extends BaseUser
-{
-	/**
-	 * @ORM\Id
-	 * @ORM\Column(type="integer")
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-  	protected $id;
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="Nom", type="string", length=25 , nullable=true)
-	 */
-  	private $nom;
+class User extends BaseUser {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Nom", type="string", length=25 , nullable=true)
+     */
+    protected $nom;
+
     /**
      * @ORM\ManyToMany(targetEntity="Cnes\PhilaeBundle\Entity\Projet", cascade={"persist"})
      */
-    private $projets;
-    
-    
+    protected $projets;
+
     /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->roles = array('ROLE_REDACTEUR');
         $this->projets = new \Doctrine\Common\Collections\ArrayCollection();
@@ -45,8 +46,7 @@ class User extends BaseUser
      *
      * @return integer 
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -56,10 +56,9 @@ class User extends BaseUser
      * @param string $nom
      * @return User
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
@@ -68,8 +67,7 @@ class User extends BaseUser
      *
      * @return string 
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -79,10 +77,9 @@ class User extends BaseUser
      * @param \Cnes\PhilaeBundle\Entity\Projet $projet
      * @return User
      */
-    public function addProjet(\Cnes\PhilaeBundle\Entity\Projet $projet)
-    {
+    public function addProjet(\Cnes\PhilaeBundle\Entity\Projet $projet) {
         $this->projets[] = $projet;
-    
+
         return $this;
     }
 
@@ -91,8 +88,7 @@ class User extends BaseUser
      *
      * @param \Cnes\PhilaeBundle\Entity\Projet $projet
      */
-    public function removeProjet(\Cnes\PhilaeBundle\Entity\Projet $projet)
-    {
+    public function removeProjet(\Cnes\PhilaeBundle\Entity\Projet $projet) {
         $this->projets->removeElement($projet);
     }
 
@@ -101,12 +97,8 @@ class User extends BaseUser
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getProjets()
-    {
+    public function getProjets() {
         return $this->projets;
     }
-
-
-
 
 }

@@ -5,18 +5,13 @@
 
     <h1 style="text-align:center;"><span id="titre">Mes étapes</span></h1>
 
-    Ajouter des étapes aux Projets :<br />
     <table class="table">
-        <tr>
-            <td>Ajouter des étapes</td>
-
-        </tr>
 
         {% for projet in projets %}
             <tr>
-                <td>
-                    <a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': projet.id }) }}">-Projet {{ projet.domaine.nom }}</a>
-                </td>
+                <th>
+                    <a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': projet.id }) }}">Ajouter une étape au Projet {{ projet.domaine.nom }}</a>
+                </th>
 
             </tr>
 

@@ -43,7 +43,8 @@ class Projet
     * @ORM\OneToMany(targetEntity="Cnes\PhilaeBundle\Entity\Etape", mappedBy="projet")
     */
     private $etapes;
-   /**
+
+    /**
      * @ORM\ManyToMany(targetEntity="User", mappedBy="projet")
      **/
     private $users;

@@ -2,16 +2,21 @@
 
 {% block body %}
 
-
+<h3>Modification des projets de {{user.username}}</h3><br />
+<a href="{{ path('cnes_philae_default_projetsuserajout',{'idUser' : user.id})}}"><button class="btn btn-primary"><i class="icon-white icon-plus"></i> Ajouter un projet</button></a><br /><br />
 <table class="table" width="40%" >
     <tr>
-        <th>Projet</th>
+        <th>Domaine</th>
+        <th>Etablissement</th>
+        <th>Classe</th>
         <th>Supprimer</th>
     </tr>
    {% for projet in projets %}
     <tr>
-        <td>{{projet.id}}</td>
-        <td><a href="{{ path('cnes_philae_default_projetsuserdelete',{'idUser' : idUser,'idProjet' : projet.id})}}"><button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>Supprimer</button></a></td>
+        <td>{{projet.domaine.nom}}</td>
+        <td>{{projet.etablissement.nom}}</td>
+        <td>{{projet.classe.nomcourt}}</td>
+        <td><a href="{{ path('cnes_philae_default_projetsuserdelete',{'idUser' : user.id,'idProjet' : projet.id})}}"><button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>Supprimer</button></a></td>
     </tr>
     {% endfor %}
 </table> 
