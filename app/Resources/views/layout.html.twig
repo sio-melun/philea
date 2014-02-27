@@ -121,12 +121,12 @@
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {% if is_granted('ROLE_GESTIONNAIRE') %}
                             <li><a href="{{ path('cnes_philae_default_afficheruser') }}"><b>Utilisateurs</b></a></li>
                             <li><a href="{{ path('cnes_philae_default_gestion') }}"><b>Validation</b></a></li>
                         {% endif %}
-                    <li><a href="{{ path('cnes_philae_default_admin') }}"><b>Mes étapes</b></a></li>
+                    <li><a href="{{ path('cnes_philae_default_redacteur') }}"><b>Mes étapes</b></a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}"><b>Deconnexion</b></a></li>
                 {% else %}
                  <li><a href="{{ path('fos_user_security_login') }}"><b>Connexion</b></a></li>

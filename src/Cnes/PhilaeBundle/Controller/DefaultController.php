@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cnes\PhilaeBundle\Entity\Etape;
 use Cnes\PhilaeBundle\Entity\User;
-use Cnes\PhilaeBundle\Form\ProjetType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -66,21 +65,21 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/admin/")
+     * @Route("/redacteur/")
      * @Template()
      */
-    public function adminAction() {
+    public function redacteurAction() {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $projets = $user->getProjets();
         $etapes = $this->getDoctrine()
                 ->getRepository('PhilaeBundle:Etape')
                 ->findByUser($user->getId());
 
-        return $this->render('PhilaeBundle:Default:admin.html.twig', array('projets' => $projets, 'etapes' => $etapes));
+        return $this->render('PhilaeBundle:Default:redacteur.html.twig', array('projets' => $projets, 'etapes' => $etapes));
     }
 
     /**
-     * @Route("/admin/ajoutEtape/{idProjet}/")
+     * @Route("/redacteur/ajoutEtape/{idProjet}/")
      * @Template()
      */
     public function ajoutEtapeAction($idProjet) {
@@ -146,7 +145,7 @@ class DefaultController extends Controller {
                     $em->flush();
 
                     // On redirige vers la page de visualisation de l'article nouvellement créé
-                    return $this->redirect($this->generateUrl('cnes_philae_default_admin'));
+                    return $this->redirect($this->generateUrl('cnes_philae_default_redacteur'));
                 }
             }
 
@@ -162,7 +161,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/admin/modifEtape/{id}/")
+     * @Route("/redacteur/modifEtape/{id}/")
      * @Template()
      */
     public function modifierAction($id) {
@@ -238,7 +237,7 @@ class DefaultController extends Controller {
 
                     // On redirige vers la page de visualisation de l'article nouvellement créé
 
-                    return $this->redirect($this->generateUrl('cnes_philae_default_admin'));
+                    return $this->redirect($this->generateUrl('cnes_philae_default_redacteur'));
                 }
             }
 
@@ -250,7 +249,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/admin/delete/etape/{id}/")
+     * @Route("/redacteur/delete/etape/{id}/")
      * @Template()
      */
     public
@@ -283,7 +282,7 @@ class DefaultController extends Controller {
             $em->flush();
 
 
-            return $this->redirect($this->generateUrl('cnes_philae_default_admin'));
+            return $this->redirect($this->generateUrl('cnes_philae_default_redacteur'));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
         }

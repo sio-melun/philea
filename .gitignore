@@ -17,3 +17,7 @@ core
 nbproject/*
 !nbproject/project.properties
 !nbproject/project.xml
+
+#all idea specific inner project
+.idea/
+
