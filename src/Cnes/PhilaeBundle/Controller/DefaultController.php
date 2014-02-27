@@ -52,16 +52,16 @@ class DefaultController extends Controller {
 
         $domaine = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')
                         ->find($idProjet)->getDomaine();
-        $projet = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')
+        $etapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')
                 ->findBy(
                 array('projet' => $idProjet, 'isValide' => 1), array('avancement' => 'DESC'));
 
-        if (!$projet) {
-            throw $this->createNotFoundException('Aucun projet trouvé');
+        if (!$etapes) {
+            throw $this->createNotFoundException('Aucune étape de projet trouvée pour ce projet');
         }
 
 
-        return array('domaine' => $domaine, 'etapes' => $projet);
+        return array('domaine' => $domaine, 'etapes' => $etapes);
     }
 
     /**
@@ -156,7 +156,7 @@ class DefaultController extends Controller {
             return $this->render('PhilaeBundle:Default:ajoutEtape.html.twig', array(
                         'form' => $form->createView()));
         } else {
-            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
+            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cette page');
         }
     }
 

@@ -14,9 +14,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Etape
 {
-    const SUPPRIMER = "-1";
+    const SUPPRIMER = -1;
     const ATTENTE_VALIDATION = 0;
     const VALIDE = 1;
+
     /**
      * @var integer
      *
@@ -37,18 +38,21 @@ class Etape
      * @ORM\Column(name="categorie", type="string", length=70)
      */
     private $categorie;
+
     /**
      * @var string
      *
      * @ORM\Column(name="contenu", type="string", length=2048)
      */
     private $contenu;
+
     /**
      * @var datetime
      *
      * @ORM\Column(name="dateEntre", type="datetime")
      */
     private $date;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
