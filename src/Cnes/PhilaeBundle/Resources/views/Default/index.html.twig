@@ -1,8 +1,9 @@
 {% extends "::layout.html.twig" %}
 
 {% block body %}
-<center><span id="titre">Un projet collaboratif inter-académique</span></center>
-<br />
+<div class="container text-center">
+<h5 style="font-style : italic;">Un projet collaboratif inter-académique de conception/réalisation d'une maquette grandeur nature du module Philae de la mission Rosetta.</h5>
+</div>
     <div>
 
         <style type="text/css">
@@ -46,9 +47,9 @@
 
             .imageMap .hotspots div:hover a {background:#fff; z-index:100; opacity:0.3; filter: alpha(opacity=30); border:1px solid #000;}
         </style>
-        </head>
 
-        <body>
+
+
         <div class="wrapper" onclick="">
             <div class="page">
 
@@ -58,29 +59,25 @@
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '2'}) }}" class="p1" rel="nofollow" aria-haspopup="false"></a><p><strong>Balcon</strong></p><b class="b1"></b></div>
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '1'}) }}" class="p2" rel="nofollow" aria-haspopup="false"></a><p><strong>Caisse</strong></p><b class="b2"></b></div>
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '3'}) }}" class="p3" rel="nofollow" aria-haspopup="false"></a><p><strong>Train d'atterisage</strong>.</p><b class="b3"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '12'}) }}" class="p4" rel="nofollow" aria-haspopup="false"></a><p><strong>SD2</strong></p><b class="b4"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '8'}) }}" class="p5" rel="nofollow" aria-haspopup="false"></a><p><strong>CIVA</strong></p><b class="b5"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '11'}) }}" class="p6" rel="nofollow" aria-haspopup="false"></a><p><strong>ROMAP</strong></p><b class="b6"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '9'}) }}" class="p7" rel="nofollow" aria-haspopup="false"></a><p><strong>MUPUS</strong></p><b class="b7"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '10'}) }}" class="p8" rel="nofollow" aria-haspopup="false"></a><p><strong>ROLIS</strong></p><b class="b8"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '18'}) }}" class="p9" rel="nofollow" aria-haspopup="false"></a><p><strong>Décor</strong></p><b class="b9"></b></div>
+                        <div><a data-toggle="tooltip" title="foreuse et carrousel tournant" href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '12'}) }}" class="p4" rel="nofollow" aria-haspopup="false"></a><p><strong>SD2</strong></p><b class="b4"></b></div>
+                        <div><a data-toggle="tooltip" title="caméras 2D/3D" href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '8'}) }}" class="p5" rel="nofollow" aria-haspopup="false"></a><p><strong>CIVA</strong></p><b class="b5"></b></div>
+                        <div><a data-toggle="tooltip" title="ROsetta MAgnetmeter and Plasma monitor" href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '11'}) }}" class="p6" rel="nofollow" aria-haspopup="false"></a><p><strong>ROMAP</strong></p><b class="b6"></b></div>
+                        <div><a data-toggle="tooltip" title="Mesure de la dureté du sol" href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '9'}) }}" class="p7" rel="nofollow" aria-haspopup="false"></a><p><strong>MUPUS</strong></p><b class="b7"></b></div>
+                        <div><a data-toggle="tooltip" title="ROsetta Lander Imaging System" href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '10'}) }}" class="p8" rel="nofollow" aria-haspopup="false"></a><p><strong>ROLIS</strong></p><b class="b8"></b></div>
+                        <div><a data-toggle="tooltip" title="" href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '18'}) }}" class="p9" rel="nofollow" aria-haspopup="false"></a><p><strong>Décor</strong></p><b class="b9"></b></div>
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '14'}) }}" class="p10" rel="nofollow" aria-haspopup="false"></a><p><strong>Energie</strong></p><b class="b10"></b></div>
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '13'}) }}" class="p11" rel="nofollow" aria-haspopup="false"></a><p><strong>Fabrication</strong></p><b class="b11"></b></div>
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '15'}) }}" class="p12" rel="nofollow" aria-haspopup="false"></a><p><strong>Treuil & Portique</strong></p><b class="b12"></b></div>
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '16'}) }}"class="p13" rel="nofollow" aria-haspopup="false"></a><p><strong>Transport</strong></p><b class="b13"></b></div>
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '17'}) }}"class="p14" rel="nofollow" aria-haspopup="false"></a><p><strong>Site Web</strong></p><b class="b14"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '4'}) }}" class="p15" rel="nofollow" aria-haspopup="false"></a><p><strong>Fabrication</strong></p><b class="b15"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '5'}) }}" class="p16" rel="nofollow" aria-haspopup="false"></a><p><strong>Treuil & Portique</strong></p><b class="b16"></b></div>
+                        <div><a data-toggle="tooltip" title="Système de propulsion qui permet de plaquer Philae au sol"  href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '4'}) }}" class="p15" rel="nofollow" aria-haspopup="false"></a><p><strong>ADS</strong></p><b class="b15"></b></div>
+                        <div><a data-toggle="tooltip" title="Système d’ancrage" href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '5'}) }}" class="p16" rel="nofollow" aria-haspopup="false"></a><p><strong>Treuil & Portique</strong></p><b class="b16"></b></div>
                         <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '6'}) }}"class="p17" rel="nofollow" aria-haspopup="false"></a><p><strong>Transport</strong></p><b class="b17"></b></div>
-                        <div><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '7'}) }}"class="p18" rel="nofollow" aria-haspopup="false"></a><p><strong>Site Web</strong></p><b class="b18"></b></div>
-                    
+                        <div><a data-toggle="tooltip" title="Alpha Particle X-ray Spectrometer"href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '7'}) }}"class="p18" rel="nofollow" aria-haspopup="false"></a><p><strong>APX</strong></p><b class="b18"></b></div>
                     </div>
                 </div>
-
             </div>
         </div>
-        </body>
-        </html>
 
     </div>
 {% endblock %}

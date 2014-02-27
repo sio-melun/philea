@@ -124,10 +124,10 @@
                 {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {% if is_granted('ROLE_GESTIONNAIRE') %}
                             <li><a href="{{ path('cnes_philae_default_afficheruser') }}"><b>Utilisateurs</b></a></li>
-                            <li><a href="{{ path('cnes_philae_default_gestion') }}"><b>Validation</b></a></li>
+                            <li><a href="{{ path('cnes_philae_default_gestion') }}"><b>Gest. Publication</b></a></li>
                         {% endif %}
                     <li><a href="{{ path('cnes_philae_default_redacteur') }}"><b>Mes étapes</b></a></li>
-                    <li><a href="{{ path('fos_user_security_logout') }}"><b>Deconnexion</b></a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><b>({{ app.user.username }}) Deconnexion</b></a></li>
                 {% else %}
                  <li><a href="{{ path('fos_user_security_login') }}"><b>Connexion</b></a></li>
 
@@ -138,7 +138,8 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-        {% block body %}{% endblock %}
+        {% block body %}
+        {% endblock %}
     </div>
 
 </div> <!-- /container -->
@@ -147,9 +148,15 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 {{ tinymce_init() }}
 {% block head %}{% endblock %}
+
+<footer>
+    <div class="container text-center">
+        <p class="text-muted credit">Une production de la section BTS SIO-SLAM du lycée Léonard de Vinci - Melun - © 2014</p>
+    </div>
+</footer>
 </body>
 </html>
