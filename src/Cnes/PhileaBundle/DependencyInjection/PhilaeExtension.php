@@ -1,6 +1,6 @@
 <?php
 
-namespace Cnes\PhilaeBundle\DependencyInjection;
+namespace Cnes\PhileaBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

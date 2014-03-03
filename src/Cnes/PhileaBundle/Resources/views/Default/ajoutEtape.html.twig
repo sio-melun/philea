@@ -5,8 +5,7 @@
 
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-       <center>{{ form(form) }}</center>
+       {{ form(form) }}
 
     {% else %}
 

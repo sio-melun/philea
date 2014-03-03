@@ -1,6 +1,6 @@
 <?php
 
-namespace Cnes\PhilaeBundle\Entity;
+namespace Cnes\PhileaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

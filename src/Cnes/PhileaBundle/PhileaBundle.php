@@ -1,10 +1,10 @@
 <?php
-// src/Cnes/PhilaeBundle/PhilaeBundle.php
-namespace Cnes\PhilaeBundle;
+// src/Cnes/PhileaBundle/PhileaBundle.php
+namespace Cnes\PhileaBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class PhilaeBundle extends Bundle
+class PhileaBundle extends Bundle
 {
   public function getParent()
   {

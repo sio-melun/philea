@@ -1,58 +1,62 @@
 <?php
 
-namespace Cnes\PhilaeBundle\Controller;
+namespace Cnes\PhileaBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Cnes\PhilaeBundle\Entity\Etape;
-use Cnes\PhilaeBundle\Entity\User;
+use Cnes\PhileaBundle\Entity\Etape;
+use Cnes\PhileaBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller {
 
     /**
-     * @Route("/")
+     * @Route("/",name="philea_index")
      * @Template()
      */
     public function indexAction() {
-        return $this->render('PhilaeBundle:Default:index.html.twig');
+        return $this->render('PhileaBundle:Default:accueil.html.twig');
+    }
+
+
+    /**
+     * @Route("/synoptique", name="philea_synoptique")
+     * @Template()
+     */
+    public function synoptiqueAction() {
+        return $this->render('PhileaBundle:Default:index.html.twig');
     }
 
     /**
-     * @Route("/domaine/{idDomaine}/")
+     * @Route("/domaine/{idDomaine}/",name="philea_domaine")
      * @Template()
      */
     public function domaineAction($idDomaine) {
-        $domaine = $this->getDoctrine()->getRepository('PhilaeBundle:Domaine')
+        $domaine = $this->getDoctrine()->getRepository('PhileaBundle:Domaine')
                 ->find($idDomaine);
 
-
-        //POUR l'AVANCEMENT .Récupère les étapes en cours selon le domaine actuel. NON FONCTIONNEL
-        //$etapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->getAvancement($idDomaine);
-
         if (!$domaine) {
-            throw $this->createNotFoundException('Aucun projet trouvé');
+            throw $this->createNotFoundException('Aucun domaine trouvé');
         }
 
-        $projets = $this->getDoctrine()->getRepository('PhilaeBundle:Domaine')->find($idDomaine)->getProjets();
-
+        $projets = $this->getDoctrine()->getRepository('PhileaBundle:Domaine')->find($idDomaine)->getProjets();
 
         return array('domaine' => $domaine, 'projets' => $projets/* , 'etapes' => $etapes */);
     }
 
     /**
-     * @Route("/projets/{idProjet}/")
+     * @Route("/projet/{idProjet}/", name="philea_projet"))
      * @Template()
      */
     public function projetAction($idProjet) {
-        /* $projet = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')
+        /* $projet = $this->getDoctrine()->getRepository('PhileaBundle:Projet')
           ->find($idProjet); */
 
-        $domaine = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')
+        $domaine = $this->getDoctrine()->getRepository('PhileaBundle:Projet')
                         ->find($idProjet)->getDomaine();
-        $etapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')
+        $etapes = $this->getDoctrine()->getRepository('PhileaBundle:Etape')
                 ->findBy(
                 array('projet' => $idProjet, 'isValide' => 1), array('avancement' => 'DESC'));
 
@@ -60,26 +64,25 @@ class DefaultController extends Controller {
             throw $this->createNotFoundException('Aucune étape de projet trouvée pour ce projet');
         }
 
-
         return array('domaine' => $domaine, 'etapes' => $etapes);
     }
 
     /**
-     * @Route("/redacteur/")
+     * @Route("/redacteur/",name="philea_redacteurs")
      * @Template()
      */
     public function redacteurAction() {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $projets = $user->getProjets();
         $etapes = $this->getDoctrine()
-                ->getRepository('PhilaeBundle:Etape')
+                ->getRepository('PhileaBundle:Etape')
                 ->findByUser($user->getId());
 
-        return $this->render('PhilaeBundle:Default:redacteur.html.twig', array('projets' => $projets, 'etapes' => $etapes));
+        return $this->render('PhileaBundle:Default:redacteur.html.twig', array('projets' => $projets, 'etapes' => $etapes));
     }
 
     /**
-     * @Route("/redacteur/ajoutEtape/{idProjet}/")
+     * @Route("/redacteur/ajoutEtape/{idProjet}/", name="philea_redacteur_etape_ajouter")
      * @Template()
      */
     public function ajoutEtapeAction($idProjet) {
@@ -87,7 +90,7 @@ class DefaultController extends Controller {
         $user = $this->getUser();
 
         $projet = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:Projet')->find($idProjet);
+                        ->getRepository('PhileaBundle:Projet')->find($idProjet);
 
         $projets = $user->getProjets();
 
@@ -145,7 +148,7 @@ class DefaultController extends Controller {
                     $em->flush();
 
                     // On redirige vers la page de visualisation de l'article nouvellement créé
-                    return $this->redirect($this->generateUrl('cnes_philae_default_redacteur'));
+                    return $this->redirect($this->generateUrl('cnes_philea_default_redacteur'));
                 }
             }
 
@@ -153,7 +156,7 @@ class DefaultController extends Controller {
             // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
             // - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
             // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
-            return $this->render('PhilaeBundle:Default:ajoutEtape.html.twig', array(
+            return $this->render('PhileaBundle:Default:ajoutEtape.html.twig', array(
                         'form' => $form->createView()));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cette page');
@@ -161,7 +164,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/redacteur/modifEtape/{id}/")
+     * @Route("/redacteur/modifEtape/{id}/",name="philea_redacteur_etape_modifier")
      * @Template()
      */
     public function modifierAction($id) {
@@ -171,7 +174,7 @@ class DefaultController extends Controller {
 
         //Récupère l'idProjet selon l'étape en cours
         $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:Etape')
+                        ->getRepository('PhileaBundle:Etape')
                         ->find($id)->getProjet();
 
         $modificationApprouve = false;
@@ -189,7 +192,7 @@ class DefaultController extends Controller {
             $em = $this->getDoctrine()->getManager();
 
             // On récupère l'entité correspondant à l'id $id
-            $article = $em->getRepository('PhilaeBundle:Etape')
+            $article = $em->getRepository('PhileaBundle:Etape')
                     ->find($id);
 
             // Si l'article n'existe pas, on affiche une erreur 404
@@ -237,11 +240,11 @@ class DefaultController extends Controller {
 
                     // On redirige vers la page de visualisation de l'article nouvellement créé
 
-                    return $this->redirect($this->generateUrl('cnes_philae_default_redacteur'));
+                    return $this->redirect($this->generateUrl('cnes_philea_default_redacteur'));
                 }
             }
 
-            return $this->render('PhilaeBundle:Default:ajoutEtape.html.twig', array(
+            return $this->render('PhileaBundle:Default:ajoutEtape.html.twig', array(
                         'form' => $form->createView()));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
@@ -249,11 +252,10 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/redacteur/delete/etape/{id}/")
+     * @Route("/redacteur/delete/etape/{id}/",name="philea_redacteur_etape_supprimer")
      * @Template()
      */
-    public
-            function deleteEtapeAction($id) {
+    public function deleteEtapeAction($id) {
 
         $user = $this->getUser();
 
@@ -262,7 +264,7 @@ class DefaultController extends Controller {
 
         //Récupère l'idProjet selon l'étape en cours
         $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:Etape')
+                        ->getRepository('PhileaBundle:Etape')
                         ->find($id)->getProjet();
 
         $deleteApprouve = false;
@@ -277,19 +279,19 @@ class DefaultController extends Controller {
 
         if ($deleteApprouve) {
             $em = $this->getDoctrine()->getManager();
-            $etape = $em->getRepository('PhilaeBundle:Etape')->find($id);
-            $etape->setIsValide(Etape::SUPPRIMER);
+            $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
+            $etape->setIsValide(Etape::SUPPRIMEE);
             $em->flush();
 
 
-            return $this->redirect($this->generateUrl('cnes_philae_default_redacteur'));
+            return $this->redirect($this->generateUrl('cnes_philea_default_redacteur'));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
         }
     }
 
     /**
-     * @Route("/gestion/")
+     * @Route("/gestion/",name="philea_gestionnaires")
      * @Template()
      */
     public function gestionAction() {
@@ -299,13 +301,13 @@ class DefaultController extends Controller {
 
         $userProjets = $user->getProjets();
 
-        $lesEtapes = $this->getDoctrine()->getRepository('PhilaeBundle:Etape')->findAll();
+        $lesEtapes = $this->getDoctrine()->getRepository('PhileaBundle:Etape')->findAll();
 
-        return $this->render('PhilaeBundle:Default:gestion.html.twig', array('lesEtapes' => $lesEtapes, 'userProjets' => $userProjets));
+        return $this->render('PhileaBundle:Default:gestion.html.twig', array('lesEtapes' => $lesEtapes, 'userProjets' => $userProjets));
     }
 
     /**
-     * @Route("/gestion/publierEtape/{id}")
+     * @Route("/gestion/publierEtape/{id}",name="philea_gestionnaire_etape_publier")
      * @Template()
      */
     public function publierGestionAction($id) {
@@ -316,7 +318,7 @@ class DefaultController extends Controller {
 
         //Récupère l'idProjet selon l'étape en cours
         $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:Etape')
+                        ->getRepository('PhileaBundle:Etape')
                         ->find($id)->getProjet();
 
 
@@ -332,7 +334,7 @@ class DefaultController extends Controller {
 
         if ($publierApprouve) {
             $em = $this->getDoctrine()->getManager();
-            $etape = $em->getRepository('PhilaeBundle:Etape')->find($id);
+            $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
 
             $etape->setIsValide(Etape::VALIDE);
 
@@ -340,14 +342,14 @@ class DefaultController extends Controller {
 
             // if ($this->get('security.context')->isGranted('ROLE_GESTIONNAIRE'))
 
-            return $this->redirect($this->generateUrl('cnes_philae_default_gestion'));
+            return $this->redirect($this->generateUrl('cnes_philea_default_gestion'));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
         }
     }
 
     /**
-     * @Route("/gestion/modifEtape/{id}/")
+     * @Route("/gestion/modifEtape/{id}/",name="philea_gestionnaire_etape_modifier")
      * @Template()
      */
     public function modifierGestionAction($id) {
@@ -358,7 +360,7 @@ class DefaultController extends Controller {
 
         //Récupère l'idProjet selon l'étape en cours
         $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:Etape')
+                        ->getRepository('PhileaBundle:Etape')
                         ->find($id)->getProjet();
 
         $modificationApprouve = false;
@@ -376,7 +378,7 @@ class DefaultController extends Controller {
             $em = $this->getDoctrine()->getManager();
 
             // On récupère l'entité correspondant à l'id $id
-            $article = $em->getRepository('PhilaeBundle:Etape')
+            $article = $em->getRepository('PhileaBundle:Etape')
                     ->find($id);
 
             // Si l'article n'existe pas, on affiche une erreur 404
@@ -421,11 +423,11 @@ class DefaultController extends Controller {
                     $em->flush();
 
                     // On redirige vers la page de visualisation de l'article nouvellement créé
-                    return $this->redirect($this->generateUrl('cnes_philae_default_gestion'));
+                    return $this->redirect($this->generateUrl('cnes_philea_default_gestion'));
                 }
             }
 
-            return $this->render('PhilaeBundle:Default:ajoutEtape.html.twig', array(
+            return $this->render('PhileaBundle:Default:ajoutEtape.html.twig', array(
                         'form' => $form->createView()));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
@@ -433,11 +435,10 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/gestion/delete/etape/{id}/")
+     * @Route("/gestion/delete/etape/{id}/",name="philea_gestionnaire_etape_supprimer")
      * @Template()
      */
-    public
-            function deleteGestionAction($id) {
+    public function deleteGestionAction($id) {
 
         $user = $this->getUser();
 
@@ -445,7 +446,7 @@ class DefaultController extends Controller {
 
         //Récupère l'idProjet selon l'étape en cours
         $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:Etape')
+                        ->getRepository('PhileaBundle:Etape')
                         ->find($id)->getProjet();
 
         $deleteApprouve = false;
@@ -460,78 +461,80 @@ class DefaultController extends Controller {
 
         if ($deleteApprouve) {
             $em = $this->getDoctrine()->getManager();
-            $etape = $em->getRepository('PhilaeBundle:Etape')->find($id);
-            $etape->setIsValide(Etape::SUPPRIMER);
+            $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
+            // si l'étape est actuellement publiée, elle sera d'abord mise en attente
+            // sinon (ATTENTE_VALIDATION) elle sera marquée SUPPRIMEE
+            if ($etape->getIsValide() == Etape::VALIDE)
+                $etape->setIsValide(Etape::ATTENTE_VALIDATION);
+            else
+                $etape->setIsValide(Etape::SUPPRIMEE);
             $em->flush();
 
-
-            return $this->redirect($this->generateUrl('cnes_philae_default_gestion'));
+            return $this->redirect($this->generateUrl('cnes_philea_default_gestion'));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
         }
     }
 
     /**
-     * @Route("/utilisateurs/")
+     * @Route("/utilisateurs/",name="philea_utilisateurs")
      * @Template()
      */
-    public
-            function AfficherUserAction() {
+    public function usersAction() {
         $userManager = $this->get('fos_user.user_manager');
         $users = $userManager->findUsers();
 
-        return $this->render('PhilaeBundle:Default:users.html.twig', array('users' => $users));
+        return $this->render('PhileaBundle:Default:users.html.twig', array('users' => $users));
     }
 
     /**
-     * @Route("/utilisateurs/projetsuser/{idUser}")
+     * @Route("/utilisateurs/projets/{idUser}",name="philea_utilisateur_projets")
      * @Template()
      */
-    public
-            function ProjetsUserAction($idUser) {
+    public  function userProjetsAction($idUser) {
 
         $projets = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:User')
+                        ->getRepository('PhileaBundle:User')
                         ->find($idUser)->getProjets();
 
         $user = $this->getDoctrine()
-                ->getRepository('PhilaeBundle:User')
+                ->getRepository('PhileaBundle:User')
                 ->find($idUser);
 
-        return $this->render('PhilaeBundle:Default:projetsuser.html.twig', array('projets' => $projets, 'user' => $user));
+        return $this->render('PhileaBundle:Default:projetsuser.html.twig', array('projets' => $projets, 'user' => $user));
     }
 
     /**
-     * @Route("/utilisateurs/projetsuser/delete/{idUser}/{idProjet}")
+     * @Route("/utilisateurs/projetsuser/delete/{idUser}/{idProjet}",name="philea_utilisateur_projet_retirer")
      * @Template()
      */
-    public function projetsUserDeleteAction($idUser, $idProjet) {
+    public function userProjetsDeleteAction($idUser, $idProjet) {
         $em = $this->getDoctrine()->getManager();
 
-        $user = $this->getDoctrine()->getRepository('PhilaeBundle:User')->find($idUser);
-        $projet = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')->find($idProjet);
+        $user = $this->getDoctrine()->getRepository('PhileaBundle:User')->find($idUser);
+        $projet = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->find($idProjet);
         $user->removeProjet($projet);
         $em->flush();
 
-
-
-        return $this->redirect($this->generateUrl('cnes_philae_default_projetsuser', array('idUser' => $idUser)));
+        return $this->redirect($this->generateUrl('philea_utilisateur_projets', array('idUser' => $idUser)));
     }
 
     /**
-     * @Route("/utilisateurs/projetsuser/ajout/{idUser}/")
+     * @Route("/utilisateurs/projet/ajout/{idUser}/",name="philea_utilisateur_projet_ajouter")
      * @Template()
      */
-    public function projetsUserAjoutAction(Request $request, $idUser) {
-        //En cours
+    public function userProjetsAjoutAction(Request $request, $idUser) {
+        // En cours !!!!
+        // TODO présenter les projets non encore associés à l'utilisateur d'id = idUser
+
+        $projets = $this->getDoctrine()
+            ->getRepository('PhileaBundle:Projet')->findAll();
+
         $userRedacteur = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:User')->find($idUser);
-        // obtenir les projets du user de la session (gestionnaire
-        // 
-        // Passer à la vue userRedacteur et les projets (non encore liés à userReadacteur)
-        //
-        $projetsGestionnaire = $this->getDoctrine()
-                        ->getRepository('PhilaeBundle:User')->find($this->getUser())->getProjets();
+                        ->getRepository('PhileaBundle:User')->find($idUser);
+
+        //$projetsGestionnaire = $this->getDoctrine()
+        //                ->getRepository('PhileaBundle:User')->find($this->getUser())->getProjets();
 
         $form = $this->createFormBuilder()
                 ->add('projet_id', 'choice', array(
@@ -558,21 +561,53 @@ class DefaultController extends Controller {
                 $user_id = $idUser;
                 $projet_id = $data['form']['projet_id'];
 
-
                 $em = $this->getDoctrine()->getManager();
-                $user = $this->getDoctrine()->getRepository('PhilaeBundle:User')->find($user_id);
-                $projet = $this->getDoctrine()->getRepository('PhilaeBundle:Projet')->find($projet_id);
+                $user = $this->getDoctrine()->getRepository('PhileaBundle:User')->find($user_id);
+                $projet = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->find($projet_id);
 
                 $user->addProjet($projet);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('cnes_philae_default_projetsuser', array('idUser' => $idUser)));
+                return $this->redirect($this->generateUrl('philea_utilisateur_projets', array('idUser' => $idUser)));
             }
         }
 
-        return $this->render('PhilaeBundle:Default:formAddUserProjet.html.twig', array(
-                    'form' => $form->createView(), 'idUser' => $idUser, 'projetsGestionnaire' =>$projetsGestionnaire
+        return $this->render('PhileaBundle:Default:formAddUserProjet.html.twig', array(
+                    'form' => $form->createView(), 'idUser' => $idUser, 'projetsGestionnaire' =>$projets
         ));
+    }
+
+
+    /**
+     * @Route("/projets", name="philea_projets")
+     * @Template()
+     */
+    public function projetsListAction() {
+        $em = $this->getDoctrine()->getManager();
+        $projets = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->findAll();//getMyAll();//findAll();
+        $user = $this->getUser();
+
+        $logger = $this->get('logger');
+        $logger->info("L'utilisateur a pour roles : " . $user->getRoles());//null ou tableau !
+
+        $repo =  $this->getDoctrine()->getRepository('PhileaBundle:Projet');
+
+        $gest = array();
+        foreach ($projets as $p) :
+          $gestionnaires =  $repo->getAllGestionnaires($p->getId());
+          if (!$gestionnaires)
+              $gestionnaires = "(vide)";
+          else {
+            $res="";
+            foreach ($gestionnaires as $u) :
+                if ($res) $res =", ";
+                $res .= $u->getUsername();
+            endforeach;
+            $gestionnaires = $res;
+          }
+          $gest[$p->getId()] = $gestionnaires;
+        endforeach;
+        return array('projets'=> $projets, 'user'=> $user, 'gest'=>$gest);
     }
 
 }

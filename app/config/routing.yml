@@ -1,5 +1,5 @@
 philae:
-    resource: "@PhilaeBundle/Controller/"
+    resource: "@PhileaBundle/Controller/"
     type:     annotation
     prefix:   /
 

@@ -6,7 +6,7 @@
 
     <!--
     <parameters>
-        <parameter key="philae.example.class">Cnes\PhilaeBundle\Example</parameter>
+        <parameter key="philae.example.class">Cnes\PhileaBundle\Example</parameter>
     </parameters>
 
     <services>

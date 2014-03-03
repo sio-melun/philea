@@ -1,0 +1,49 @@
+#titre {
+
+    font-size: 30px;
+
+    text-shadow: -1px -1px #9df, 1px 1px #49d, -2px 0 4px #000;
+    font-family:"Segoe print", Arial, Helvetica, sans-serif;
+    color:#6bf;
+
+
+    text-align:center;
+
+}
+
+
+.container .jumbotron {
+    border-radius: 6px;
+}
+
+.jumbotron .container {
+    max-width: 100%;
+}
+
+.philea-text-content {
+    color:#6bf;
+    background-color: rgba(100, 100, 100, 0.1);
+}
+
+
+.philea-text-content {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* datatable */
+
+tr.even td.sorting_1 {
+    background-color: rgba(100, 100, 100, 0.1);
+
+}
+tr.odd td.sorting_1 {
+    background-color: rgba(100, 100, 100, 0.2);
+}
+tr.even {
+    background-color: rgba(100, 100, 100, 0.1);
+
+}
+tr.odd {
+    background-color: rgba(100, 100, 100, 0.2);
+}

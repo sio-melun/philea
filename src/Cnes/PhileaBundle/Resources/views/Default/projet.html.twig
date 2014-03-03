@@ -1,9 +1,10 @@
     {% extends "::layout.html.twig" %}
 
 {% block body %}
-    <center><span id="titre">{{domaine.nom}}</span><br />
-
-        {{domaine.description}}</center>
+    <div class="text-center">
+    <span id="titre">{{domaine.nom}}</span><br />
+        {{domaine.description}}
+    </div>
     <br />
     
      <style>  #progressbar {
@@ -19,17 +20,11 @@
 
         #progressbar > div {
             background-color: #01B0F0;
-            width:  {% if etapes[0].avancement is defined %}
-
-            {{etapes[0].avancement}}%
-
-            {% else %}
-            0%
-            {% endif %} ;/* Adjust with JavaScript */
-            height: 20px;
+            width:{% if etapes[0].avancement is defined %} {{etapes[0].avancement}}%
+                     {% else %}  0%
+                     {% endif %} ;/* Adjust with JavaScript */
             border-radius: 10px;
             line-height:1;
-
         }
     </style>
 
@@ -46,10 +41,9 @@
     </div>
     <br /><br />
     {% for etape in etapes %}
-        <!--<center><h3>{{  etape.titre}}</h3></center> -->
         <table width="100%" class="table">
             <tr>
-                <th colspan="2" style="text-align: center;"><font size="+1" color="#000066">{{etape.titre}}</font></th>
+                <th colspan="2"><div class="text-center">{{etape.titre}}</div><div class="text-right" style="margin-top: -20px;">{{etape.avancement}}</div></th>
             </tr>
             <tr>
 

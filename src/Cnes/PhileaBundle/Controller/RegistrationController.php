@@ -1,6 +1,6 @@
 <?php
 
-namespace Cnes\PhilaeBundle\Controller;
+namespace Cnes\PhileaBundle\Controller;
 
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Symfony\Component\HttpFoundation\RedirectResponse;

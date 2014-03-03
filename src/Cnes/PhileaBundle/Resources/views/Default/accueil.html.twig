@@ -1,0 +1,175 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+<div class="container">
+
+    <div class="row">
+
+    <div class="col-xs-2"> <!-- required for floating -->
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs tabs-left">
+            <li class="active"><a href="#objectif" data-toggle="tab">Objectif</a></li>
+            <li><a href="#partenaires" data-toggle="tab">Partenaires</a></li>
+            <li><a href="#acteurs" data-toggle="tab">Acteurs du projet</a></li>
+        </ul>
+    </div>
+
+    <div class="col-xs-9">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="objectif">
+                <p>Le projet Philea consiste à concevoir puis présenter au grand public une maquette à taille réelle
+                    de Philae, l’atterrisseur de la mission Rosetta qui se posera fin 2014
+                    sur la comète Churyumov Gerasimenko.</p>
+                <p>La réalisation de cette réplique, baptisée Philea, est attendue pour juin 2014.</p>
+                <p></p>L'intérêt du projet Plilea est multiple :</p>
+                <ul> <li>Pour le public, découvrir des composantes du projet Rosetta</li>
+                    <li>Pour l'élève, participer à un véritable projet, en mode collaboratif</li>
+                    <li>Pour l'enseignant, offrir à ses élèves un cadre de projet réaliste et collaboratif</li>
+                 </ul>
+            </div>
+            <div class="tab-pane" id="partenaires">
+                <ul>
+                <li>CNES et la mission Rosetta de l'Agence Spatiale Européenne (ESA) : son objectif est l'étude de la comète Churyumov Gerasimenko avec laquelle la sonde a rendez-vous en Août 2014 pour une période d'observation de 18 mois.<br/>
+                La mission <a href="http://smsc.cnes.fr/ROSETTA/Fr/"> Rosetta </a></li>
+                 <li>Les académies de Créteil, Paris, Versailles et Limoges</li>
+                </ul>
+
+            </div>
+            <div class="tab-pane" id="acteurs">
+                <p>22 classes / 11 établissements des académies de Créteil, Paris, Versailles et Limoges</p>
+                <table class="table table-bordered table-responsive table-condensed">
+                    <thead> <tr>
+                        <th class="text-center">Académie</th>
+                        <th class="text-center">Établissement</th>
+                        <th class="text-center">Ville</th>
+                        <th class="text-center">Classes</th>
+                    </tr></thead>
+                    <tbody>
+                     <tr>
+                         <td rowspan="5">Créteil</td>
+                         <td>Lycée du Gué à Tresmes</td>
+                         <td>Congis (77)</td>
+                         <td><ul><li>BAC STD2A</li> <li>BMA GD</li></ul> </td>
+                     </tr>
+                     <tr>
+
+                         <td>Lycée François Mansart</td>
+                         <td>La Varenne (94)</td>
+                         <td><ul><li>BTS SCBH</li></ul></td>
+                     </tr>
+                     <tr>
+
+                         <td>Lycée Léonard de Vinci</td>
+                         <td>Melun (77)</td>
+                         <td><ul>
+                                 <li>BAC PRO TU</li>
+                                 <li>BTS CPI</li>
+                                 <li>BTS SIO</li>
+                                 <li>Licence ISCM</li>
+                         </ul></td>
+                     </tr>
+                     <tr>
+
+                         <td>Lycée Eugénie Cotton</td>
+                         <td>Montrueil (93)</td>
+                         <td>
+                             <ul>
+                                 <li>BAC STD2A</li>
+                                 <li>BTS DE</li>
+                             </ul>
+                         </td>
+                     </tr>
+                     <tr>
+
+                         <td>Lycée Louis Armand</td>
+                         <td>Nogent sur marne (94)</td>
+                         <td>
+                             <ul>
+                                 <li>BTS CPI</li>
+                                 <li>BTS ET</li>
+                                 <li>BTS IRIS</li>
+                                 <li>BTS SE</li>
+                             </ul>
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>Limoges</td>
+                         <td>Lycée Cabanis</td>
+                         <td>Brive-la-gaillarde (19)</td>
+                         <td>
+                             <ul>
+                                 <li>BTS CPI</li>
+                             </ul>
+
+                         </td>
+                     </tr>
+                     <tr>
+                         <td rowspan="4">Paris</td>
+                         <td>Lycée Chenneviere-Malézieux</td>
+                         <td>Paris</td>
+                         <td>
+                             <ul>
+                                 <li>BAC PRO TU</li>
+                             </ul>
+
+                         </td>
+                     </tr>
+                     <tr>
+
+                         <td>Lycée Diderot</td>
+                         <td>Paris</td>
+                         <td>
+                             <ul>
+                                 <li>BAC STI2D</li>
+                                 <li>BTS CIM</li>
+                                 <li>BTS IRIS</li>
+                             </ul>
+                         </td>
+                     </tr>
+                     <tr>
+
+                         <td>Lycée Louis Armand</td>
+                         <td>Paris</td>
+                         <td>
+                             <ul>
+                                 <li>BTS CPI</li>
+                             </ul>
+
+                         </td>
+                     </tr>
+                     <tr>
+
+                         <td>Lycée Dorian</td>
+                         <td>Paris</td>
+                         <td>
+                             <ul>
+                                 <li>BTS IPM</li>
+                                 <li>BTS IRIS</li>
+                             </ul>
+
+                         </td>
+                     </tr>
+                     <tr>
+                         <td>Versailles</td>
+                         <td>Lycée Alexandre Denis</td>
+                         <td>Cerny (91)</td>
+                         <td>
+                             <ul>
+                                 <li>BAC PRO CTRM</li>
+                             </ul>
+                         </td>
+                     </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Projet Philea{% endblock %}</title>
-    <title>Projet Philea</title>
 
     {% block stylesheets %}
 
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" type="text/css"/>
         <link rel="stylesheet" href="{{ asset('css/navbar.css') }}" type="text/css"/>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.vertical-tabs.min.css') }}" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('css/philea.css') }}" type="text/css"/>
+
     {% endblock %}
 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
@@ -37,7 +39,10 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ path('cnes_philae_default_index') }}"><b>Accueil</b></a></li>
+                <li><a href="{{ path('philea_index') }}"><span class="glyphicon glyphicon-home"></span> <b>Accueil</b></a></li>
+                <li><a href="{{ path('philea_projets') }}"><span class="glyphicon glyphicon-asterisk"></span> <b>Projets</b></a></li>
+                <li> <a href="{{ path('philea_synoptique') }}" ><span class="glyphicon glyphicon-tree-conifer"></span> <b>Synoptique</b></a> </li>
+                <!--
                 <li  class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Académie</b> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -76,46 +81,9 @@
 
                     </ul>
                 </li>
+                -->
 
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Projet</b><b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-submenu">
-                            <a href="#">Structure</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '2'}) }}">Balcon</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '1'}) }}">Caisse</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '3'}) }}">Train D'atérissage</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '4'}) }}">ADS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '5'}) }}">Anchor</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '6'}) }}">Radio</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="#">Instrument d'éxploration</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '8'}) }}">CIVA</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '12'}) }}">SD2</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '11'}) }}">ROMAP</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '9'}) }}">MUPUS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '10'}) }}">ROLIS</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '7'}) }}">APXS</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown-submenu">
-                            <a href="#">Support</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '13'}) }}">Fabrication</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '14'}) }}">Energie</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '16'}) }}">Transport</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '15'}) }}">Treuil & Portique</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '17'}) }}">Site Web</a></li>
-                                <li><a href="{{ path('cnes_philae_default_domaine',{'idDomaine' : '18'}) }}">Décor</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
 
 
 
@@ -123,21 +91,21 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {% if is_granted('ROLE_GESTIONNAIRE') %}
-                            <li><a href="{{ path('cnes_philae_default_afficheruser') }}"><b>Utilisateurs</b></a></li>
-                            <li><a href="{{ path('cnes_philae_default_gestion') }}"><b>Gest. Publication</b></a></li>
+                            <li><a href="{{ path('philea_utilisateurs') }}"><b>Utilisateurs</b></a></li>
+                            <li><a href="{{ path('philea_gestionnaires') }}"><b>Gest. Publication</b></a></li>
                         {% endif %}
-                    <li><a href="{{ path('cnes_philae_default_redacteur') }}"><b>Mes étapes</b></a></li>
-                    <li><a href="{{ path('fos_user_security_logout') }}"><b>({{ app.user.username }}) Deconnexion</b></a></li>
+                    <li><a href="{{ path('philea_redacteurs') }}"><b>Mes étapes</b></a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> <b>({{ app.user.username }}) Deconnexion</b></a></li>
                 {% else %}
-                 <li><a href="{{ path('fos_user_security_login') }}"><b>Connexion</b></a></li>
+                 <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> <b>Connexion</b></a></li>
 
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 
-    <!-- Main component for a primary marketing message or call to action -->
-    <div class="jumbotron">
+    <!-- Main component -->
+    <div class="philea-text-content">
         {% block body %}
         {% endblock %}
     </div>
@@ -152,11 +120,19 @@
 
 {{ tinymce_init() }}
 {% block head %}{% endblock %}
+<br/>
+<div class="container">
+  <hr/>
+  <div class="footer text-right">
+    <div class="footer">
+        <ul class="list-inline">
+            <li><a href="#"> <span class="glyphicon glyphicon-chevron-down"></span> Mention légales</a></li>
+            <li><a href="#"> <span class="glyphicon glyphicon-thumbs-up"></span> Patenaires </a></li>
+            <!-- li><a href="#"> <span class="glyphicon glyphicon-copyright-mark"></span> Conditions générales</a></li -->
 
-<footer>
-    <div class="container text-center">
-        <p class="text-muted credit">Une production de la section BTS SIO-SLAM du lycée Léonard de Vinci - Melun - © 2014</p>
+        </ul>
     </div>
-</footer>
+  </div>
+</div>
 </body>
 </html>

@@ -8,11 +8,10 @@
 
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-<center>
        {{ form_start(form) }}
     {{ form_errors(form) }}
      <div>
-             <label for="form_projet_id" class="required">Projet id</label>
+         <label for="form_projet_id" class="required">Projet : </label>
         <select id="form_projet_id" name="form[projet_id]">
             {% for projet in projetsGestionnaire %}
                 <option value="{{projet.id}}">{{projet.domaine.nom}} - {{projet.etablissement.nom}} - {{projet.classe.nomcourt}}</option>
@@ -24,7 +23,7 @@
         -->
 
 {{ form_end(form) }}
-</center>
+
     {% else %}
 
 Vous n'êtes pas connecté ! <br />

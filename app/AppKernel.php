@@ -16,9 +16,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Cnes\PhilaeBundle\PhilaeBundle(),
-	    new FOS\UserBundle\FOSUserBundle(),
-	    new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle()
+            new Cnes\PhileaBundle\PhileaBundle(),
+	        new FOS\UserBundle\FOSUserBundle(),
+	        new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

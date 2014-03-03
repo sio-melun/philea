@@ -2,7 +2,7 @@
 
 security:
     encoders:
-        Cnes\PhilaeBundle\Entity\User: sha512
+        Cnes\PhileaBundle\Entity\User: sha512
 
     role_hierarchy:
 #        ROLE_ADMIN:        ROLE_USER

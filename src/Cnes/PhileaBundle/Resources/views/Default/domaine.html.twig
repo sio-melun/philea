@@ -22,7 +22,7 @@
             <td>{{ projet.etablissement.nom}}</td>
             <td>{{ projet.classe.nomcourt}}</td>
             <td>{{ projet.etablissement.academie}}</td>            
-            <td><a href="{{ path('cnes_philae_default_projet',{'idProjet' : projet.id}) }}">Voir les étapes</a></td>
+            <td><a href="{{ path('philea_projet',{'idProjet' : projet.id}) }}">Voir les étapes</a></td>
             <td>{{ projet.avancementMax}}%</td>
             </tr>
         {% endfor %}

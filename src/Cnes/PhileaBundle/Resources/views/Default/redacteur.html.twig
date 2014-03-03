@@ -1,6 +1,6 @@
-{# src/Cnes/PhilaeBundle/Resources/views/Default/admin.html.twig #}
+{# src/Cnes/phileaBundle/Resources/views/Default/admin.html.twig #}
 {% extends "::layout.html.twig" %}
-{% block title %}Projet Philae - Rédaction{% endblock %}
+{% block title %}Projet philea - Rédaction{% endblock %}
 {% block body %}
 
     <h1 style="text-align:center;"><span id="titre">Mes étapes</span></h1>
@@ -10,7 +10,7 @@
         {% for projet in projets %}
             <tr>
                 <th>
-                    <a href="{{ path('cnes_philae_default_ajoutetape', { 'idProjet': projet.id }) }}">Ajouter une étape au Projet {{ projet.domaine.nom }}</a>
+                    <a href="{{ path('philea_redacteur_etape_ajouter', { 'idProjet': projet.id }) }}">Ajouter une étape au Projet {{ projet.domaine.nom }}</a>
                 </th>
 
             </tr>
@@ -28,9 +28,6 @@
         {% for etape in etapes %}
             {% if (etape.isValide==0) %}
 
-
-
-
                 <table width="100%" class="table">
                             <tr>
                                 <th colspan="5"><span style="float:left;">Projet : {{ etape.projet.domaine.nom }}</span>
@@ -46,14 +43,14 @@
                                          style="max-height: 200px;"></td>
                                 <td width="50%">{{ etape.contenu|raw }}</td>
                                 <td width="5%"><a
-                                            href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">
+                                            href="{{ path('philea_redacteur_etape_modifier',{'id' : etape.id}) }}">
                                         <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
                                             Modifier
                                         </button>
                                     </a></td>
                                 
                                 <td width="5%"><a
-                                            href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">
+                                            href="{{ path('philea_redacteur_etape_supprimer',{'id' : etape.id}) }}">
                                         <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
                                             Supprimer
                                         </button>
@@ -87,14 +84,14 @@
                                          style="max-height: 200px;"></td>
                                 <td width="50%">{{ etape.contenu|raw }}</td>
                                 <td width="5%"><a
-                                            href="{{ path('cnes_philae_default_modifier',{'id' : etape.id}) }}">
+                                            href="{{ path('philea_etape_modifier',{'id' : etape.id}) }}">
                                         <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
                                             Modifier
                                         </button>
                                     </a></td>
                                 
                                 <td width="5%"><a
-                                            href="{{ path('cnes_philae_default_deleteetape',{'id' : etape.id}) }}">
+                                            href="{{ path('philea_etape_supprimer',{'id' : etape.id}) }}">
                                         <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
                                             Supprimer
                                         </button>

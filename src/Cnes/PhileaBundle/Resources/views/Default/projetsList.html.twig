@@ -1,0 +1,59 @@
+{% extends "::layout.html.twig" %}
+
+{% block body %}
+ <div class="text-center">
+    <span id="titre">les projets</span><br />
+</div>
+    <table class="table">
+      <thead>
+      <tr>
+          <th>typedomaine</th>
+          <th>domaine</th>
+          <th>discipline</th>
+          <th>etablissement</th>
+          <th>classe</th>
+          <th>academie</th>
+          <th>gestionnaire(s)</th>
+          <th>projet</th>
+          <th>avancement</th>
+      </tr>
+      </thead>
+    <tbody>
+    {% for projet in projets %}
+      <tr>
+          <td>{{projet.domaine.typeDomaine}}</td>
+          <td>{{projet.domaine.nom}}</td>
+          <td>{{projet.classe.discipline}}</td>
+          <td>{{projet.etablissement.nom}}</td>
+          <td>{{projet.classe.nomcourt}}</td>
+          <td>{{projet.etablissement.academie}}</td>
+          <td> {{gest[projet.id]}}
+              {#
+              {%  if  projet.gestionnaires %}
+                  {% for user in projet.gestionnaires %}
+                      {{ user.username }} &nbsp;
+                  {% endfor %}
+              {% endif %}
+              #}
+              {#
+              {% if user  %}
+              <br/> {{user.roles[0]}}
+              {% endif %}
+              #}
+          </td>
+          <td><a href="{{ path('philea_projet',{'idProjet' : projet.id}) }}">Voir les étapes</a></td>
+          <td>
+              <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ projet.avancementMax // 1 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ projet.avancementMax // 1}}%;">
+                      {{ projet.avancementMax // 1}}%
+                      {#http://stackoverflow.com/questions/10682091/rounding-numbers-in-twig#}
+                  </div>
+              </div>
+
+          </td>
+
+      </tr>
+    {% endfor %}
+        </table>
+        </tbody>
+{% endblock %}
