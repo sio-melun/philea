@@ -587,8 +587,8 @@ class DefaultController extends Controller {
         $projets = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->findAll();//getMyAll();//findAll();
         $user = $this->getUser();
 
-        $logger = $this->get('logger');
-        $logger->info("L'utilisateur a pour roles : " . $user->getRoles());//null ou tableau !
+        /*$logger = $this->get('logger');
+        $logger->info("L'utilisateur a pour roles : " . $user->getRoles());//null ou tableau !*/
 
         $repo =  $this->getDoctrine()->getRepository('PhileaBundle:Projet');
 

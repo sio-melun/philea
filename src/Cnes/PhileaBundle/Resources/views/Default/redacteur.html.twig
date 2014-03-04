@@ -84,14 +84,14 @@
                                          style="max-height: 200px;"></td>
                                 <td width="50%">{{ etape.contenu|raw }}</td>
                                 <td width="5%"><a
-                                            href="{{ path('philea_etape_modifier',{'id' : etape.id}) }}">
+                                            href="{{ path('philea_redacteur_etape_modifier',{'id' : etape.id}) }}">
                                         <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
                                             Modifier
                                         </button>
                                     </a></td>
                                 
                                 <td width="5%"><a
-                                            href="{{ path('philea_etape_supprimer',{'id' : etape.id}) }}">
+                                            href="{{ path('philea_redacteur_etape_supprimer',{'id' : etape.id}) }}">
                                         <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
                                             Supprimer
                                         </button>
