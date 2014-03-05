@@ -132,7 +132,6 @@ class DefaultController extends Controller {
 
             // On récupère la requête
             $request = $this->get('request');
-
             // On vérifie qu'elle est de type POST
             if ($request->getMethod() == 'POST') {
                 // On fait le lien Requête <-> Formulaire
@@ -148,7 +147,7 @@ class DefaultController extends Controller {
                     $em->flush();
 
                     // On redirige vers la page de visualisation de l'article nouvellement créé
-                    return $this->redirect($this->generateUrl('cnes_philea_default_redacteur'));
+                    return $this->redirect($this->generateUrl('philea_redacteurs'));
                 }
             }
 
@@ -159,7 +158,7 @@ class DefaultController extends Controller {
             return $this->render('PhileaBundle:Default:ajoutEtape.html.twig', array(
                         'form' => $form->createView()));
         } else {
-            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cette page');
+            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accéder à cette page');
         }
     }
 
@@ -240,14 +239,14 @@ class DefaultController extends Controller {
 
                     // On redirige vers la page de visualisation de l'article nouvellement créé
 
-                    return $this->redirect($this->generateUrl('cnes_philea_default_redacteur'));
+                    return $this->redirect($this->generateUrl('philea_redacteurs'));
                 }
             }
 
             return $this->render('PhileaBundle:Default:ajoutEtape.html.twig', array(
                         'form' => $form->createView()));
         } else {
-            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
+            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accéder à cette page');
         }
     }
 
@@ -286,7 +285,7 @@ class DefaultController extends Controller {
 
             return $this->redirect($this->generateUrl('cnes_philea_default_redacteur'));
         } else {
-            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
+            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accéder à cette page');
         }
     }
 
@@ -344,7 +343,7 @@ class DefaultController extends Controller {
 
             return $this->redirect($this->generateUrl('cnes_philea_default_gestion'));
         } else {
-            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
+            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accéder à cette page');
         }
     }
 
@@ -430,15 +429,15 @@ class DefaultController extends Controller {
             return $this->render('PhileaBundle:Default:ajoutEtape.html.twig', array(
                         'form' => $form->createView()));
         } else {
-            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
+            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accéder à cette page');
         }
     }
 
     /**
-     * @Route("/gestion/delete/etape/{id}/",name="philea_gestionnaire_etape_supprimer")
+     * @Route("/gestion/delete/etape/{id}/",name="philea_gestionnaire_etape_invalider")
      * @Template()
      */
-    public function deleteGestionAction($id) {
+    public function invaliderGestionAction($id) {
 
         $user = $this->getUser();
 
@@ -462,17 +461,15 @@ class DefaultController extends Controller {
         if ($deleteApprouve) {
             $em = $this->getDoctrine()->getManager();
             $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
-            // si l'étape est actuellement publiée, elle sera d'abord mise en attente
-            // sinon (ATTENTE_VALIDATION) elle sera marquée SUPPRIMEE
-            if ($etape->getIsValide() == Etape::VALIDE)
-                $etape->setIsValide(Etape::ATTENTE_VALIDATION);
-            else
-                $etape->setIsValide(Etape::SUPPRIMEE);
-            $em->flush();
+            // si l'étape est actuellement publiée, elle sera invalidée
 
+            if ($etape->getIsValide() == Etape::VALIDE) {
+                $etape->setIsValide(Etape::ATTENTE_VALIDATION);
+                $em->flush();
+            }
             return $this->redirect($this->generateUrl('cnes_philea_default_gestion'));
         } else {
-            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cet page');
+            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cette page');
         }
     }
 

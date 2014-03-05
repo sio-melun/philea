@@ -22,7 +22,7 @@
 
     <div id="accordion">
 
-<h3> Etape en Attende de Validation</h3>
+<h3> Etape(s) en Attente(s) de Publication</h3>
     <div>
 
         {% for etape in etapes %}
@@ -56,15 +56,12 @@
                                         </button>
                                     </a></td>
                             </tr>
-
-
                         </table>
                         <br/>
-
             {% endif %}
         {% endfor %}
     </div>
-    <h3>Etape Validé</h3>
+    <h3>Etape(s) Publiée(s)</h3>
     <div>
                 {% for etape in etapes %}
                     {% if (etape.isValide==1) %}
@@ -110,7 +107,4 @@
             $( "#accordion" ).accordion({autoHeight: false, header: "h3", collapsible : true, active:false,heightStyle: false});
         </script>
 
-
-
         {% endblock %}
-
