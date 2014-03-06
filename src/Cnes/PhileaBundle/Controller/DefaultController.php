@@ -419,7 +419,7 @@ class DefaultController extends Controller {
                     $em->flush();
 
                     // On redirige vers la page de visualisation de l'article nouvellement créé
-                    return $this->redirect($this->generateUrl('cnes_philea_default_gestion'));
+                    return $this->redirect($this->generateUrl('philea_gestionnaires'));
                 }
             }
 
