@@ -1,0 +1,39 @@
+
+
+{% extends "::layout.html.twig" %}
+{% block title %}Projet Philae{% endblock%}
+{% block body %}
+
+
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+<div>
+    <label for="form_titre" class="required">Titre</label>
+        {{ form_errors(form.titre) }}
+        {{ form_widget(form.titre) }}
+</div>
+<div>
+        <label for="form_categorie" class="required">Catégorie</label>
+        {{ form_errors(form.categorie) }}
+        {{ form_widget(form.categorie) }}
+</div>
+<div>
+        <label for="form_contenu" class="required">Contenu</label>
+        {{ form_errors(form.contenu) }}
+        {{ form_widget(form.contenu) }}
+</div>
+<div>
+            <label for="form_file" class="required">Image</label>
+        {{ form_errors(form.file) }}
+        {{ form_widget(form.file) }}
+</div>
+<div>
+            <label for="form_avancement" class="required">Avancement</label>
+        {{ form_errors(form.avancement) }}
+        {{ form_widget(form.avancement) }}
+</div>
+{{ form_end(form) }}
+
+{% endblock %}
+

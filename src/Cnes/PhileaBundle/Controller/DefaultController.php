@@ -123,11 +123,10 @@ class DefaultController extends Controller {
                             'class' => 'tinymce',
                             'data-theme' => 'bbcode' // Skip it if you want to use default theme
                         )
-                    ))
-                    ->add('date', 'date')
+                    ))                    
                     ->add('file')
                     ->add('avancement')
-                    ->add('save', 'submit')
+                    ->add('Envoyer', 'submit')
                     ->getForm();
 
             // On récupère la requête
@@ -156,7 +155,7 @@ class DefaultController extends Controller {
             // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
             // - Soit la requête est de type POST, mais le formulaire n'est pas valide, donc on l'affiche de nouveau
             // On passe la méthode createView() du formulaire à la vue afin qu'elle puisse afficher le formulaire toute seule
-            return $this->render('PhileaBundle:Default:ajoutEtape.html.twig', array(
+            return $this->render('PhileaBundle:Default:formAddEtape.html.twig', array(
                         'form' => $form->createView()));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cette page');
@@ -213,7 +212,6 @@ class DefaultController extends Controller {
                             'data-theme' => 'bbcode' // Skip it if you want to use default theme
                         )
                     ))
-                    ->add('date', 'date')
                     ->add('file')
                     ->add('avancement')
                     ->add('save', 'submit')
@@ -399,7 +397,6 @@ class DefaultController extends Controller {
                             'data-theme' => 'bbcode' // Skip it if you want to use default theme
                         )
                     ))
-                    ->add('date', 'date')
                     ->add('file')
                     ->add('avancement')
                     ->add('save', 'submit')
