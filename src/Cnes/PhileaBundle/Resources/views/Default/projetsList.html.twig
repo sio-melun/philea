@@ -1,10 +1,51 @@
 {% extends "::layout.html.twig" %}
 
+{% block head %}
+
+    <link rel="stylesheet" href="{{ asset('css/demo_table.css') }}" type="text/css"/>
+    <script type="text/javascript" language="javascript" src="{{ asset('js/jquery.dataTables.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/philea.css') }}" type="text/css"/>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#example').dataTable( {
+                "iDisplayLength": -1,
+                "oLanguage": {
+                    "sEmptyTable": "Aucune donnée correspondante",
+                    "sLoadingRecords": "Traitement en cours...",
+                    "sProcessing": "Traitement en cours...",
+                    "sZeroRecords": "Aucune donnée correspondante",
+                    "sInfo": "Affichage de _START_ à  _END_ sur _TOTAL_ éléments",
+                    "sInfoEmpty": "Aucun élément",
+                    "sInfoFiltered": "",
+                    "sSearch" : "Rechercher :",
+                    "sLengthMenu": 'Affiche <select>'+
+                            '<option value="5">5</option>'+
+                            '<option value="10">10</option>'+
+                            '<option value="15">15</option>'+
+                            '<option value="20">20</option>'+
+                            '<option value="25">25</option>'+
+                            '<option value="-1">Tous</option>'+
+                            '</select> projets par page',
+                    "oPaginate": {
+                        "sFirst": "<<",
+                        "sLast": ">>",
+                        "sNext": ">",
+                        "sPrevious": "<"
+                    }
+                },
+                "aaSorting": [  ],
+                "sPaginationType": "full_numbers"
+            } );
+        } );
+    </script>
+{% endblock %}
+
 {% block body %}
  <div class="text-center">
     <span id="titre">Les Projets</span><br />
 </div>
-    <table class="table">
+
+    <table cellpadding="0" cellspacing="0" class="display" id="example"  border="0" width="100%" >
       <thead>
       <tr>
           <th>Type Domaine</th>

@@ -4,7 +4,7 @@
     <h1 style="text-align:center;"><span id="titre">Gestion des publications</span></h1>
 
     <div id="accordion">
-        <h3> Etape en Attende de Validation</h3>
+        <h3> Etape(s) en Attente(s) de Validation</h3>
 
         <div>
             {% for etape in lesEtapes %}
@@ -38,12 +38,12 @@
                                                     class="icon-white icon-ok-sign"></i> Publier
                                         </button>
                                     </a></td>
-                                <td width="5%"><a
+                                <!-- td width="5%"><a
                                             href="{{ path('philea_redacteur_etape_supprimer',{'id' : etape.id}) }}">
                                         <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
                                             Supprimer
                                         </button>
-                                    </a></td>
+                                    </a></td -->
                             </tr>
 
 
@@ -55,7 +55,7 @@
             {% endfor %}
         </div>
 
-        <h3> Etape Validé</h3>
+        <h3> Etape(s) Validée(s)</h3>
 
         <div>
             {% for etape in lesEtapes %}
@@ -84,9 +84,9 @@
                                         </button>
                                     </a></td>
                                 <td width="5%"><a
-                                            href="{{ path('philea_gestionnaire_etape_supprimer',{'id' : etape.id}) }}">
+                                            href="{{ path('philea_gestionnaire_etape_invalider',{'id' : etape.id}) }}">
                                         <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
-                                            Supprimer
+                                            Invalider
                                         </button>
                                     </a></td>
                             </tr>
@@ -98,7 +98,7 @@
             {% endfor %}
 
         </div>
-        <h3> Etape Supprimé</h3>
+        <h3> Etape(s) Supprimée(s)</h3>
 
         <div>
             {% for etape in lesEtapes %}

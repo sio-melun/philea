@@ -83,18 +83,14 @@
                 </li>
                 -->
 
-
-
-
-
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {% if is_granted('ROLE_GESTIONNAIRE') %}
-                            <li><a href="{{ path('philea_utilisateurs') }}"><b>Utilisateurs</b></a></li>
-                            <li><a href="{{ path('philea_gestionnaires') }}"><b>Gest. Publication</b></a></li>
+                            <li><a href="{{ path('philea_utilisateurs') }}"><span class="glyphicon glyphicon-user"></span> <b>Utilisateurs</b></a></li>
+                            <li><a href="{{ path('philea_gestionnaires') }}"><span class="glyphicon glyphicon-globe"></span> <b>Gest. Publication</b></a></li>
                         {% endif %}
-                    <li><a href="{{ path('philea_redacteurs') }}"><b>Mes étapes</b></a></li>
+                    <li><a href="{{ path('philea_redacteurs') }}"><span class="glyphicon glyphicon-dashboard"></span> <b>Mes étapes</b></a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> <b>({{ app.user.username }}) Deconnexion</b></a></li>
                 {% else %}
                  <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> <b>Connexion</b></a></li>
