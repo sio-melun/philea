@@ -578,7 +578,8 @@ class DefaultController extends Controller {
      */
     public function projetsListAction() {
         $em = $this->getDoctrine()->getManager();
-        $projets = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->findAll();//getMyAll();//findAll();
+        //Passage de 112 à 67 requêtes
+        $projets = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->getAllProjets();//getMyAll();//findAll();
         $user = $this->getUser();
 
         /*$logger = $this->get('logger');
@@ -601,7 +602,7 @@ class DefaultController extends Controller {
           }
           $gest[$p->getId()] = $gestionnaires;
         endforeach;
-        return array('projets'=> $projets, 'user'=> $user, 'gest'=>$gest);
+        return array('projets'=> $projets,'user'=> $user, 'gest'=>$gest);
     }
 
 }
