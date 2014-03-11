@@ -22,7 +22,7 @@
     /*color:#6bf;*/
     color:white;
     background-color: rgba(0, 0, 0, 0.5);
-    /*background-color: rgba(4, 99, 128, 0.3);*/
+    //background-color: rgba(4, 99, 128, 0.3);
     border-radius: 6px;
 }
 
@@ -112,7 +112,7 @@ img {
 }
 
 
-.philea-text-content {
+/*.philea-text-content {
     padding: 30px;
     margin-bottom: 30px;
     font-size: 120%;
@@ -120,4 +120,26 @@ img {
     line-height: 2.1428571435;
     color: inherit;
     background-color: #eeeeee;
+}*/
+
+#id-form td	{
+    width: 500px;
+}
+#id-form td.noheight	{
+    padding: 0 0 0px 0;
+}
+#id-form th	{
+    line-height: 28px;
+    min-width: 130px;
+    padding: 0 0 10px 0;
+    text-align: left;
+    width: 130px;
+}
+.titre{
+    width: 100%;
+}
+
+#form_titre, #form_categorie, #form_contenu, #form_file, #form_avancement{
+    text-transform: none;
+    width: 100%;
 }

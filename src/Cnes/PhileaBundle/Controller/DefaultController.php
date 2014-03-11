@@ -281,7 +281,7 @@ class DefaultController extends Controller {
             $em->flush();
 
 
-            return $this->redirect($this->generateUrl('cnes_philea_default_redacteur'));
+            return $this->redirect($this->generateUrl('philea_redacteurs'));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accéder à cette page');
         }

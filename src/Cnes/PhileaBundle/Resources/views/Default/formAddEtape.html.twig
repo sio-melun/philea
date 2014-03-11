@@ -7,32 +7,43 @@
 
 {{ form_start(form) }}
     {{ form_errors(form) }}
+<table id="id-form" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+            <th valign="top"><label for="form_titre" class="required">Titre</label></th>
+            <td>{{ form_errors(form.titre) }}
+        {{ form_widget(form.titre) }}</td>
+            <td></td>
+        </tr>
+        <tr>
+            <th valign="top"><label for="form_categorie" class="required">Catégorie</label></th>
+            <td>
+                {{ form_errors(form.categorie) }}
+                {{ form_widget(form.categorie) }}
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <th valign="top"><label for="form_contenu" class="required">Contenu</label></th>
+            <td>{{ form_errors(form.contenu) }}
+        {{ form_widget(form.contenu) }}</td><td></td>
+        </tr>
+        <tr>
+            <th valign="top"><label for="form_file" class="required">Image</label></th>
+            <td>{{ form_errors(form.file) }}
+        {{ form_widget(form.file) }}</td><td></td>
+        </tr>
+        <tr>
+            <th valign="top"><label for="form_avancement" class="required">Avancement</label></th>
+            <td>{{ form_errors(form.avancement) }}           
+            {{ form_widget(form.avancement) }}
 
-<div>
-    <label for="form_titre" class="required">Titre</label>
-        {{ form_errors(form.titre) }}
-        {{ form_widget(form.titre) }}
-</div>
-<div>
-        <label for="form_categorie" class="required">Catégorie</label>
-        {{ form_errors(form.categorie) }}
-        {{ form_widget(form.categorie) }}
-</div>
-<div>
-        <label for="form_contenu" class="required">Contenu</label>
-        {{ form_errors(form.contenu) }}
-        {{ form_widget(form.contenu) }}
-</div>
-<div>
-            <label for="form_file" class="required">Image</label>
-        {{ form_errors(form.file) }}
-        {{ form_widget(form.file) }}
-</div>
-<div>
-            <label for="form_avancement" class="required">Avancement</label>
-        {{ form_errors(form.avancement) }}
-        {{ form_widget(form.avancement) }}
-</div>
+            
+            
+            
+            <td></td>
+        </tr>
+    </tbody></table>
+
 {{ form_end(form) }}
 
 {% endblock %}

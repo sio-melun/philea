@@ -13,12 +13,15 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"/>
         <link rel="stylesheet" href="{{ asset('css/bootstrap.vertical-tabs.min.css') }}" type="text/css"/>
         <link rel="stylesheet" href="{{ asset('css/philea.css') }}" type="text/css"/>
-
+        <link rel="stylesheet" href="{{ asset('prettify/prettify.css') }}" type="text/css"/>
+        
     {% endblock %}
 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+{{ tinymce_init() }}
+
+<script src="{{ asset('js/jquery-ui.js') }}"></script>
+
 
 </head>
 
@@ -113,9 +116,22 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('prettify/prettify.js') }}"></script>
+<script src="{{ asset('js/bootstrap.touchspin.js') }}"></script>
+<script>
+    $("input[name='form[avancement]']").TouchSpin({
+        min: 0,
+        max: 100,
+        step: 0.1,
+        decimals: 1,
+        boostat: 5,
+        maxboostedstep: 10,
+        postfix: '%'
+    });
+</script>
 
-{{ tinymce_init() }}
-{% block head %}{% endblock %}
+{% block head %}{% endblock %}<!-- Pour Datatables -->
+
 <br/>
 <div class="container">
   <hr/>
