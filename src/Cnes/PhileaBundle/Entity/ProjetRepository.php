@@ -40,5 +40,19 @@ class ProjetRepository extends EntityRepository
         return $query->getResult();
 
     }
+    
+    public function getAllProjets() {
 
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            "SELECT proj, dom, eta, cla FROM PhileaBundle:Projet proj "
+            .  " LEFT JOIN proj.domaine dom"
+            .  " LEFT JOIN proj.etablissement eta"
+            .  " LEFT JOIN proj.classe cla"
+        );
+
+        return $query->getResult();
+
+    }
+    
 }
