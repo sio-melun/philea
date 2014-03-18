@@ -339,7 +339,7 @@ class DefaultController extends Controller {
 
             // if ($this->get('security.context')->isGranted('ROLE_GESTIONNAIRE'))
 
-            return $this->redirect($this->generateUrl('cnes_philea_default_gestion'));
+            return $this->redirect($this->generateUrl('philea_gestionnaires'));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accéder à cette page');
         }
@@ -464,7 +464,7 @@ class DefaultController extends Controller {
                 $etape->setIsValide(Etape::ATTENTE_VALIDATION);
                 $em->flush();
             }
-            return $this->redirect($this->generateUrl('cnes_philea_default_gestion'));
+            return $this->redirect($this->generateUrl('philea_gestionnaires'));
         } else {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cette page');
         }
