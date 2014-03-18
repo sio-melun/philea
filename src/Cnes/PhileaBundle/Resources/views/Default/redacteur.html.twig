@@ -38,10 +38,8 @@
                             </tr>
                             <tr>
 
-                                <td width="20%">
-                                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
-                                         style="max-height: 200px;"></td>
-                                <td width="50%">{{ etape.contenu|raw }}</td>
+                                <td width="10%"><img src='{{ ("img/upload/" ~ etape.path) | imagine_filter("my_thumb") }}' /></td>
+                                <td width="80%">{{ etape.contenu|raw }}</td>
                                 <td width="5%"><a
                                             href="{{ path('philea_redacteur_etape_modifier',{'id' : etape.id}) }}">
                                         <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
@@ -76,10 +74,8 @@
                             </tr>
                             <tr>
 
-                                <td width="20%">
-                                    <img src="{{ asset('img/upload/'~ etape.path) }}" width="100%"
-                                         style="max-height: 200px;"></td>
-                                <td width="50%">{{ etape.contenu|raw }}</td>
+                                <td width="10%"><img src='{{ ("img/upload/" ~ etape.path) | imagine_filter("my_thumb") }}' /></td>
+                                <td width="80%">{{ etape.contenu|raw }}</td>
                                 <td width="5%"><a
                                             href="{{ path('philea_redacteur_etape_modifier',{'id' : etape.id}) }}">
                                         <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
