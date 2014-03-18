@@ -89,7 +89,10 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        {% if is_granted('ROLE_GESTIONNAIRE') %}
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                            <li><a href="{{ path('admin_user') }}"><span class="glyphicon glyphicon-user"></span> <b>Utilisateurs</b></a></li>
+                            <li><a href="{{ path('philea_gestionnaires') }}"><span class="glyphicon glyphicon-globe"></span> <b>Gest. Publication</b></a></li>
+                        {% elseif is_granted('ROLE_GESTIONNAIRE') %}
                             <li><a href="{{ path('philea_utilisateurs') }}"><span class="glyphicon glyphicon-user"></span> <b>Utilisateurs</b></a></li>
                             <li><a href="{{ path('philea_gestionnaires') }}"><span class="glyphicon glyphicon-globe"></span> <b>Gest. Publication</b></a></li>
                         {% endif %}

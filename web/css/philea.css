@@ -143,3 +143,9 @@ img {
     text-transform: none;
     width: 100%;
 }
+.separeBot{
+    margin-bottom: 50px;
+}
+.nopuce{
+    list-style-type:none; 
+}

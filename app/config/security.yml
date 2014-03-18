@@ -37,6 +37,7 @@ security:
     access_control:
         - { path: ^/redacteur/, roles:[ROLE_REDACTEUR,ROLE_GESTIONNAIRE] }
         - { path: ^/gestion/, role: ROLE_GESTIONNAIRE }
+        - { path: ^/admin/user, role: ROLE_SUPER_ADMIN }
         - { path: ^/register/, role: ROLE_SUPER_ADMIN }
         - { path: ^/register/confirmed, role: ROLE_SUPER_ADMIN }
 

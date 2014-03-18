@@ -1,0 +1,16 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+    <h1>User edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions nopuce">
+    <li>
+        <a href="{{ path('admin_user') }}">
+            <button class="btn btn-xs btn-danger">Back to the list</button>
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

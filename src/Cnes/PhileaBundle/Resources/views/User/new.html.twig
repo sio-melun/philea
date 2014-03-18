@@ -1,0 +1,15 @@
+{% extends '::layout.html.twig' %}
+
+{% block body -%}
+    <h1>User creation</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions nopuce">
+    <li>
+        <a href="{{ path('admin_user') }}">
+            <button class="btn btn-xs btn-danger">Back to the list</button>
+        </a>
+    </li>
+</ul>
+{% endblock %}
