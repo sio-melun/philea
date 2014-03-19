@@ -20,7 +20,11 @@ class UserType extends AbstractType
             ->add('enabled')
             ->add('password')
             ->add('locked','checkbox',array('required'=> false))
-            ->add('roles','choice', array('choices'   => array('ROLE_GESTIONNAIRE' => 'Gestionnaire', 'ROLE_REDACTEUR' => 'Rédacteur')))
+            ->add('roles', 'collection', array(
+                'type'   => 'choice',
+                'options'  => array(
+                'choices'  => array('ROLE_GESTIONNAIRE' => 'Gestionnaire', 'ROLE_REDACTEUR' => 'Rédacteur'),
+                    'label' => false,)))
             ->add('nom')
         ;
     }
