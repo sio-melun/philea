@@ -26,7 +26,7 @@ class DefaultController extends Controller {
      * @Template()
      */
     public function synoptiqueAction() {
-        return $this->render('PhileaBundle:Default:index.html.twig');
+        return $this->render('PhileaBundle:Default:synoptique.html.twig');
     }
 
     /**
