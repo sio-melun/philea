@@ -149,3 +149,8 @@ img {
 .nopuce{
     list-style-type:none; 
 }
+
+//Fix LightBox
+/*.lb-image{
+max-width: inherit;
+}*/
