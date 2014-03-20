@@ -119,11 +119,9 @@ class DefaultController extends Controller {
                         'required' => true,
                     ))
                     ->add('contenu', 'textarea', array(
-                        'attr' => array(
-                            'class' => 'tinymce',
-                            'data-theme' => 'bbcode' // Skip it if you want to use default theme
-                        )
-                    ))                    
+                    'attr' => array(
+                    'class' => 'tinymce',
+                    'data-theme' => 'advanced')))                  
                     ->add('file')
                     ->add('avancement')
                     ->add('Envoyer', 'submit')
