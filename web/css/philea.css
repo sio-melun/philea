@@ -149,7 +149,27 @@ img {
 .nopuce{
     list-style-type:none; 
 }
+.borderRole{
+    border: 1px solid #fff;
+    border-radius: 10px;
+    width: 200px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
 
+.borderRole h1{
+    color: white;
+    text-align: center;
+    margin-top: -10px;
+    margin-left: -100px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+}
+
+.borderRole h1 span{
+   background: url(../img/site/bg.jpg) no-repeat;
+}
 //Fix LightBox
 /*.lb-image{
 max-width: inherit;

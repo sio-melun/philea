@@ -6,37 +6,41 @@
     <table class="record_properties">
         <tbody>
             <tr>
-                <th>Username</th>
+                <th>Username :</th>
                 <td>{{ entity.username }}</td>
             </tr>
             
             <tr>
-                <th>Email</th>
+                <th>Email :</th>
                 <td>{{ entity.email }}</td>
             </tr>
            
             <tr>
-                <th>Actif</th>
+                <th>Actif :</th>
                 <td>{{ entity.enabled }}</td>
             </tr>
            
            
             <tr>
-                <th>Dernière connexion</th>
+                <th>Dernière connexion :</th>
                 <td>{{ entity.lastLogin|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Bloqué</th>
+                <th>Bloqué :</th>
                 <td>{{ entity.locked }}</td>
             </tr>
             <tr>
-                <th>Expiré</th>
+                <th>Expiré :</th>
                 <td>{{ entity.expired }}</td>
             </tr>
             
             <tr>
-                <th>Roles</th>
-                <td>{{ entity.roles }}</td>
+                <th>Roles :</th>
+                <td>
+                {%for role in entity.roles%}
+                    {{role}} &nbsp;
+                {%endfor%}
+                </td>
             </tr>
         </tbody>
     </table>

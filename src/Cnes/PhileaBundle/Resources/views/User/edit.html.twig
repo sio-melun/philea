@@ -1,6 +1,15 @@
 {% extends '::layout.html.twig' %}
 
 {% block body -%}
+<div class="row">
+
+         
+       
+     <a href="{{ path('admin_user') }}">
+           Retour a la liste
+        </a>
+    </div>
+<div class="row">
  <div class="col-md-3">
     <h1>Edition</h1>
 
@@ -13,11 +22,7 @@
         {{ form_label(edit_form.email)}}
         {{ form_errors(edit_form.email)}}
         {{ form_widget(edit_form.email)}}
-    
-        {{ form_label(edit_form.enabled)}}
-        {{ form_errors(edit_form.enabled)}}
-        {{ form_widget(edit_form.enabled)}}
-    <br>
+
         {{ form_label(edit_form.password)}}
         {{ form_errors(edit_form.password)}}
         {{ form_widget(edit_form.password)}}
@@ -27,24 +32,25 @@
         {{ form_widget(edit_form.locked)}}
     <br>
         
-        {{ form_label(edit_form.roles[1])}}
-        {{ form_errors(edit_form.roles[1])}}
-        {{ form_widget(edit_form.roles[1])}}
-    
-        <div style="display:none">
-        {{ form_label(edit_form.roles[0])}}
-        {{ form_errors(edit_form.roles[0])}}
-        {{ form_widget(edit_form.roles[0])}}</div>
-         <div class="separeBot"></div>
+    <div class="borderRole">
+        <h1><span>Rôles</span></h1>
+        {%for checkbox in edit_form.roles%}
+        <table>
+            <tr>
+                {{ form_label(checkbox)}}
+                {{ form_errors(checkbox)}}
+                {{ form_widget(checkbox)}}
+            </tr>
+        </table>
+        {%endfor%}
+    </div>
+        
     {{ form_end(edit_form) }}
+    <div style="margin-bottom: 5px;"></div>
+    {{ form(delete_form) }}
+     </div>
+</div>
     <div class="separeBot"></div>
-        <ul class="record_actions nopuce">
-    <li>
-        <a href="{{ path('admin_user') }}">
-            <button class="btn btn-xs btn-danger">Retour a la liste</button>
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
- </div>
+    
+
 {% endblock %}

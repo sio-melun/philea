@@ -1,50 +1,53 @@
 {% extends '::layout.html.twig' %}
 
 {% block body -%}
+<div class="separeBot"></div>
+<div class="row">
+
+    <a href="{{ path('admin_user') }}">
+        Retour a la liste
+    </a>
+
+</div>
+<div class="row">
     <div class="col-md-3">
-    <h1>Création d'un utilisateur</h1>
+        <h1>Création d'un utilisateur</h1>
 
     {{ form_start(form) }}
     {{ form_errors(form)}}
         {{ form_label(form.username)}}
         {{ form_errors(form.username)}}
         {{ form_widget(form.username)}}
-    
+
         {{ form_label(form.email)}}
         {{ form_errors(form.email)}}
         {{ form_widget(form.email)}}
-    
-        {{ form_label(form.enabled)}}
-        {{ form_errors(form.enabled)}}
-        {{ form_widget(form.enabled)}}
-    <br>
+
         {{ form_label(form.password)}}
         {{ form_errors(form.password)}}
         {{ form_widget(form.password)}}
-    
+
         {{ form_label(form.locked)}}
         {{ form_errors(form.locked)}}
         {{ form_widget(form.locked)}}
-    <br>
-        
-        {{ form_label(form.roles[1])}}
-        {{ form_errors(form.roles[1])}}
-        {{ form_widget(form.roles[1])}}
-    
-        <div style="display:none">
-        {{ form_label(form.roles[0])}}
-        {{ form_errors(form.roles[0])}}
-        {{ form_widget(form.roles[0])}}</div>
-    <div class="separeBot"></div>
+        <br>
+
+        <div class="borderRole">
+            <h1><span>Rôles</span></h1>
+        {%for checkbox in form.roles%}
+            <table>
+                <tr>
+                {{ form_label(checkbox)}}
+                {{ form_errors(checkbox)}}
+                {{ form_widget(checkbox)}}
+                </tr>
+            </table>
+        {%endfor%}
+        </div>
+
     {{ form_end(form) }}
-    <div class="separeBot"></div>
-        <ul class="record_actions nopuce">
-    <li>
-        <a href="{{ path('admin_user') }}">
-            <button class="btn btn-xs btn-danger">Retour a la liste</button>
-        </a>
-    </li>
-</ul>
-    
+
+
     </div>
+</div>
 {% endblock %}
