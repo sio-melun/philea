@@ -622,12 +622,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "7867dfc7aa67969a24fec7f8aa1051eda23098e9"
+                "reference": "f8e9255eedc91bc53195de288c9fe640719b2817"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/7867dfc7aa67969a24fec7f8aa1051eda23098e9",
-                "reference": "7867dfc7aa67969a24fec7f8aa1051eda23098e9",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f8e9255eedc91bc53195de288c9fe640719b2817",
+                "reference": "f8e9255eedc91bc53195de288c9fe640719b2817",
                 "shasum": ""
             },
             "require": {
@@ -658,7 +658,7 @@
                     "FOS\\UserBundle": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -682,7 +682,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2014-03-04 23:23:39"
+            "time": "2014-03-18 08:55:34"
         },
         {
             "name": "imagine/imagine",
@@ -916,37 +916,52 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/liip/LiipImagineBundle.git",
-                "reference": "7ca852cf51bacc436485d110b92294722ef99710"
+                "reference": "c642828243b9fba7a2fea386018c703af5f898ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/7ca852cf51bacc436485d110b92294722ef99710",
-                "reference": "7ca852cf51bacc436485d110b92294722ef99710",
+                "url": "https://api.github.com/repos/liip/LiipImagineBundle/zipball/c642828243b9fba7a2fea386018c703af5f898ec",
+                "reference": "c642828243b9fba7a2fea386018c703af5f898ec",
                 "shasum": ""
             },
             "require": {
                 "imagine/imagine": "0.5.*",
                 "php": ">=5.3.2",
-                "symfony/filesystem": ">=2.0.16,~2.0",
-                "symfony/finder": ">=2.0.16,~2.0",
-                "symfony/framework-bundle": ">=2.0.16,~2.0",
-                "symfony/options-resolver": ">=2.0.16,~2.0"
+                "symfony/filesystem": "~2.3",
+                "symfony/finder": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/options-resolver": "~2.3"
             },
             "require-dev": {
+                "amazonwebservices/aws-sdk-for-php": "~1.0",
+                "aws/aws-sdk-php": "~2.4",
                 "doctrine/cache": "~1.1",
-                "symfony/yaml": ">=2.0.16,~2.0",
-                "twig/twig": ">=1.0,<2.0-dev"
+                "ext-gd": "*",
+                "phpunit/phpunit": "~3.7",
+                "psr/log": "~1.0",
+                "symfony/browser-kit": "~2.3",
+                "symfony/yaml": "~2.3",
+                "twig/twig": "~1.0"
             },
             "suggest": {
-                "twig/twig": ">=1.0,<2.0-dev"
+                "amazonwebservices/aws-sdk-for-php": "Add it if you'd like to use aws v1 resolver",
+                "aws/aws-sdk-php": "Add it if you'd like to use aws v2 resolver",
+                "monolog/monolog": "If you'd want to write logs",
+                "twig/twig": "If you'd want to use some handy twig filters"
             },
             "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev",
+                    "dev-0.x": "0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-0": {
                     "Liip\\ImagineBundle": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -962,7 +977,7 @@
                 "image",
                 "imagine"
             ],
-            "time": "2014-03-07 20:21:32"
+            "time": "2014-03-19 08:02:03"
         },
         {
             "name": "monolog/monolog",
@@ -1217,12 +1232,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/stfalcon/TinymceBundle.git",
-                "reference": "94e8dc741321c34f5ed3612bbc88d12bdd9fdba0"
+                "reference": "7d52006d55ab4ac086a163354ab3e4a49cbfa4df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stfalcon/TinymceBundle/zipball/94e8dc741321c34f5ed3612bbc88d12bdd9fdba0",
-                "reference": "94e8dc741321c34f5ed3612bbc88d12bdd9fdba0",
+                "url": "https://api.github.com/repos/stfalcon/TinymceBundle/zipball/7d52006d55ab4ac086a163354ab3e4a49cbfa4df",
+                "reference": "7d52006d55ab4ac086a163354ab3e4a49cbfa4df",
                 "shasum": ""
             },
             "require": {
@@ -1240,7 +1255,7 @@
                     "Stfalcon\\Bundle\\TinymceBundle": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "http://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1266,7 +1281,7 @@
                 "tinymce",
                 "wysiwyg"
             ],
-            "time": "2014-03-05 08:00:52"
+            "time": "2014-03-14 08:38:24"
         },
         {
             "name": "swiftmailer/swiftmailer",
