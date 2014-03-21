@@ -4,12 +4,44 @@
  <div class="col-md-3">
     <h1>Edition</h1>
 
-    {{ form(edit_form) }}
+    {{ form_start(edit_form) }}
+    {{ form_errors(edit_form)}}
+        {{ form_label(edit_form.username)}}
+        {{ form_errors(edit_form.username)}}
+        {{ form_widget(edit_form.username)}}
+    
+        {{ form_label(edit_form.email)}}
+        {{ form_errors(edit_form.email)}}
+        {{ form_widget(edit_form.email)}}
+    
+        {{ form_label(edit_form.enabled)}}
+        {{ form_errors(edit_form.enabled)}}
+        {{ form_widget(edit_form.enabled)}}
+    <br>
+        {{ form_label(edit_form.password)}}
+        {{ form_errors(edit_form.password)}}
+        {{ form_widget(edit_form.password)}}
+    
+        {{ form_label(edit_form.locked)}}
+        {{ form_errors(edit_form.locked)}}
+        {{ form_widget(edit_form.locked)}}
+    <br>
+        
+        {{ form_label(edit_form.roles[1])}}
+        {{ form_errors(edit_form.roles[1])}}
+        {{ form_widget(edit_form.roles[1])}}
+    
+        <div style="display:none">
+        {{ form_label(edit_form.roles[0])}}
+        {{ form_errors(edit_form.roles[0])}}
+        {{ form_widget(edit_form.roles[0])}}</div>
+         <div class="separeBot"></div>
+    {{ form_end(edit_form) }}
     <div class="separeBot"></div>
         <ul class="record_actions nopuce">
     <li>
         <a href="{{ path('admin_user') }}">
-            <button class="btn btn-xs btn-danger">Back to the list</button>
+            <button class="btn btn-xs btn-danger">Retour a la liste</button>
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

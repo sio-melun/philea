@@ -45,10 +45,10 @@
             <tr>
                 <th>Username</th>
                 <th>Email</th>
-                <th>Enabled</th>
-                <th>Lastlogin</th>
-                <th>Locked</th>
-                <th>Expired</th>
+                <th>Actif</th>
+                <th>Dernière connexion</th>
+                <th>Bloqué</th>
+                <th>Expiré</th>
                 <th>Roles</th>
                 <th>Gérer les projets associés</th>
                 <th>Nombre de projets</th>
@@ -77,10 +77,10 @@
                 <td>
                 <ul class="nopuce">
                     <li>
-                        <a href="{{ path('admin_user_show', { 'id': entity.id }) }}"><button class="btn btn-xs btn-primary">show</button></a>
+                        <a href="{{ path('admin_user_show', { 'id': entity.id }) }}"><button class="btn btn-xs btn-primary">voir</button></a>
                     </li>
                     <li>
-                        <a href="{{ path('admin_user_edit', { 'id': entity.id }) }}"><button class="btn btn-xs btn-primary">edit</button></a>
+                        <a href="{{ path('admin_user_edit', { 'id': entity.id }) }}"><button class="btn btn-xs btn-primary">éditer</button></a>
                     </li>
                 </ul>
                 </td>
@@ -92,7 +92,7 @@
         <ul class="nopuce">
         <li>
             <a href="{{ path('admin_user_new') }}">
-                <button class="btn btn-xs btn-primary">Create a new entry</button>
+                <button class="btn btn-xs btn-primary">Créer un nouvel utilisateur</button>
             </a>
         </li>
     </ul>
