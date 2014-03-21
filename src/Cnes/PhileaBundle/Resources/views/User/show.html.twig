@@ -16,21 +16,21 @@
             </tr>
            
             <tr>
-                <th>Enabled</th>
+                <th>Actif</th>
                 <td>{{ entity.enabled }}</td>
             </tr>
            
            
             <tr>
-                <th>Lastlogin</th>
+                <th>Dernière connexion</th>
                 <td>{{ entity.lastLogin|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Locked</th>
+                <th>Bloqué</th>
                 <td>{{ entity.locked }}</td>
             </tr>
             <tr>
-                <th>Expired</th>
+                <th>Expiré</th>
                 <td>{{ entity.expired }}</td>
             </tr>
             
@@ -44,12 +44,12 @@
         <ul class="record_actions">
     <li>
         <a href="{{ path('admin_user') }}">
-            Back to the list
+            Retour a la liste
         </a>
     </li>
     <li>
         <a href="{{ path('admin_user_edit', { 'id': entity.id }) }}">
-            Edit
+            Editer
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>

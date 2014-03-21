@@ -13,15 +13,20 @@ class UserType extends AbstractType
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {   
+       
         $builder
-            ->add('username')
-            ->add('email')
-            ->add('enabled')
-            ->add('password')
-            ->add('locked','checkbox',array('required'=> false))
-            ->add('roles','choice', array('choices'   => array('ROLE_GESTIONNAIRE' => 'Gestionnaire', 'ROLE_REDACTEUR' => 'Rédacteur')))
-            ->add('nom')
+            ->add('username','text',array('attr'=> array('class'=>'form-control')))
+            ->add('email','email',array('attr'=> array('class'=>'form-control')))
+            ->add('enabled','checkbox',array('attr'=> array('class'=>'')))
+            ->add('password','password',array('attr'=> array('class'=>'form-control')))
+            ->add('locked','checkbox',array('required'=> false,'attr'=> array('class'=>'')))
+            ->add('roles', 'collection', array(
+                'type'   => 'choice',
+                'options'  => array(
+                'choices'  => array('ROLE_GESTIONNAIRE' => 'Gestionnaire', 'ROLE_REDACTEUR' => 'Rédacteur'),
+                    'label' => false,
+                    'attr'=> array('class'=>'form-control'),)))
         ;
     }
     
