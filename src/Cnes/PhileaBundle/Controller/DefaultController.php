@@ -593,7 +593,7 @@ class DefaultController extends Controller {
           else {
             $res="";
             foreach ($gestionnaires as $u) :
-                if ($res) $res =", ";
+                if ($res) $res .=", ";
                 $res .= $u->getUsername();
             endforeach;
             $gestionnaires = $res;
