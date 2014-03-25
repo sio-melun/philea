@@ -46,7 +46,7 @@
         <th colspan="2"><div class="text-center">{{etape.titre}}</div><div class="text-right" style="margin-top: -20px;">{{etape.avancement}}</div></th>
 </tr>
 <tr>
-    <td width="10%"><a href="{{ asset("img/upload/" ~ etape.path)}}"  class="example-image-link"  data-lightbox="example-2"><img src='{{ ("img/upload/" ~ etape.path)}}'  /></a></td>
+    <td width="10%"><a href="{{ asset("img/upload/" ~ etape.path)}}"  class="example-image-link"  data-lightbox="example-2"><img src='{{ ("img/upload/" ~ etape.path) |  apply_filter('my_thumb')}}'  /></a></td>
     <td width="90%">{{ etape.contenu|raw }}</td>
 </tr>
 </table>

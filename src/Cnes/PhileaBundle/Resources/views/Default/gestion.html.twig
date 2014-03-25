@@ -22,7 +22,7 @@
                             </tr>
                             <tr>
 
-                                <td width="10%"><img src='{{ ("img/upload/" ~ etape.path) | imagine_filter("my_thumb") }}' /></td>
+                                <td width="10%"><img src='{{ ("img/upload/" ~ etape.path) | apply_filter("my_thumb") }}' /></td>
                                 <td width="80%">{{ etape.contenu|raw }}</td>
                                 <td width="5%"><a
                                             href="{{ path('philea_gestionnaire_etape_modifier',{'id' : etape.id}) }}">
@@ -66,7 +66,7 @@
                             </tr>
                             <tr>
 
-                                <td width="10%"><img src='{{ ("img/upload/" ~ etape.path) | imagine_filter("my_thumb") }}' /></td>
+                                <td width="10%"><img src='{{ ("img/upload/" ~ etape.path) | apply_filter("my_thumb") }}' /></td>
                                 <td width="80%">{{ etape.contenu|raw }}</td>
                                 <td width="5%"><a
                                             href="{{ path('philea_gestionnaire_etape_modifier',{'id' : etape.id}) }}">
@@ -107,7 +107,7 @@
                             </tr>
                             <tr>
 
-                                <td width="10%"><img src='{{ ("img/upload/" ~ etape.path) | imagine_filter("my_thumb") }}' /></td>
+                                <td width="10%"><img src='{{ ("img/upload/" ~ etape.path) | apply_filter("my_thumb") }}' /></td>
                                 <td width="90%">{{ etape.contenu|raw }}</td>
 
                             </tr>

@@ -18,7 +18,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Cnes\PhileaBundle\PhileaBundle(),
 	    new FOS\UserBundle\FOSUserBundle(),
-	    new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle()
+	    new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
+            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
