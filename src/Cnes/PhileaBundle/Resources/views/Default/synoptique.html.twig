@@ -27,25 +27,29 @@
                     .imageMap img {display:block; width:100%; border-radius:20px;}
                     .imageMap .hotspots {width:100%; height:100%; position:absolute; left:0; top:0; visibility:hidden;}
                     .imageMap a {display:block; position:absolute; background:#000; z-index:100; opacity:0; filter: alpha(opacity=20); border:1px solid transparent; border-radius:10px;}
-                    .imageMap a.p1 {left:2%; top:24%; width:7.5%; height:4%;}
-                    .imageMap a.p2 {left:2%; top:34.2%; width:7.5%; height:4%;}
-                    .imageMap a.p3 {left:-0.5%; top:49.5%; width:14%; height:8%;}
-                    .imageMap a.p4 {left:93.8%; top:14.5%; width:5%; height:4%;}
-                    .imageMap a.p5 {left:93.8%; top:21.2%; width:5%; height:4%;}
-                    .imageMap a.p6 {left:92.3%; top:31.2%; width:8%; height:4%;}
-                    .imageMap a.p7 {left:92.3%; top:46.2%; width:8%; height:4%;}
-                    .imageMap a.p8 {left:92.8%; top:55%; width:7%; height:4%;}
-                    .imageMap a.p9 {left:0%; top:85%; width:8.4%; height:16%;}
-                    .imageMap a.p10 {left:18%; top:85%; width:8.4%; height:16%;}
-                    .imageMap a.p11 {left:36.3%; top:85%; width:8.6%; height:16%;}
-                    .imageMap a.p12 {left:52.5%; top:85%; width:13%; height:16%;}
-                    .imageMap a.p13 {left:73.3%; top:85%; width:8.4%; height:16%;}
-                    .imageMap a.p14 {left:91.5%; top:85%; width:8.4%; height:16%;}
-                    .imageMap a.p15 {left:3%; top:12%; width:5.5%; height:4%;}
-                    .imageMap a.p16 {left:8%; top:65%; width:9%; height:16%;}
-                    .imageMap a.p17 {left:22.5%; top:65%; width:25%; height:16%;}
-                    .imageMap a.p18 {left:93.5%; top:60.8%; width:6%; height:4%;}
 
+                    .imageMap a.p1 {left:4%; top:12%; width:6%; height:4%;}
+                    .imageMap a.p2 {left:1%; top:24%; width:9%; height:4%;}
+                    .imageMap a.p3 {left:1.5%; top:34%; width:8.4%; height:4%;}
+                    .imageMap a.p4 {left:-0.5%; top:49.5%; width:15.8%; height:8%;}
+                    
+                    .imageMap a.p5 {left:90.8%; top:14.5%; width:5%; height:4%;}
+                    .imageMap a.p6 {left:90.8%; top:21.2%; width:6%; height:4%;}
+                    .imageMap a.p7 {left:90.6%; top:31%; width:8.7%; height:3.5%;}
+                    .imageMap a.p8 {left:90.6%; top:45.6%; width:8.7%; height:4%;}
+                    .imageMap a.p9 {left:90.8%; top:54.3%; width:7%; height:4%;}
+                    .imageMap a.p10 {left:91%; top:60.2%; width:6.4%; height:4%;}
+                    
+                    .imageMap a.p11 {left:0%; top:83.5%; width:9.2%; height:16%;}
+                    .imageMap a.p12 {left:17.7%; top:83.5%; width:9.2%; height:16%;}
+                    .imageMap a.p13 {left:35%; top:83.5%; width:10.5%; height:16%;}
+                    .imageMap a.p14 {left:50.5%; top:83.5%; width:16.1%; height:16%;}
+                    .imageMap a.p15 {left:71.8%; top:83.5%; width:9.2%; height:16%;}
+                    .imageMap a.p16 {left:89.8%; top:83.5%; width:9.2%; height:16%;}
+                    
+                    .imageMap a.p17 {left:8%; top:65%; width:10.2%; height:16%;}
+                    .imageMap a.p18 {left:22.5%; top:65%; width:25%; height:16%;}
+                    
 
                     .imageMap a + p {position:absolute; left:0%; top:102%; width:100%; color:#000; display:none;}
 
@@ -62,26 +66,26 @@
                     <div class="page">
 
                         <div class="imageMap" aria-haspopup="true">
-                            <img src="{{ asset('img/bg.png') }}" alt="" />
+                            <img src="{{ asset('img/site/synoptique.png') }}" alt="" />
                             <div class="hotspots">
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '2'}) }}" class="p1" rel="nofollow" aria-haspopup="false"></a><p><strong>Balcon</strong></p><b class="b1"></b></div>
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '1'}) }}" class="p2" rel="nofollow" aria-haspopup="false"></a><p><strong>Caisse</strong></p><b class="b2"></b></div>
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '3'}) }}" class="p3" rel="nofollow" aria-haspopup="false"></a><p><strong>Train d'atterisage</strong>.</p><b class="b3"></b></div>
-                                <div><a data-toggle="tooltip" title="foreuse et carrousel tournant" href="{{ path('philea_domaine',{'idDomaine' : '12'}) }}" class="p4" rel="nofollow" aria-haspopup="false"></a><p><strong>SD2</strong></p><b class="b4"></b></div>
-                                <div><a data-toggle="tooltip" title="caméras 2D/3D" href="{{ path('philea_domaine',{'idDomaine' : '8'}) }}" class="p5" rel="nofollow" aria-haspopup="false"></a><p><strong>CIVA</strong></p><b class="b5"></b></div>
-                                <div><a data-toggle="tooltip" title="ROsetta MAgnetmeter and Plasma monitor" href="{{ path('philea_domaine',{'idDomaine' : '11'}) }}" class="p6" rel="nofollow" aria-haspopup="false"></a><p><strong>ROMAP</strong></p><b class="b6"></b></div>
-                                <div><a data-toggle="tooltip" title="Mesure de la dureté du sol" href="{{ path('philea_domaine',{'idDomaine' : '9'}) }}" class="p7" rel="nofollow" aria-haspopup="false"></a><p><strong>MUPUS</strong></p><b class="b7"></b></div>
-                                <div><a data-toggle="tooltip" title="ROsetta Lander Imaging System" href="{{ path('philea_domaine',{'idDomaine' : '10'}) }}" class="p8" rel="nofollow" aria-haspopup="false"></a><p><strong>ROLIS</strong></p><b class="b8"></b></div>
-                                <div><a data-toggle="tooltip" title="" href="{{ path('philea_domaine',{'idDomaine' : '18'}) }}" class="p9" rel="nofollow" aria-haspopup="false"></a><p><strong>Décor</strong></p><b class="b9"></b></div>
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '14'}) }}" class="p10" rel="nofollow" aria-haspopup="false"></a><p><strong>Energie</strong></p><b class="b10"></b></div>
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '13'}) }}" class="p11" rel="nofollow" aria-haspopup="false"></a><p><strong>Fabrication</strong></p><b class="b11"></b></div>
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '15'}) }}" class="p12" rel="nofollow" aria-haspopup="false"></a><p><strong>Treuil & Portique</strong></p><b class="b12"></b></div>
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '16'}) }}" class="p13" rel="nofollow" aria-haspopup="false"></a><p><strong>Transport</strong></p><b class="b13"></b></div>
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '17'}) }}" class="p14" rel="nofollow" aria-haspopup="false"></a><p><strong>Site Web</strong></p><b class="b14"></b></div>
-                                <div><a data-toggle="tooltip" title="Système de propulsion qui permet de plaquer Philae au sol"  href="{{ path('philea_domaine',{'idDomaine' : '4'}) }}" class="p15" rel="nofollow" aria-haspopup="false"></a><p><strong>ADS</strong></p><b class="b15"></b></div>
-                                <div><a data-toggle="tooltip" title="Système d’ancrage" href="{{ path('philea_domaine',{'idDomaine' : '5'}) }}" class="p16" rel="nofollow" aria-haspopup="false"></a><p><strong>Treuil & Portique</strong></p><b class="b16"></b></div>
-                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '6'}) }}" class="p17" rel="nofollow" aria-haspopup="false"></a><p><strong>Transport</strong></p><b class="b17"></b></div>
-                                <div><a data-toggle="tooltip" title="Alpha Particle X-ray Spectrometer" href="{{ path('philea_domaine',{'idDomaine' : '7'}) }}" class="p18" rel="nofollow" aria-haspopup="false"></a><p><strong>APX</strong></p><b class="b18"></b></div>
+                                <div><a data-toggle="tooltip" title="Système de propulsion qui permet de plaquer Philae au sol"  href="{{ path('philea_domaine',{'idDomaine' : '4'}) }}" class="p1" rel="nofollow" aria-haspopup="false"></a><p><strong>ADS</strong></p><b class="b1"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '2'}) }}" class="p2" rel="nofollow" aria-haspopup="false"></a><p><strong>Balcon</strong></p><b class="b2"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '1'}) }}" class="p3" rel="nofollow" aria-haspopup="false"></a><p><strong>Caisse</strong></p><b class="b3"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '3'}) }}" class="p4" rel="nofollow" aria-haspopup="false"></a><p><strong>Train d'atterisage</strong>.</p><b class="b4"></b></div>
+                                <div><a data-toggle="tooltip" title="foreuse et carrousel tournant" href="{{ path('philea_domaine',{'idDomaine' : '12'}) }}" class="p5" rel="nofollow" aria-haspopup="false"></a><p><strong>SD2</strong></p><b class="b5"></b></div>
+                                <div><a data-toggle="tooltip" title="caméras 2D/3D" href="{{ path('philea_domaine',{'idDomaine' : '8'}) }}" class="p6" rel="nofollow" aria-haspopup="false"></a><p><strong>CIVA</strong></p><b class="b6"></b></div>
+                                <div><a data-toggle="tooltip" title="ROsetta MAgnetmeter and Plasma monitor" href="{{ path('philea_domaine',{'idDomaine' : '11'}) }}" class="p7" rel="nofollow" aria-haspopup="false"></a><p><strong>ROMAP</strong></p><b class="b7"></b></div>
+                                <div><a data-toggle="tooltip" title="Mesure de la dureté du sol" href="{{ path('philea_domaine',{'idDomaine' : '9'}) }}" class="p8" rel="nofollow" aria-haspopup="false"></a><p><strong>MUPUS</strong></p><b class="b8"></b></div>
+                                <div><a data-toggle="tooltip" title="ROsetta Lander Imaging System" href="{{ path('philea_domaine',{'idDomaine' : '10'}) }}" class="p9" rel="nofollow" aria-haspopup="false"></a><p><strong>ROLIS</strong></p><b class="b9"></b></div>
+                                <div><a data-toggle="tooltip" title="Alpha Particle X-ray Spectrometer" href="{{ path('philea_domaine',{'idDomaine' : '7'}) }}" class="p10" rel="nofollow" aria-haspopup="false"></a><p><strong>APXS</strong></p><b class="b10"></b></div>
+                                <div><a data-toggle="tooltip" title="" href="{{ path('philea_domaine',{'idDomaine' : '18'}) }}" class="p11" rel="nofollow" aria-haspopup="false"></a><p><strong>Décor</strong></p><b class="b11"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '14'}) }}" class="p12" rel="nofollow" aria-haspopup="false"></a><p><strong>Energie</strong></p><b class="b12"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '13'}) }}" class="p13" rel="nofollow" aria-haspopup="false"></a><p><strong>Fabrication</strong></p><b class="b13"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '15'}) }}" class="p14" rel="nofollow" aria-haspopup="false"></a><p><strong>Treuil & Portique</strong></p><b class="b14"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '16'}) }}" class="p15" rel="nofollow" aria-haspopup="false"></a><p><strong>Transport</strong></p><b class="b15"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '17'}) }}" class="p16" rel="nofollow" aria-haspopup="false"></a><p><strong>Site Web</strong></p><b class="b16"></b></div>                                
+                                <div><a data-toggle="tooltip" title="Système d’ancrage" href="{{ path('philea_domaine',{'idDomaine' : '5'}) }}" class="p17" rel="nofollow" aria-haspopup="false"></a><p><strong>Treuil & Portique</strong></p><b class="b17"></b></div>
+                                <div><a href="{{ path('philea_domaine',{'idDomaine' : '6'}) }}" class="p18" rel="nofollow" aria-haspopup="false"></a><p><strong>Transport</strong></p><b class="b18"></b></div>                                
                             </div>
                         </div>
                     </div>
