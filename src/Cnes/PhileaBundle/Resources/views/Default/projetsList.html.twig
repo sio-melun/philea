@@ -63,7 +63,8 @@
     {% for projet in projets %}
       <tr>
           <td>{{projet.domaine.typeDomaine}}</td>
-          <td>{{projet.domaine.nom}}</td>
+          <td>{% set domaine = projet.domaine.id %}
+              <a href="{{ path('philea_domaine',{'idDomaine' :  domaine }) }}"> {{projet.domaine.nom}}</a></td>
           <td>{{projet.classe.discipline}}</td>
           <td>{{projet.etablissement.nom}}</td>
           <td>{{projet.classe.nomcourt}}</td>
