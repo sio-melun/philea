@@ -25,3 +25,5 @@ nbproject/*
 #all idea specific inner project
 .idea/*
 
+#Cache des vignettes AvalancheImagineBundle
+web/media/cache/*
