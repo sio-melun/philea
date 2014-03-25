@@ -3,9 +3,7 @@ philae:
     type:     annotation
     prefix:   /
 
-_imagine:
-    resource: .
-    type:     imagine
+
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

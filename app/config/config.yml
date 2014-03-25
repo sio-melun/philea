@@ -99,9 +99,3 @@ stfalcon_tinymce:
                  plugins: ["bbcode, code, link, preview"]
                  menubar: false
                  toolbar1: "bold,italic,underline,undo,redo,link,unlink,removeformat,cleanup,code,preview"
-liip_imagine:
-    filter_sets:
-        my_thumb:
-            quality: 75
-            filters:
-                thumbnail: { size: [250, 150], mode: inset }
