@@ -1,7 +1,11 @@
 {% extends '::layout.html.twig' %}
 
 {% block body -%}
-    <h1>User</h1>
+<a href="{{ path('admin_user') }}">
+    Retour a la liste
+</a>
+<div class="row">
+    <h1>User : {{entity.username}}</h1>
 
     <table class="record_properties">
         <tbody>
@@ -9,31 +13,43 @@
                 <th>Username :</th>
                 <td>{{ entity.username }}</td>
             </tr>
-            
+
             <tr>
                 <th>Email :</th>
                 <td>{{ entity.email }}</td>
             </tr>
-           
+
             <tr>
                 <th>Actif :</th>
-                <td>{{ entity.enabled }}</td>
+                 {%if entity.enabled == 1 %}
+                <td>Oui</td>
+                {% else %}
+                <td>Non</td>
+                {%endif%}
             </tr>
-           
-           
+
+
             <tr>
                 <th>Dernière connexion :</th>
                 <td>{{ entity.lastLogin|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
                 <th>Bloqué :</th>
-                <td>{{ entity.locked }}</td>
+                {%if entity.locked == 1 %}
+                <td>Oui</td>
+                {% else %}
+                <td>Non</td>
+                {%endif%}
             </tr>
             <tr>
                 <th>Expiré :</th>
-                <td>{{ entity.expired }}</td>
+                {%if entity.expired == 1 %}
+                <td>Oui</td>
+                {% else %}
+                <td>Non</td>
+                {%endif%}
             </tr>
-            
+
             <tr>
                 <th>Roles :</th>
                 <td>
@@ -44,18 +60,12 @@
             </tr>
         </tbody>
     </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('admin_user') }}">
-            Retour a la liste
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('admin_user_edit', { 'id': entity.id }) }}">
-            Editer
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+</div>
+<div class="row">
+    <div class="separeBotxs"></div>
+            <a href="{{ path('admin_user_edit', { 'id': entity.id }) }}">
+                <button class="btn btn-primary">Editer</button>
+            </a>
+        {{ form(delete_form) }}
+</div>
 {% endblock %}
