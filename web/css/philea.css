@@ -173,7 +173,10 @@ img {
 .borderRole h1 span{
    background: url(../img/site/bg.jpg) no-repeat;
 }
-//Fix LightBox
-/*.lb-image{
-max-width: inherit;
-}*/
+
+/* LightBox : ne pas faire apparaître les boutons de navigations
+   on cache leur parent.
+*/
+.lb-nav {
+      display:none !important;
+}

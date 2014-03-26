@@ -47,9 +47,9 @@ body:after {
   background-color: white;
   *zoom: 1;
   
-  //Taille image : https://github.com/lokesh/lightbox2/issues/69
-  /*width: 250px;
-  height: 250px;*/
+  /* Taille image : https://github.com/lokesh/lightbox2/issues/69 */
+  /* width: 250px;
+  height: 250px; */
   margin: 0 auto;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
