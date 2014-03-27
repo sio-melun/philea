@@ -28,4 +28,5 @@ nbproject/*
 #Cache des vignettes AvalancheImagineBundle
 web/media/cache/*
 
+# ignorer le fichiers texte de sauvegardes ?
 **/*.*~
