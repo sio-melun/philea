@@ -159,7 +159,10 @@
   <div class="footer text-right">
     <div class="footer">
         <ul class="list-inline">
-            <li><a href="#"> <span class="glyphicon glyphicon-chevron-down"></span> Mention légales</a></li>
+            <li><a href="#"> <span class="glyphicon glyphicon-chevron-down"></span> À propos </a></li>
+            {% if not app.user or  not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li><a href="{{ path('fos_user_resetting_request') }}"><span class="glyphicon glyphicon-question-sign"></span> Mot de passe perdu</a></li>
+            {% endif %}
             <!-- li><a href="#"> <span class="glyphicon glyphicon-copyright-mark"></span> Conditions générales</a></li -->
 
         </ul>
