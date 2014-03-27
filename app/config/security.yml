@@ -10,7 +10,6 @@ security:
         ROLE_GESTIONNAIRE: ROLE_REDACTEUR
         ROLE_SUPER_ADMIN:  [ROLE_GESTIONNAIRE, ROLE_ALLOWED_TO_SWITCH]
 
-    
     providers:
         main:
             id: fos_user.user_provider.username
