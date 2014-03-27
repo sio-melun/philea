@@ -39,12 +39,21 @@
     <div class="borderRole">
         <h1><span>Rôles</span></h1>
         {%for checkbox in edit_form.roles%}
+        
         <table>
+            
             <tr>
+                {%if edit_form.vars.value.username == app.user.username and checkbox.vars.value == "ROLE_SUPER_ADMIN" %}
+                {{ form_label(checkbox)}}
+                {{ form_errors(checkbox)}}
+                {{ form_widget(checkbox, {'attr': {'disabled': 'true'}})}}
+                {%else%}
                 {{ form_label(checkbox)}}
                 {{ form_errors(checkbox)}}
                 {{ form_widget(checkbox)}}
+                {%endif%}
             </tr>
+            
         </table>
         {%endfor%}
     </div>
