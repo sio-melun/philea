@@ -21,7 +21,16 @@
 {{ tinymce_init() }}
 
 <script src="{{ asset('js/jquery-ui.js') }}"></script>
-
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#mon_image").tooltip({
+      position: "center right",
+      effect: "fade",
+      opacity: 0.7,
+      tip: '.tooltip'
+    });
+  });
+</script>
 
 </head>
 
@@ -94,7 +103,15 @@
                             <li><a href="{{ path('philea_gestionnaires') }}"><span class="glyphicon glyphicon-globe"></span> <b>Gest. Publication</b></a></li>
                         {% endif %}
                     <li><a href="{{ path('philea_redacteurs') }}"><span class="glyphicon glyphicon-dashboard"></span> <b>Mes étapes</b></a></li>
-                    <li><a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> <b>({{ app.user.username }}) Deconnexion</b></a></li>
+					{% if is_granted('ROLE_ADMIN') %}
+                    <li><a data-toggle="tooltip" title="Admin" href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> <b>({{ app.user.username }} - <span class="glyphicon glyphicon-admin"></span>) Deconnexion</b></a></li>
+					{% elseif is_granted('ROLE_SUPER_ADMIN') %}
+                    <li><a data-toggle="tooltip" title="Super Admin" href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> <b>({{ app.user.username }} - <span class="glyphicon glyphicon-superadmin"></span>) Deconnexion</b></a></li>
+					{% elseif is_granted('ROLE_GESTIONNAIRE') %}
+                    <li><a data-toggle="tooltip" title="Gestionnaire" href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> <b>({{ app.user.username }} - <span class="glyphicon glyphicon-gestionnaire"></span>) Deconnexion</b></a></li>
+					{% elseif is_granted('ROLE_REDACTEUR') %}
+                    <li><a data-toggle="tooltip" title="Redacteur" href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> <b>({{ app.user.username }} - <span class="glyphicon glyphicon-redacteur"></span>) Deconnexion</b></a></li>	
+					{% endif %}
                 {% else %}
                  <li><a href="{{ path('fos_user_security_login') }}"><span class="glyphicon glyphicon-log-in"></span> <b>Connexion</b></a></li>
 
