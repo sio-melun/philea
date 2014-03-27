@@ -180,3 +180,16 @@ img {
 .lb-nav {
       display:none !important;
 }
+
+.glyphicon-gestionnaire:before{
+    content: "\e184"; /* Voir bootstrap.css glyphicon-tower */
+}
+.glyphicon-redacteur:before {
+    content: "\270f"; /* glyphicon-pencil */
+}
+.glyphicon-superadmin:before {
+    content: "\e104";/* glyphicon-fire */
+}
+.glyphicon-admin:before {
+    content: "\2601";/* glyphicon-cloud */
+}
