@@ -10,7 +10,7 @@
     <table class="record_properties">
         <tbody>
             <tr>
-                <th>Username :</th>
+                <th>Login :</th>
                 <td>{{ entity.username }}</td>
             </tr>
 
@@ -34,7 +34,7 @@
                 <td>{{ entity.lastLogin|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Bloqué :</th>
+                <th>Bloquer :</th>
                 {%if entity.locked == 1 %}
                 <td>Oui</td>
                 {% else %}
@@ -42,7 +42,7 @@
                 {%endif%}
             </tr>
             <tr>
-                <th>Expiré :</th>
+                <th>Expirer :</th>
                 {%if entity.expired == 1 %}
                 <td>Oui</td>
                 {% else %}
@@ -51,7 +51,7 @@
             </tr>
 
             <tr>
-                <th>Roles :</th>
+                <th>Rôles :</th>
                 <td>
                 {%for role in entity.roles%}
                     {{role}} &nbsp;
@@ -68,4 +68,5 @@
             </a>
         {{ form(delete_form) }}
 </div>
+
 {% endblock %}

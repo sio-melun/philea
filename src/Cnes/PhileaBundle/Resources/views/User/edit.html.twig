@@ -26,7 +26,11 @@
         {{ form_label(edit_form.password)}}
         {{ form_errors(edit_form.password)}}
         {{ form_widget(edit_form.password)}}
-    
+        
+        {{ form_label(form.enabled)}}
+        {{ form_errors(form.enabled)}}
+        {{ form_widget(form.enabled)}}
+    <br>
         {{ form_label(edit_form.locked)}}
         {{ form_errors(edit_form.locked)}}
         {{ form_widget(edit_form.locked)}}

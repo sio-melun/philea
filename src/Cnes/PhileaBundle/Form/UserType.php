@@ -16,10 +16,11 @@ class UserType extends AbstractType
     {   
         $roles = array("ROLE_GESTIONNAIRE"=>"Gestionnaire","ROLE_REDACTEUR"=>"Rédacteur");
         $builder
-            ->add('username','text',array('attr'=> array('class'=>'form-control')))
+            ->add('username','text',array('label'=>'Login','attr'=> array('class'=>'form-control')))
             ->add('email','email',array('attr'=> array('class'=>'form-control')))
-            ->add('password','password',array('attr'=> array('class'=>'form-control')))
-            ->add('locked','checkbox',array('required'=> false,'attr'=> array('class'=>'')))
+            ->add('password','password',array('label'=>'Mot de passe','attr'=> array('class'=>'form-control')))
+            ->add('enabled','checkbox',array('label'=>'Compte actif','attr'=>array('checked'=>true)))
+            ->add('locked','checkbox',array('label'=>'Bloquer','required'=> false,'attr'=> array('class'=>'')))
              ->add('roles', 'choice', array(
             'choices' => $roles,
             'multiple' => true,
