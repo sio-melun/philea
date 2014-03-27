@@ -27,3 +27,5 @@ nbproject/*
 
 #Cache des vignettes AvalancheImagineBundle
 web/media/cache/*
+
+**/*.*~
