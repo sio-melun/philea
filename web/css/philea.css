@@ -181,6 +181,12 @@ img {
       display:none !important;
 }
 
+.lb-number {
+    display:none !important;
+}
+
+/*  dans le header du layout    */
+
 .glyphicon-gestionnaire:before{
     content: "\e184"; /* Voir bootstrap.css glyphicon-tower */
 }

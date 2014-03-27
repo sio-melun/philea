@@ -52,7 +52,15 @@
         </tr>
         </thead>
         <tbody>
-    {%  for user in users %}
+
+    {# ne montrer les admins que si l'utilisateur est admin lui-même #}
+    {% set role = 'ROLE_SUPER_ADMIN' %}
+    {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+            {% set role = 'OK_MONTRE_ADMIN' %}
+        {% endif %}
+    {% endif %}
+    {%  for user in users if not (role in user.roles) %}
         <tr>
            <td> {{user.username}}</td>
            <td> {{user.email}}</td>
