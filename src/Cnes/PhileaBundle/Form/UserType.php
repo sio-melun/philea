@@ -19,6 +19,7 @@ class UserType extends AbstractType
             ->add('username','text',array('label'=>'Login','attr'=> array('class'=>'form-control')))
             ->add('email','email',array('attr'=> array('class'=>'form-control')))
             ->add('password','password',array('label'=>'Mot de passe','attr'=> array('class'=>'form-control')))
+            ->add('enabled','checkbox',array('label'=>'Compte actif','attr'=>array('checked'=>true)))
             ->add('locked','checkbox',array('label'=>'Bloquer','required'=> false,'attr'=> array('class'=>'')))
              ->add('roles', 'choice', array(
             'choices' => $roles,
