@@ -205,7 +205,7 @@ class Projet
     public function getAvancementMax() {
         $max = 0;
         foreach ($this->getEtapes() as $etape){
-            if($etape->getAvancement()>$max)
+            if($etape->getAvancement()>$max && $etape->getIsValide() == Etape::VALIDE)
                 $max=$etape->getAvancement();
         }
         return $max;
