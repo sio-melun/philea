@@ -123,7 +123,7 @@ class DefaultController extends Controller {
                     'class' => 'tinymce',
                     'data-theme' => 'advanced')))                  
                     ->add('file')
-                    ->add('avancement')
+                    ->add('avancement', 'text', array('attr'=> array('value' => $projet->getAvancementMaxNonPublie()+1 )))
                     ->add('Envoyer', 'submit')
                     ->getForm();
 
