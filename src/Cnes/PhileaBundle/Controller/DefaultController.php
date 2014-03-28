@@ -106,13 +106,13 @@ class DefaultController extends Controller {
         if ($ajoutApprouve) {
             $user = $this->getUser();
 
-            // On crée un objet Article
-            $article = new Etape();
-            $article->setUser($user);
-            $article->setProjet($projet);
-            $article->setIsValide(Etape::ATTENTE_VALIDATION);
+            // On crée un objet etape
+            $etape = new Etape();
+            $etape->setUser($user);
+            $etape->setProjet($projet);
+            $etape->setIsValide(Etape::ATTENTE_VALIDATION);
             // J'ai raccourci cette partie, car c'est plus rapide à écrire !
-            $form = $this->createFormBuilder($article)
+            $form = $this->createFormBuilder($etape)
                     ->add('titre', 'text')
                     ->add('categorie', 'choice', array(
                         'choices' => array('Libre' => 'Libre', 'Analyse/Conception' => 'Analyse/Conception', 'Réalisation' => 'Réalisation'),
@@ -132,18 +132,18 @@ class DefaultController extends Controller {
             // On vérifie qu'elle est de type POST
             if ($request->getMethod() == 'POST') {
                 // On fait le lien Requête <-> Formulaire
-                // À partir de maintenant, la variable $article contient les valeurs entrées dans le formulaire par le visiteur
+                // À partir de maintenant, la variable $etape contient les valeurs entrées dans le formulaire par le visiteur
                 $form->bind($request);
 
                 // On vérifie que les valeurs entrées sont correctes
                 // (Nous verrons la validation des objets en détail dans le prochain chapitre)
                 if ($form->isValid()) {
-                    // On l'enregistre notre objet $article dans la base de données
+                    // On l'enregistre notre objet $etape dans la base de données
                     $em = $this->getDoctrine()->getManager();
-                    $em->persist($article);
+                    $em->persist($etape);
                     $em->flush();
 
-                    // On redirige vers la page de visualisation de l'article nouvellement créé
+                    // On redirige vers la page de visualisation de l'etape nouvellement créé
                     return $this->redirect($this->generateUrl('philea_redacteurs'));
                 }
             }
@@ -188,16 +188,16 @@ class DefaultController extends Controller {
             $em = $this->getDoctrine()->getManager();
 
             // On récupère l'entité correspondant à l'id $id
-            $article = $em->getRepository('PhileaBundle:Etape')
+            $etape = $em->getRepository('PhileaBundle:Etape')
                     ->find($id);
 
-            // Si l'article n'existe pas, on affiche une erreur 404
-            if ($article == null) {
-                throw $this->createNotFoundException('Article[id=' . $id . '] inexistant');
+            // Si l'etape n'existe pas, on affiche une erreur 404
+            if ($etape == null) {
+                throw $this->createNotFoundException('etape id=' . $id . '] inexistante');
             }
-            $article->setIsValide(Etape::ATTENTE_VALIDATION);
+            $etape->setIsValide(Etape::ATTENTE_VALIDATION);
             // J'ai raccourci cette partie, car c'est plus rapide à écrire !
-            $form = $this->createFormBuilder($article)
+            $form = $this->createFormBuilder($etape)
                     ->add('titre', 'text')
                     ->add('categorie', 'choice', array(
                         'choices' => array('Libre' => 'Libre', 'Analyse/Conception' => 'Analyse/Conception', 'Réalisation' => 'Réalisation'),
@@ -220,20 +220,20 @@ class DefaultController extends Controller {
             // On vérifie qu'elle est de type POST
             if ($request->getMethod() == 'POST') {
                 // On fait le lien Requête <-> Formulaire
-                // À partir de maintenant, la variable $article contient les valeurs entrées dans le formulaire par le visiteur
+                // À partir de maintenant, la variable $etape contient les valeurs entrées dans le formulaire par le visiteur
                 $form->bind($request);
 
                 // On vérifie que les valeurs entrées sont correctes
                 // (Nous verrons la validation des objets en détail dans le prochain chapitre)
                 if ($form->isValid()) {
-                    // On l'enregistre notre objet $article dans la base de données
+                    // On l'enregistre notre objet $etape dans la base de données
                     $em = $this->getDoctrine()->getManager();
 
-                    $em->persist($article);
+                    $em->persist($etape);
                     $em->flush();
 
 
-                    // On redirige vers la page de visualisation de l'article nouvellement créé
+                    // On redirige vers la page de visualisation de l'etape nouvellement créé
 
                     return $this->redirect($this->generateUrl('philea_redacteurs'));
                 }
@@ -373,16 +373,16 @@ class DefaultController extends Controller {
             $em = $this->getDoctrine()->getManager();
 
             // On récupère l'entité correspondant à l'id $id
-            $article = $em->getRepository('PhileaBundle:Etape')
+            $etape = $em->getRepository('PhileaBundle:Etape')
                     ->find($id);
 
-            // Si l'article n'existe pas, on affiche une erreur 404
-            if ($article == null) {
-                throw $this->createNotFoundException('Article[id=' . $id . '] inexistant');
+            // Si l'etape n'existe pas, on retourne une erreur 404
+            if ($etape == null) {
+                throw $this->createNotFoundException('etape[id=' . $id . '] inexistant');
             }
 
             // J'ai raccourci cette partie, car c'est plus rapide à écrire !
-            $form = $this->createFormBuilder($article)
+            $form = $this->createFormBuilder($etape)
                     ->add('titre', 'text')
                     ->add('categorie', 'choice', array(
                         'choices' => array('Libre' => 'Libre', 'Analyse/Conception' => 'Analyse/Conception', 'Réalisation' => 'Réalisation'),
@@ -405,18 +405,18 @@ class DefaultController extends Controller {
             // On vérifie qu'elle est de type POST
             if ($request->getMethod() == 'POST') {
                 // On fait le lien Requête <-> Formulaire
-                // À partir de maintenant, la variable $article contient les valeurs entrées dans le formulaire par le visiteur
+                // À partir de maintenant, la variable $etape contient les valeurs entrées dans le formulaire par le visiteur
                 $form->bind($request);
 
                 // On vérifie que les valeurs entrées sont correctes
                 // (Nous verrons la validation des objets en détail dans le prochain chapitre)
                 if ($form->isValid()) {
-                    // On l'enregistre notre objet $article dans la base de données
+                    // On l'enregistre notre objet $etape dans la base de données
                     $em = $this->getDoctrine()->getManager();
-                    $em->persist($article);
+                    $em->persist($etape);
                     $em->flush();
 
-                    // On redirige vers la page de visualisation de l'article nouvellement créé
+                    // On redirige vers la page de visualisation de l'etape nouvellement créé
                     return $this->redirect($this->generateUrl('philea_gestionnaires'));
                 }
             }
@@ -576,12 +576,9 @@ class DefaultController extends Controller {
      */
     public function projetsListAction() {
         $em = $this->getDoctrine()->getManager();
-        //Passage de 112 à 67 requêtes
+        //Passage de 112 à 67 requêtes,
         $projets = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->getAllProjets();//getMyAll();//findAll();
         $user = $this->getUser();
-
-        /*$logger = $this->get('logger');
-        $logger->info("L'utilisateur a pour roles : " . $user->getRoles());//null ou tableau !*/
 
         $repo =  $this->getDoctrine()->getRepository('PhileaBundle:Projet');
 

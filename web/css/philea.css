@@ -199,3 +199,15 @@ img {
 .glyphicon-admin:before {
     content: "\2601";/* glyphicon-cloud */
 }
+
+#projetslist_length {
+    display:none !important;
+}
+
+#projetslist_info {
+    display:none !important;
+}
+
+#projetslist_paginate {
+    display:none !important;
+}
