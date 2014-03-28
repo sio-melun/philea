@@ -210,6 +210,15 @@ class Projet
         }
         return $max;
     }
+    
+    public function getAvancementMaxNonPublie() {
+        $max = 0;
+        foreach ($this->getEtapes() as $etape){
+            if($etape->getAvancement()>$max && ($etape->getIsValide() == Etape::VALIDE || $etape->getIsValide() == Etape::ATTENTE_VALIDATION) )
+                $max=$etape->getAvancement();
+        }
+        return $max;
+    }
 
 
     public function getGestionnaires() {

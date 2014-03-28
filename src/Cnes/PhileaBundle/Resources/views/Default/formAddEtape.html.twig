@@ -33,9 +33,10 @@
         {{ form_widget(form.file) }}</td><td></td>
         </tr>
         <tr>
-            <th valign="top"><label for="form_avancement" class="required">Avancement</label></th>
+            <th valign="top"><label for="form_avancement" class="required">Niveau d'avancement</label></th>
             <td>{{ form_errors(form.avancement) }}           
-            {{ form_widget(form.avancement) }}
+                {{ form_widget(form.avancement) }}
+                <p class="text-muted"><em>Niveau d'avancement du projet en pourcentage</em></p>
 
             
             
