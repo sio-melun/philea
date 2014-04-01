@@ -74,8 +74,8 @@
                                             Modifier
                                         </button>
                                     </a></td>
-                                <td width="5%"><a
-                                            href="{{ path('philea_gestionnaire_etape_invalider',{'id' : etape.id}) }}">
+                                <td width="5%"><a 
+                                            href="{{ path('philea_gestionnaire_etape_invalider',{'id' : etape.id}) }}" onclick="return confirm('Voulez-vous vraiment invalider cette étape ?')">
                                         <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
                                             Invalider
                                         </button>

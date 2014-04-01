@@ -142,6 +142,7 @@ class DefaultController extends Controller {
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($etape);
                     $em->flush();
+                    
 
                     // On redirige vers la page de des rédacteurs
                     return $this->redirect($this->generateUrl('philea_redacteurs'));
@@ -571,7 +572,7 @@ class DefaultController extends Controller {
 
 
     /**
-     * @Route("/projet/", name="philea_projets")
+     * @Route("/projets/", name="philea_projets")
      * @Template()
      */
     public function projetsListAction() {
