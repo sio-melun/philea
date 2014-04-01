@@ -121,7 +121,7 @@ class DefaultController extends Controller {
                     ->add('contenu', 'textarea', array(
                     'attr' => array(
                     'class' => 'tinymce',
-                    'data-theme' => 'advanced')))                  
+                    'data-theme' => 'advanced'),'required' => true))                  
                     ->add('file')
                     ->add('avancement', 'text', array('attr'=> array('value' => $projet->getAvancementMaxNonPublie()+1 )))
                     ->add('Envoyer', 'submit')
@@ -143,7 +143,7 @@ class DefaultController extends Controller {
                     $em->persist($etape);
                     $em->flush();
 
-                    // On redirige vers la page de visualisation de l'etape nouvellement créé
+                    // On redirige vers la page de des rédacteurs
                     return $this->redirect($this->generateUrl('philea_redacteurs'));
                 }
             }

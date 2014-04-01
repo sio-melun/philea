@@ -5,6 +5,7 @@ namespace Cnes\PhileaBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 /**
  * Etape
  *
@@ -41,8 +42,8 @@ class Etape
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="contenu", type="string", length=2048)
+     * @Assert\NotBlank(message="Ce champ doit-être complété")
+     * @ORM\Column(name="contenu", type="string", length=2048, nullable=true)
      */
     private $contenu;
 
