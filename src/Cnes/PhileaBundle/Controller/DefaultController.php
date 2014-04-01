@@ -64,7 +64,7 @@ class DefaultController extends Controller {
             throw $this->createNotFoundException('Aucune étape de projet trouvée pour ce projet');
         }
 
-        return array('domaine' => $domaine, 'etapes' => $etapes);
+        return $this->render('PhileaBundle:Default:etape.html.twig', array('domaine' => $domaine, 'etapes' => $etapes));
     }
 
     /**
@@ -571,7 +571,7 @@ class DefaultController extends Controller {
 
 
     /**
-     * @Route("/projets", name="philea_projets")
+     * @Route("/projet/", name="philea_projets")
      * @Template()
      */
     public function projetsListAction() {
