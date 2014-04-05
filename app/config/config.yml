@@ -73,8 +73,8 @@ fos_user:
     firewall_name: main                       # Le nom du firewall derrière lequel on utilisera ces utilisateurs
     user_class:    Cnes\PhileaBundle\Entity\User # La classe de l'entité User que nous utilisons
     from_email:
-        address:        noreply@philea.vinci-melun.org
-        sender_name:    philea vinci melun app
+        address:        webphilea@gmail.com
+        sender_name:    philea-app-sio-melun-noreply
 stfalcon_tinymce:
         include_jquery: true
         tinymce_jquery: true
