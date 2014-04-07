@@ -1,7 +1,7 @@
-phliea
-======
+projet site et application philea
+=================================
 
-Application support au projet inter établissement Philea (en référence à Philae de Rosetta)
+Application web support au projet inter établissement Philea (en référence à Philae de Rosetta)
 
 Framework Symfony
 =================
