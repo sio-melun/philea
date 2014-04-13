@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 class ArticleController extends Controller {    /**
-     * @Route("/gestion/article/", name="philea_article")
+     * @Route("/article/", name="philea_article")
      * @Template()
      */
     public function ArticleAction() {
@@ -28,7 +28,7 @@ class ArticleController extends Controller {    /**
     }
     
     /**
-     * @Route("/gestion/ajoutArticle/", name="philea_article_ajouter")
+     * @Route("/article/ajoutArticle/", name="philea_article_ajouter")
      * @Template()
      */
     public function ajoutArticleAction() {
@@ -157,7 +157,7 @@ class ArticleController extends Controller {    /**
     
     
     /**
-     * @Route("/redacteur/delete/etape/{id}/",name="philea_article_supprimer")
+     * @Route("/article/invalider/{id}/",name="philea_article_invalider")
      * @Template()
      */
     public function invaliderArticleAction($id) {
