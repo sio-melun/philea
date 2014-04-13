@@ -36,8 +36,9 @@ security:
     access_control:
         - { path: ^/redacteur/, roles:[ROLE_REDACTEUR,ROLE_GESTIONNAIRE] }
         - { path: ^/gestion/, role: ROLE_GESTIONNAIRE }
-        - { path: ^/admin/user, role: ROLE_SUPER_ADMIN }
         - { path: ^/register/, role: ROLE_GESTIONNAIRE }
         - { path: ^/register/confirmed, role: ROLE_SUPER_ADMIN }
-
+        - { path: ^/ajoutArticle/, role: ROLE_GESTIONNAIRE }
+        - { path: ^/gestion/utilisateurs/, roles:[ROLE_SUPER_ADMIN,ROLE_GESTIONNAIRE] }        
+        - { path: ^/admin/user/, role: ROLE_SUPER_ADMIN }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

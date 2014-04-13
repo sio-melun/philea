@@ -1,0 +1,90 @@
+{% extends "::layout.html.twig" %}
+{% block title %}Projet Philae - Validation{% endblock %}
+{% block body %}
+    <h1 style="text-align:center;"><span id="titre">Gestion des articles</span></h1>
+    
+    <a href="{{ path('philea_article_ajouter') }}">Ajouter un article</a>
+    <div id="accordion">
+        <h3>Article(s) non publié(s)</h3>
+
+        <div>
+            {% for article in articles %}
+                    {% if (article.isValide==0) %}
+
+                        <table width="100%" class="table">
+                                                        <tr>
+                                <th colspan="5"><span style="float:left;">{{ article.titre }}</span> <span
+                                            style="float:right;">{{article.date|date("m/d/Y")}}</span></th>
+                            </tr>
+                            <tr>
+
+                                
+                                <td width="80%">{{ article.contenu|raw }}</td>
+                                <td width="5%"><a
+                                            href="{{ path('philea_article_modifier',{'id' : article.id}) }}">
+                                        <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
+                                            Modifier
+                                        </button>
+                                    </a></td>
+                                <td width="5%"><a
+                                            href="{{ path('philea_article_publier',{'id' : article.id}) }}">
+                                        <button class="btn btn-success btn-small"><i
+                                                    class="icon-white icon-ok-sign"></i> Publier
+                                        </button>
+                                    </a></td>
+
+                            </tr>
+
+
+                        </table>
+                        <br/>
+
+                    {% endif %}
+                {% endfor %}
+        </div>
+
+        <h3>Article(s) publié(s)</h3>
+
+        <div>
+            {% for article in articles %}
+                    {% if (article.isValide==1)%}
+
+                        <table width="100%" class="table">
+                                                        <tr>
+                                <th colspan="5"><span style="float:left;">{{ article.titre }}</span> <span
+                                            style="float:right;">{{article.date|date("m/d/Y")}}</span></th>
+                            </tr>
+                            <tr>
+
+                                
+                                <td width="80%">{{ article.contenu|raw }}</td>
+                                <td width="5%"><a
+                                            href="{{ path('philea_article_modifier',{'id' : article.id}) }}">
+                                        <button class="btn btn-info btn-small"><i class="icon-white icon-edit"></i>
+                                            Modifier
+                                        </button>
+                                    </a></td>
+                                <td width="5%"><a 
+                                            href="{{ path('philea_article_supprimer',{'id' : article.id}) }}" onclick="return confirm('Voulez-vous vraiment dé-publier cette étape ?')">
+                                        <button class="btn btn-danger btn-small"><i class="icon-white icon-trash"></i>
+                                            Dé-Publier
+                                        </button>
+                                    </a></td>
+                            </tr>
+                        </table>
+                        <br/>
+
+                    {% endif %}
+                {% endfor %}
+
+        </div>
+        
+    </div>
+
+
+    </table>
+
+    <script>
+        $("#accordion").accordion({autoHeight: false, header: "h3", collapsible: true, active: false, heightStyle: false});
+    </script>
+{% endblock %}

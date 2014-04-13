@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Cnes\PhileaBundle\Entity\Etape;
+use Cnes\PhileaBundle\Entity\Article;
 use Cnes\PhileaBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,7 @@ class GestionController extends Controller {
 
         $lesEtapes = $this->getDoctrine()->getRepository('PhileaBundle:Etape')->findAll();
 
-        return $this->render('PhileaBundle:Default:gestion.html.twig', array('lesEtapes' => $lesEtapes, 'userProjets' => $userProjets));
+        return $this->render('PhileaBundle:Gestion:gestion.html.twig', array('lesEtapes' => $lesEtapes, 'userProjets' => $userProjets));
     }
     
        /**
@@ -190,7 +191,5 @@ class GestionController extends Controller {
             throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accédez à cette page');
         }
     }
-    
-    
     
 }

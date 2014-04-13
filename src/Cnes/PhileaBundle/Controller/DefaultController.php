@@ -17,7 +17,17 @@ class DefaultController extends Controller {
      * @Template()
      */
     public function indexAction() {
-        return $this->render('PhileaBundle:Default:accueil.html.twig');
+        
+         $articles = $this->getDoctrine()->getRepository('PhileaBundle:Article')
+                ->findBy(
+                array('isValide' => 1), array('date' => 'DESC'));
+
+        if (!$articles) {
+            throw $this->createNotFoundException('Aucune étape de projet trouvée pour ce projet');
+        }
+        
+        
+        return $this->render('PhileaBundle:Default:accueil.html.twig', array('articles' => $articles));
     }
 
     /**
@@ -69,7 +79,7 @@ class DefaultController extends Controller {
     
 
      /**
-     * @Route("/utilisateurs/",name="philea_utilisateurs")
+     * @Route("/gestion/utilisateurs/",name="philea_utilisateurs")
      * @Template()
      */
     public function usersAction() {
@@ -80,7 +90,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/utilisateurs/projets/{idUser}",name="philea_utilisateur_projets")
+     * @Route("/gestion/utilisateurs/projets/{idUser}",name="philea_utilisateur_projets")
      * @Template()
      */
     public function userProjetsAction($idUser) {
@@ -97,7 +107,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/utilisateurs/projetsuser/delete/{idUser}/{idProjet}",name="philea_utilisateur_projet_retirer")
+     * @Route("/gestion/utilisateurs/projetsuser/delete/{idUser}/{idProjet}",name="philea_utilisateur_projet_retirer")
      * @Template()
      */
     public function userProjetsDeleteAction($idUser, $idProjet) {
@@ -112,7 +122,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/utilisateurs/projet/ajout/{idUser}/",name="philea_utilisateur_projet_ajouter")
+     * @Route("/gestion/utilisateurs/projet/ajout/{idUser}/",name="philea_utilisateur_projet_ajouter")
      * @Template()
      */
     public function userProjetsAjoutAction(Request $request, $idUser) {

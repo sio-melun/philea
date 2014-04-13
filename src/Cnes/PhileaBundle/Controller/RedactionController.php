@@ -163,9 +163,7 @@ class RedactionController extends Controller {/**
                     ->add('contenu', 'textarea', array(
                         'attr' => array(
                             'class' => 'tinymce',
-                            'data-theme' => 'bbcode' // Skip it if you want to use default theme
-                        )
-                    ))
+                            'data-theme' => 'advanced'), 'required' => true))
                     ->add('file')
                     ->add('avancement')
                     ->add('save', 'submit')
