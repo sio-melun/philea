@@ -9,7 +9,7 @@
         <div>
             {% for etape in lesEtapes %}
                 {% for p1 in userProjets %}
-                    {% if (etape.isValide==0 and p1.id==etape.projet.id) %}
+                    {% if (etape.etat==0 and p1.id==etape.projet.id) %}
 
                         <table width="100%" class="table">
                             <tr>
@@ -53,7 +53,7 @@
         <div>
             {% for etape in lesEtapes %}
                 {% for p1 in userProjets %}
-                    {% if (etape.isValide==1 and p1.id==etape.projet.id) %}
+                    {% if (etape.etat==1 and p1.id==etape.projet.id) %}
 
                         <table width="100%" class="table">
                             <tr>
@@ -94,7 +94,7 @@
         <div>
             {% for etape in lesEtapes %}
                 {% for p1 in userProjets %}
-                    {% if (etape.isValide==-1 and p1.id==etape.projet.id) %}
+                    {% if (etape.etat==-1 and p1.id==etape.projet.id) %}
 
                         <table width="100%" class="table">
                             <tr>

@@ -89,7 +89,7 @@ class GestionController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
 
-            $etape->setIsValide(Etape::VALIDE);
+            $etape->setEtat(Etape::VALIDE);
 
             $em->flush();
 
@@ -182,8 +182,8 @@ class GestionController extends Controller {
             $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
             // si l'étape est actuellement publiée, elle sera invalidée
 
-            if ($etape->getIsValide() == Etape::VALIDE) {
-                $etape->setIsValide(Etape::ATTENTE_VALIDATION);
+            if ($etape->getEtat() == Etape::VALIDE) {
+                $etape->setEtat(Etape::ATTENTE_VALIDATION);
                 $em->flush();
             }
             return $this->redirect($this->generateUrl('philea_gestionnaires'));

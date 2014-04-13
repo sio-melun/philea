@@ -26,7 +26,7 @@
     <div>
 
         {% for etape in etapes %}
-            {% if (etape.isValide==0) %}
+            {% if (etape.etat==0) %}
 
                 <table width="100%" class="table">
                             <tr>
@@ -62,7 +62,7 @@
     <h3>Etape(s) Publiée(s)</h3>
     <div>
                 {% for etape in etapes %}
-                    {% if (etape.isValide==1) %}
+                    {% if (etape.etat==1) %}
 
                         <table width="100%" class="table">
                             <tr>

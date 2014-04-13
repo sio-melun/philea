@@ -83,7 +83,7 @@ class RedactionController extends Controller {/**
             $etape = new Etape();
             $etape->setUser($user);
             $etape->setProjet($projet);
-            $etape->setIsValide(Etape::ATTENTE_VALIDATION);
+            $etape->setEtat(Etape::ATTENTE_VALIDATION);
             // J'ai raccourci cette partie, car c'est plus rapide à écrire !
             $form = $this->createFormBuilder($etape)
                     ->add('titre', 'text')
@@ -152,7 +152,7 @@ class RedactionController extends Controller {/**
             if ($etape == null) {
                 throw $this->createNotFoundException('etape id=' . $id . '] inexistante');
             }
-            $etape->setIsValide(Etape::ATTENTE_VALIDATION);
+            $etape->setEtat(Etape::ATTENTE_VALIDATION);
             // J'ai raccourci cette partie, car c'est plus rapide à écrire !
             $form = $this->createFormBuilder($etape)
                     ->add('titre', 'text')
@@ -212,7 +212,7 @@ class RedactionController extends Controller {/**
         if ($this->isEtapeInUserProjects($id, $user)) {
             $em = $this->getDoctrine()->getManager();
             $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
-            $etape->setIsValide(Etape::SUPPRIMEE);
+            $etape->setEtat(Etape::SUPPRIMEE);
             $em->flush();
 
 

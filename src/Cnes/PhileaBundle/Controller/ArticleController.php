@@ -37,7 +37,7 @@ class ArticleController extends Controller {    /**
             // On crée un objet etape
             $article = new Article();
             $article->setUser($user);
-            $article->setIsValide(Etape::ATTENTE_VALIDATION);
+            $article->setEtat(Etape::ATTENTE_VALIDATION);
             // J'ai raccourci cette partie, car c'est plus rapide à écrire !
             $form = $this->createFormBuilder($article)
                     ->add('titre', 'text')
@@ -88,7 +88,7 @@ class ArticleController extends Controller {    /**
             $em = $this->getDoctrine()->getManager();
             $article = $em->getRepository('PhileaBundle:Article')->find($id);
 
-            $article->setIsValide(Article::VALIDE);
+            $article->setEtat(Article::VALIDE);
 
             $em->flush();
 
@@ -114,7 +114,7 @@ class ArticleController extends Controller {    /**
             }
             
             //J'ai choisis de ne pas modifier l'état de l'article
-            //$article->setIsValide(Article::ATTENTE_VALIDATION);
+            //$article->setEtat(Article::ATTENTE_VALIDATION);
             
             // J'ai raccourci cette partie, car c'est plus rapide à écrire !
             $form = $this->createFormBuilder($article)
@@ -160,11 +160,11 @@ class ArticleController extends Controller {    /**
      * @Route("/redacteur/delete/etape/{id}/",name="philea_article_supprimer")
      * @Template()
      */
-    public function deleteArticleAction($id) {
+    public function invaliderArticleAction($id) {
        
             $em = $this->getDoctrine()->getManager();
             $article = $em->getRepository('PhileaBundle:Article')->find($id);
-            $article->setIsValide(Article::SUPPRIMEE);
+            $article->setEtat(Article::ATTENTE_VALIDATION);
             $em->flush();
 
 

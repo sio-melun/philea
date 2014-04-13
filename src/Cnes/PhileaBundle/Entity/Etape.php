@@ -76,9 +76,9 @@ class Etape
     /**
      * @var int
      *
-     * @ORM\Column(name="isValide", nullable=true)
+     * @ORM\Column(name="etat", nullable=true)
      */
-    protected $isValide;
+    protected $etat;
 
     /**
      * @var integer
@@ -214,31 +214,7 @@ class Etape
     {
         return $this->avancement;
     }
-
-    /**
-     * Set isValide
-     *
-     * @param string $isValide
-     * @return Etape
-     */
-    public function setIsValide($isValide)
-    {
-        $this->isValide = $isValide;
-
-        return $this;
-    }
-
-    /**
-     * Get isValide
-     *
-     * @return string
-     */
-    public function getIsValide()
-    {
-        return $this->isValide;
-    }
-
-
+   
     //Upload d'image à partir d'ici
     public function getAbsolutePath()
     {
@@ -401,5 +377,28 @@ class Etape
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set etat
+     *
+     * @param string $etat
+     * @return Etape
+     */
+    public function setEtat($etat)
+    {
+        $this->etat = $etat;
+    
+        return $this;
+    }
+
+    /**
+     * Get etat
+     *
+     * @return string 
+     */
+    public function getEtat()
+    {
+        return $this->etat;
     }
 }

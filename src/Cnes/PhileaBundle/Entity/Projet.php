@@ -205,7 +205,7 @@ class Projet
     public function getAvancementMax() {
         $max = 0;
         foreach ($this->getEtapes() as $etape){
-            if($etape->getAvancement()>$max && $etape->getIsValide() == Etape::VALIDE)
+            if($etape->getAvancement()>$max && $etape->getEtat() == Etape::VALIDE)
                 $max=$etape->getAvancement();
         }
         return $max;
@@ -214,7 +214,7 @@ class Projet
     public function getAvancementMaxNonPublie() {
         $max = 0;
         foreach ($this->getEtapes() as $etape){
-            if($etape->getAvancement()>$max && ($etape->getIsValide() == Etape::VALIDE || $etape->getIsValide() == Etape::ATTENTE_VALIDATION) )
+            if($etape->getAvancement()>$max && ($etape->getEtat() == Etape::VALIDE || $etape->getEtat() == Etape::ATTENTE_VALIDATION) )
                 $max=$etape->getAvancement();
         }
         return $max;

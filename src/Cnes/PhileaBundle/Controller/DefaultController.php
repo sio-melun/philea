@@ -20,7 +20,7 @@ class DefaultController extends Controller {
         
          $articles = $this->getDoctrine()->getRepository('PhileaBundle:Article')
                 ->findBy(
-                array('isValide' => 1), array('date' => 'DESC'));
+                array('etat' => 1), array('date' => 'DESC'));
 
         if (!$articles) {
             throw $this->createNotFoundException('Aucune étape de projet trouvée pour ce projet');
@@ -67,7 +67,7 @@ class DefaultController extends Controller {
                         ->find($idProjet)->getDomaine();
         $etapes = $this->getDoctrine()->getRepository('PhileaBundle:Etape')
                 ->findBy(
-                array('projet' => $idProjet, 'isValide' => 1), array('avancement' => 'DESC'));
+                array('projet' => $idProjet, 'etat' => 1), array('avancement' => 'DESC'));
 
         if (!$etapes) {
             throw $this->createNotFoundException('Aucune étape de projet trouvée pour ce projet');

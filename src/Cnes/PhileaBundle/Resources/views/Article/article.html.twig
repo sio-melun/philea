@@ -9,7 +9,7 @@
 
         <div>
             {% for article in articles %}
-                    {% if (article.isValide==0) %}
+                    {% if (article.etat==0) %}
 
                         <table width="100%" class="table">
                                                         <tr>
@@ -47,7 +47,7 @@
 
         <div>
             {% for article in articles %}
-                    {% if (article.isValide==1)%}
+                    {% if (article.etat==1)%}
 
                         <table width="100%" class="table">
                                                         <tr>

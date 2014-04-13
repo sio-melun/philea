@@ -51,9 +51,9 @@ class Article
     /**
      * @var integer
      *
-     * @ORM\Column(name="isValide", type="integer")
+     * @ORM\Column(name="etat", type="integer")
      */
-    private $isValide;
+    private $etat;
 
     /**
      * @ORM\ManyToOne(targetEntity="User")
@@ -146,26 +146,26 @@ class Article
     }
 
     /**
-     * Set isValide
+     * Set etat
      *
-     * @param integer $isValide
+     * @param integer $etat
      * @return Article
      */
-    public function setIsValide($isValide)
+    public function setEtat($etat)
     {
-        $this->isValide = $isValide;
+        $this->etat = $etat;
     
         return $this;
     }
 
     /**
-     * Get isValide
+     * Get etat
      *
      * @return integer 
      */
-    public function getIsValide()
+    public function getEtat()
     {
-        return $this->isValide;
+        return $this->etat;
     }
 
     /**
