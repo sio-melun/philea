@@ -20,7 +20,6 @@ class DefaultController extends Controller {
         return $this->render('PhileaBundle:Default:accueil.html.twig');
     }
 
-
     /**
      * @Route("/synoptique", name="philea_synoptique")
      * @Template()
@@ -80,14 +79,43 @@ class DefaultController extends Controller {
 
         return $this->render('PhileaBundle:Default:redacteur.html.twig', array('projets' => $projets, 'etapes' => $etapes));
     }
-
+    
+        /**
+     *  détermine si l'idEtape est une étape d'un des projets de l'utilisateur courant
+     *  @param $idEtape l'étape oBjet d'un traitement d'écriture
+     *  @return true si etape->project in $user->projects, false sinon
+     */
+    public function isEtapeInUserProjects($idEtape, $user) {
+        //$user = $this->getUser();
+        // obtenir les projets de l'utilisateur
+        $projets = $user->getProjets();
+        
+        //Récupère l'idProjet selon l'étape en cours
+        $etape = $this->getDoctrine()
+                        ->getRepository('PhileaBundle:Etape')
+                        ->find($idEtape);
+        
+        if($etape)
+            $projetEtape = $etape->getProjet();
+        else
+            throw $this->createNotFoundException('Cette étape n\existe pas');
+        // l'utilisateur a-t-il le droit sur cette étape ?
+        for ($i = 0; $i < count($projets); $i++) {
+            if (isset($projets[$i])) {
+                if ($projets[$i]->getId() == $projetEtape->getId()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     /**
      * @Route("/redacteur/ajoutEtape/{idProjet}/", name="philea_redacteur_etape_ajouter")
      * @Template()
      */
     public function ajoutEtapeAction($idProjet) {
-
-        $user = $this->getUser();
+          $user = $this->getUser();
 
         $projet = $this->getDoctrine()
                         ->getRepository('PhileaBundle:Projet')->find($idProjet);
@@ -104,7 +132,8 @@ class DefaultController extends Controller {
             }
         }
         if ($ajoutApprouve) {
-            $user = $this->getUser();
+
+
 
             // On crée un objet etape
             $etape = new Etape();
@@ -119,11 +148,11 @@ class DefaultController extends Controller {
                         'required' => true,
                     ))
                     ->add('contenu', 'textarea', array(
-                    'attr' => array(
-                    'class' => 'tinymce',
-                    'data-theme' => 'advanced'),'required' => true))                  
+                        'attr' => array(
+                            'class' => 'tinymce',
+                            'data-theme' => 'advanced'), 'required' => true))
                     ->add('file')
-                    ->add('avancement', 'text', array('attr'=> array('value' => $projet->getAvancementMaxNonPublie()+1 )))
+                    ->add('avancement', 'text', array('attr' => array('value' => $projet->getAvancementMaxNonPublie() + 1)))
                     ->add('Envoyer', 'submit')
                     ->getForm();
 
@@ -142,7 +171,7 @@ class DefaultController extends Controller {
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($etape);
                     $em->flush();
-                    
+
 
                     // On redirige vers la page de des rédacteurs
                     return $this->redirect($this->generateUrl('philea_redacteurs'));
@@ -166,25 +195,8 @@ class DefaultController extends Controller {
      */
     public function modifierAction($id) {
         $user = $this->getUser();
-
-        $projets = $user->getProjets();
-
-        //Récupère l'idProjet selon l'étape en cours
-        $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhileaBundle:Etape')
-                        ->find($id)->getProjet();
-
-        $modificationApprouve = false;
-
-        for ($i = 0; $i <= count($projets); $i++) {
-            if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $projetEtape->getId()) {
-                    $modificationApprouve = true;
-                }
-            }
-        }
-
-        if ($modificationApprouve) {
+        
+        if ($this->isEtapeInUserProjects($id, $user)) {
             // On récupère l'EntityManager
             $em = $this->getDoctrine()->getManager();
 
@@ -253,27 +265,9 @@ class DefaultController extends Controller {
      */
     public function deleteEtapeAction($id) {
 
-        $user = $this->getUser();
-
-
-        $projets = $user->getProjets();
-
-        //Récupère l'idProjet selon l'étape en cours
-        $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhileaBundle:Etape')
-                        ->find($id)->getProjet();
-
-        $deleteApprouve = false;
-
-        for ($i = 0; $i <= count($projets); $i++) {
-            if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $projetEtape->getId()) {
-                    $deleteApprouve = true;
-                }
-            }
-        }
-
-        if ($deleteApprouve) {
+       $user = $this->getUser();
+        
+        if ($this->isEtapeInUserProjects($id, $user)) {
             $em = $this->getDoctrine()->getManager();
             $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
             $etape->setIsValide(Etape::SUPPRIMEE);
@@ -351,25 +345,8 @@ class DefaultController extends Controller {
     public function modifierGestionAction($id) {
 
         $user = $this->getUser();
-
-        $projets = $user->getProjets();
-
-        //Récupère l'idProjet selon l'étape en cours
-        $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhileaBundle:Etape')
-                        ->find($id)->getProjet();
-
-        $modificationApprouve = false;
-
-        for ($i = 0; $i <= count($projets); $i++) {
-            if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $projetEtape->getId()) {
-                    $modificationApprouve = true;
-                }
-            }
-        }
-
-        if ($modificationApprouve) {
+        
+        if ($this->isEtapeInUserProjects($id, $user)) {
             // On récupère l'EntityManager
             $em = $this->getDoctrine()->getManager();
 
@@ -436,25 +413,8 @@ class DefaultController extends Controller {
     public function invaliderGestionAction($id) {
 
         $user = $this->getUser();
-
-        $projets = $user->getProjets();
-
-        //Récupère l'idProjet selon l'étape en cours
-        $projetEtape = $this->getDoctrine()
-                        ->getRepository('PhileaBundle:Etape')
-                        ->find($id)->getProjet();
-
-        $deleteApprouve = false;
-
-        for ($i = 0; $i <= count($projets); $i++) {
-            if (isset($projets[$i])) {
-                if ($projets[$i]->getId() == $projetEtape->getId()) {
-                    $deleteApprouve = true;
-                }
-            }
-        }
-
-        if ($deleteApprouve) {
+        
+        if ($this->isEtapeInUserProjects($id, $user)) {
             $em = $this->getDoctrine()->getManager();
             $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
             // si l'étape est actuellement publiée, elle sera invalidée
@@ -484,7 +444,7 @@ class DefaultController extends Controller {
      * @Route("/utilisateurs/projets/{idUser}",name="philea_utilisateur_projets")
      * @Template()
      */
-    public  function userProjetsAction($idUser) {
+    public function userProjetsAction($idUser) {
 
         $projets = $this->getDoctrine()
                         ->getRepository('PhileaBundle:User')
@@ -521,7 +481,7 @@ class DefaultController extends Controller {
         // TODO présenter les projets non encore associés à l'utilisateur d'id = idUser
 
         $projets = $this->getDoctrine()
-            ->getRepository('PhileaBundle:Projet')->findAll();
+                        ->getRepository('PhileaBundle:Projet')->findAll();
 
         $userRedacteur = $this->getDoctrine()
                         ->getRepository('PhileaBundle:User')->find($idUser);
@@ -531,18 +491,18 @@ class DefaultController extends Controller {
 
         $form = $this->createFormBuilder()
                 ->add('projet_id', 'choice', array(
-                        'choices' => array('1' => '1', '2' => '2', '3' => '3'
-                                            , '4' => '4', '5' => '5', '6' => '6'
-                                            , '7' => '7', '8' => '8', '9' => '9'
-                                            , '10' => '10', '11' => '11', '12' => '12'
-                                            , '13' => '13', '14' => '14', '15' => '15'
-                                            , '16' => '16', '17' => '17', '18' => '18'
-                                            , '19' => '19', '20' => '20', '21' => '21'
-                                            , '22' => '22', '23' => '23', '24' => '24'
-                                            , '25' => '25', '26' => '26', '27' => '27'
-                                            , '28' => '28', '29' => '29', '30' => '30'
-                        ,'required' => true,
-                    )))
+                    'choices' => array('1' => '1', '2' => '2', '3' => '3'
+                        , '4' => '4', '5' => '5', '6' => '6'
+                        , '7' => '7', '8' => '8', '9' => '9'
+                        , '10' => '10', '11' => '11', '12' => '12'
+                        , '13' => '13', '14' => '14', '15' => '15'
+                        , '16' => '16', '17' => '17', '18' => '18'
+                        , '19' => '19', '20' => '20', '21' => '21'
+                        , '22' => '22', '23' => '23', '24' => '24'
+                        , '25' => '25', '26' => '26', '27' => '27'
+                        , '28' => '28', '29' => '29', '30' => '30'
+                        , 'required' => true,
+            )))
                 ->add('Ajouter', 'submit')
                 ->getForm();
 
@@ -566,10 +526,9 @@ class DefaultController extends Controller {
         }
 
         return $this->render('PhileaBundle:Default:formAddUserProjet.html.twig', array(
-                    'form' => $form->createView(), 'idUser' => $idUser, 'projetsGestionnaire' =>$projets
+                    'form' => $form->createView(), 'idUser' => $idUser, 'projetsGestionnaire' => $projets
         ));
     }
-
 
     /**
      * @Route("/projets/", name="philea_projets")
@@ -578,27 +537,28 @@ class DefaultController extends Controller {
     public function projetsListAction() {
         $em = $this->getDoctrine()->getManager();
         //Passage de 112 à 67 requêtes,
-        $projets = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->getAllProjets();//getMyAll();//findAll();
+        $projets = $this->getDoctrine()->getRepository('PhileaBundle:Projet')->getAllProjets(); //getMyAll();//findAll();
         $user = $this->getUser();
 
-        $repo =  $this->getDoctrine()->getRepository('PhileaBundle:Projet');
+        $repo = $this->getDoctrine()->getRepository('PhileaBundle:Projet');
 
         $gest = array();
         foreach ($projets as $p) :
-          $gestionnaires =  $repo->getAllGestionnaires($p->getId());
-          if (!$gestionnaires)
-              $gestionnaires = "(vide)";
-          else {
-            $res="";
-            foreach ($gestionnaires as $u) :
-                if ($res) $res .=", ";
-                $res .= $u->getUsername();
-            endforeach;
-            $gestionnaires = $res;
-          }
-          $gest[$p->getId()] = $gestionnaires;
+            $gestionnaires = $repo->getAllGestionnaires($p->getId());
+            if (!$gestionnaires)
+                $gestionnaires = "(vide)";
+            else {
+                $res = "";
+                foreach ($gestionnaires as $u) :
+                    if ($res)
+                        $res .=", ";
+                    $res .= $u->getUsername();
+                endforeach;
+                $gestionnaires = $res;
+            }
+            $gest[$p->getId()] = $gestionnaires;
         endforeach;
-        return array('projets'=> $projets,'user'=> $user, 'gest'=>$gest);
+        return array('projets' => $projets, 'user' => $user, 'gest' => $gest);
     }
 
 }
