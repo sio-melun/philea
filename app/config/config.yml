@@ -108,3 +108,6 @@ avalanche_imagine:
         my_thumb:
             type:    thumbnail
             options: { size: [250, 150], mode: outbound, quality: 100, format: png }
+        domaine:
+            type:    thumbnail
+            options: { size: [250, 250], mode: outbound, quality: 100, format: png }

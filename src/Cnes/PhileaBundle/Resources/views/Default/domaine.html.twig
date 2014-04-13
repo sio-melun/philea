@@ -3,7 +3,8 @@
 {% block body %}
 <div id="titre">{{domaine.nom}}</div>
     <div class="text-center">
-        {{domaine.description | raw}}
+        {{domaine.description | raw}} <br />
+        <img src="{{asset(("img/upload/domaine/" ~ domaine.path) |  apply_filter('domaine'))}}" />
 </div>
  <br />
     <table class="table"> 

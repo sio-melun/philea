@@ -2,74 +2,79 @@
 
 {% block head %}
 
-    <link rel="stylesheet" href="{{ asset('css/demo_table.css') }}" type="text/css"/>
-    <script type="text/javascript" language="javascript" src="{{ asset('js/jquery.dataTables.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('css/philea.css') }}" type="text/css"/>
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function() {
-            $('#projetslist').dataTable( {
-                "iDisplayLength": -1,
-                "oLanguage": {
-                    "sEmptyTable": "Aucune donnée correspondante",
-                    "sLoadingRecords": "Traitement en cours...",
-                    "sProcessing": "Traitement en cours...",
-                    "sZeroRecords": "Aucune donnée correspondante",
-                    "sInfo": "Affichage de _START_ à  _END_ sur _TOTAL_ éléments",
-                    "sInfoEmpty": "Aucun élément",
-                    "sInfoFiltered": "",
-                    "sSearch" : "Filtre :",
-                    "sLengthMenu": 'Affiche <select>'+
-                            '<option value="5">5</option>'+
-                            '<option value="10">10</option>'+
-                            '<option value="15">15</option>'+
-                            '<option value="20">20</option>'+
-                            '<option value="25">25</option>'+
-                            '<option value="-1">Tous</option>'+
-                            '</select> projets par page',
-                    "oPaginate": {
-                        "sFirst": "<<",
-                        "sLast": ">>",
-                        "sNext": ">",
-                        "sPrevious": "<"
-                    }
-                },
-                "aaSorting": [  ],
-                "sPaginationType": "full_numbers"
-            } );
-        } );
-    </script>
+
+<link rel="stylesheet" href="{{ asset('css/demo_table.css') }}" type="text/css"/>
+<script type="text/javascript" language="javascript" src="{{ asset('js/jquery.dataTables.js') }}"></script>
+<link rel="stylesheet" href="{{ asset('css/philea.css') }}" type="text/css"/>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        $('#projetslist').dataTable({
+            "iDisplayLength": -1,
+            "oLanguage": {
+                "sEmptyTable": "Aucune donnée correspondante",
+                "sLoadingRecords": "Traitement en cours...",
+                "sProcessing": "Traitement en cours...",
+                "sZeroRecords": "Aucune donnée correspondante",
+                "sInfo": "Affichage de _START_ à  _END_ sur _TOTAL_ éléments",
+                "sInfoEmpty": "Aucun élément",
+                "sInfoFiltered": "",
+                "sSearch": "Filtre :",
+                "sLengthMenu": 'Affiche <select>' +
+                        '<option value="5">5</option>' +
+                        '<option value="10">10</option>' +
+                        '<option value="15">15</option>' +
+                        '<option value="20">20</option>' +
+                        '<option value="25">25</option>' +
+                        '<option value="-1">Tous</option>' +
+                        '</select> projets par page',
+                "oPaginate": {
+                    "sFirst": "<<",
+                    "sLast": ">>",
+                    "sNext": ">",
+                    "sPrevious": "<"
+                }
+            },
+            "aaSorting": [],
+            "sPaginationType": "full_numbers"
+        });
+    });
+</script>
 {% endblock %}
 
 {% block body %}
- <div class="text-center">
+<div class="text-center">
     <span id="titre">Les Projets</span><br />
-</div>
-
-    <table cellpadding="0" cellspacing="0" class="display" id="projetslist"  border="0" width="100%" >
-      <thead>
-      <tr>
-          <th>Type Domaine</th>
-          <th>Domaine</th>
-          <th>Discipline</th>
-          <th>Etablissement</th>
-          <th>Classe</th>
-          <th>Academie</th>
-          <th>Gestionnaire(s)</th>
-          <th>Projet</th>
-          <th>Avancement</th>
-      </tr>
-      </thead>
+</div><br />
+<p>Cette rubrique
+    présente les différents projets dans lesquels les étudiants sont
+    engagés. Chaque équipe travaille sur une partie de l'atterrisseur dans
+    le cadre de son projet d'études. Chaque projet est constitué d'étapes.
+    Vous pouvez voir ici le niveau d'avancement de chacun d'entre eux.    </p>
+<table cellpadding="0" cellspacing="0" class="display" id="projetslist"  border="0" width="100%" >
+    <thead>
+        <tr>
+            <th>Type Domaine</th>
+            <th>Domaine</th>
+            <th>Discipline</th>
+            <th>Etablissement</th>
+            <th>Classe</th>
+            <th>Academie</th>
+            <th>Gestionnaire(s)</th>
+            <th>Projet</th>
+            <th>Avancement</th>
+        </tr>
+    </thead>
     <tbody>
     {% for projet in projets %}
-      <tr>
-          <td>{{projet.domaine.typeDomaine}}</td>
-          <td>{% set domaine = projet.domaine.id %}
-              <a href="{{ path('philea_domaine',{'idDomaine' :  domaine }) }}"> {{projet.domaine.nom}}</a></td>
-          <td>{{projet.classe.discipline}}</td>
-          <td>{{projet.etablissement.nom}}</td>
-          <td>{{projet.classe.nomcourt}}</td>
-          <td>{{projet.etablissement.academie}}</td>
-          <td> {{gest[projet.id]}}
+        <tr>
+            <td>{{projet.domaine.typeDomaine}}</td>
+            <td>{% set domaine = projet.domaine.id %}
+                <a href="{{ path('philea_domaine',{'idDomaine' :  domaine }) }}"> {{projet.domaine.nom}}</a></td>
+            <td>{{projet.classe.discipline}}</td>
+            <td>{{projet.etablissement.nom}}</td>
+            <td>{{projet.classe.nomcourt}}</td>
+            <td>{{projet.etablissement.academie}}</td>
+            <td> {{gest[projet.id]}}
               {#
               {%  if  projet.gestionnaires %}
                   {% for user in projet.gestionnaires %}
@@ -82,20 +87,20 @@
               <br/> {{user.roles[0]}}
               {% endif %}
               #}
-          </td>
-          <td><a href="{{ path('philea_projet',{'idProjet' : projet.id}) }}">Voir les étapes</a></td>
-          <td>
-              <div class="progress">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="{{ projet.avancementMax // 1 }}" aria-valuemin="0" aria-valuemax="100" style=" color:#000; width: {{ projet.avancementMax // 1}}%;">
+            </td>
+            <td><a href="{{ path('philea_projet',{'idProjet' : projet.id}) }}">Voir les étapes</a></td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ projet.avancementMax // 1 }}" aria-valuemin="0" aria-valuemax="100" style=" color:#000; width: {{ projet.avancementMax // 1}}%;">
                       {{ projet.avancementMax // 1}}%
                       {#http://stackoverflow.com/questions/10682091/rounding-numbers-in-twig#}
-                  </div>
-              </div>
+                    </div>
+                </div>
 
-          </td>
+            </td>
 
-      </tr>
+        </tr>
     {% endfor %}
-        </table>
-        </tbody>
+</table>
+</tbody>
 {% endblock %}
