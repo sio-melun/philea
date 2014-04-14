@@ -211,3 +211,6 @@ img {
 #projetslist_paginate {
     display:none !important;
 }
+.col-md-offset-05 {
+    margin-left: 4.333333333333332%;
+  }
