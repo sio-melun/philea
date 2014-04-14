@@ -214,3 +214,18 @@ img {
 .col-md-offset-05 {
     margin-left: 4.333333333333332%;
   }
+  .text-align-bot{
+      padding-top: 2%;
+  }
+ .text-align-bot > h1{
+      font-family: "Comic Sans MS";
+      
+      color: rgba(158,156,158,1);
+color: -moz-linear-gradient(left, rgba(158,156,158,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+color: -webkit-gradient(left top, right top, color-stop(0%, rgba(158,156,158,1)), color-stop(0%, rgba(219,219,219,1)), color-stop(51%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
+color: -webkit-linear-gradient(left, rgba(158,156,158,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+color: -o-linear-gradient(left, rgba(158,156,158,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+color: -ms-linear-gradient(left, rgba(158,156,158,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+color: linear-gradient(to right, rgba(158,156,158,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9e9c9e', endColorstr='#fefefe', GradientType=1 );
+  }
