@@ -16,6 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `Article`
+--
+
+DROP TABLE IF EXISTS `Article`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
+  `contenu` varchar(2048) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `date` datetime NOT NULL,
+  `etat` int(11) NOT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_CD8737FAFE6E88D7` (`idUser`),
+  CONSTRAINT `FK_CD8737FAFE6E88D7` FOREIGN KEY (`idUser`) REFERENCES `User` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Article`
+--
+
+LOCK TABLES `Article` WRITE;
+/*!40000 ALTER TABLE `Article` DISABLE KEYS */;
+INSERT INTO `Article` VALUES (1,'Rosetta prépare son réveil ( Le Monde :  28.03.2014)','<p>Un peu plus de deux mois apr&egrave;s le r&eacute;veil de la sonde europ&eacute;enne Rosetta, c\'est au tour de son passager, le robot Philae, de sortir de l\'hibernation pour pr&eacute;parer son atterrissage sur la com&egrave;te 67P/Tchourioumov-Gu&eacute;rassimenko, une boule de glace d\'environ 4 kilom&egrave;tres de diam&egrave;tre. Lanc&eacute;e par l\'Agence spatiale europ&eacute;enne (ESA) en 2004, Rosetta a rendez-vous en ao&ucirc;t avec la com&egrave;te 67P/Tchourioumov-Gu&eacute;rassimenko, sur laquelle elle tentera de faire atterrir un petit module, le robot Philae, 100 kilogrammes bard&eacute; de 10 instruments scientifiques, qui doit se poser sur la com&egrave;te, une premi&egrave;re dans l\'histoire de l\'exploration spatiale. Philae est &eacute;teint depuis plus de trois ans, pour r&eacute;duire au minimum sa consommation. Philae est &eacute;teint depuis plus de trois ans, pour r&eacute;duire au minimum sa consommation. Seule sa temp&eacute;rature &eacute;tait contr&ocirc;l&eacute;e, &laquo; exactement comme un animal qui hiberne &raquo;, explique Philippe Gaudon, chef du projet du Centre nationales des &eacute;tudes spatiales (CNES &mdash; l\'agence spatiale fran&ccedil;aise) de la mission Rosetta.</p>\r\n<p><strong>La sonde spatiale Rosetta s\'est bien r&eacute;veill&eacute;e.</strong>&nbsp; Le CNES va &laquo; r&eacute;veiller &raquo; le logiciel de vol central du robot. C\'est le Centre de contr&ocirc;le de Cologne (LCC) qui aura la charge de cette phase, tandis que le SONC (Science Operation and Navigation Center), &agrave; Toulouse, calculera les trajectoires permettant &agrave; Philae de se poser en toute s&eacute;curit&eacute; et suivra les op&eacute;rations scientifiques. A partir du 10 avril, les dix instruments de Philae vont &ecirc;tre r&eacute;veill&eacute;s &agrave; leur tour les uns apr&egrave;s les autres. Les scientifiques auront trois semaines pour v&eacute;rifier leur bon fonctionnement.</p>','2014-04-13 00:00:00',1,1),(2,'Video explicative de la mission Philae','<p><iframe src=\"//www.youtube.com/embed/siu2sxQ4YWI\" width=\"560\" height=\"315\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\"></iframe></p>','2014-04-13 20:09:36',1,9),(3,'Test un article','<p>Ceci est un test : <img src=\"https://raw.githubusercontent.com/sio-melun/philea/master/docs/diagUseCase.png\" alt=\"test Uses Case\" width=\"446\" height=\"505\" /></p>','2014-04-14 10:57:15',0,9);
+/*!40000 ALTER TABLE `Article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Classe`
 --
 
@@ -106,10 +136,10 @@ CREATE TABLE `Etape` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
   `categorie` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
-  `contenu` varchar(2048) COLLATE utf8_unicode_ci NOT NULL,
+  `contenu` varchar(2048) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dateEntre` datetime NOT NULL,
   `path` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `isValide` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `etat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Avancement` decimal(10,2) NOT NULL,
   `idUser` int(11) DEFAULT NULL,
   `idProjet` int(11) DEFAULT NULL,
@@ -127,7 +157,7 @@ CREATE TABLE `Etape` (
 
 LOCK TABLES `Etape` WRITE;
 /*!40000 ALTER TABLE `Etape` DISABLE KEYS */;
-INSERT INTO `Etape` VALUES (1,'Changement complet d\'interface','Réalisation','<p>Nous avons pris la d&eacute;cision de changer compl&egrave;tement l\'interface du site. Nous passons d\'une interface certes tr&egrave;s tape-&agrave;-l\'oeil mais assez bricol&eacute;e &agrave; quelques chose de sobre. Nous retrouvons aussi un menu plus fonctionel. Mais le gros plus r&eacute;side dans le fait que le site est maintenant responsive, c\'est &agrave; dire qu\'il s\'adapte &agrave; toutes les r&eacute;solutions et les tailles d\'&eacute;cran (PC/Mobile/Tablette).</p>\r\n<p>Voir l\'image de la nouvelle interface &agrave; gauche.</p>','2014-02-12 00:00:00','c5ead195a470331d93bd66854227cb551220ac70.png','1',10.00,12,29),(15,'Première version du site','Réalisation','<p>La premi&egrave;re version du site a &eacute;t&eacute; r&eacute;alis&eacute;e par un groupe de 12 &eacute;tudiants de la classe. Elle &eacute;tait assez esth&eacute;tique mais peu fonctionnelle. De plus, des erreurs d\'analyse ont &eacute;t&eacute; constat&eacute;es (absence de domaines par exemple, ce qui a remis en cause le choix initial de l\'interface utilisateur)</p>','2014-02-13 00:00:00','dfb25c55df968976768fb9d68dd17a50c305ec7d.png','1',10.00,11,29),(16,'Mise en forme de la liste des étapes','Libre','<p>Nous avons travaill&eacute; sur un belle pr&eacute;sentation de la liste des &eacute;tapes</p>','2014-02-13 00:00:00','97f84f2e4e8367ccc79562cd3e7bb4a105b552cf.png','1',20.00,12,29),(17,'Nouveauté sur la page d\'ajout d\'une étape','Réalisation','<p>Nous avons rajout&eacute; plusieurs &eacute;l&eacute;ments sur la page d\'ajout d\'une &eacute;tape.</p>\r\n<p>-Nous avons mis en place la gestion d\'upload d\'image (avec changement automatique de nom d\'images)</p>\r\n<p>-Mis en place de cat&eacute;gorie pour une &eacute;tape (Libre, Analyse/conception, r&eacute;alisation)</p>\r\n<p>Il nous faut rajouter une bonne mise en forme, enlever la date, et ajouter du texte pour aider les r&eacute;dacteurs.</p>','2014-02-13 00:00:00','f73333aa61475120a3e075dd2831987dd49d62ff.png','1',30.00,11,29);
+INSERT INTO `Etape` VALUES (1,'Changement complet d\'interface','Réalisation','<p>Nous avons pris la d&eacute;cision de changer compl&egrave;tement l\'interface du site. Nous passons d\'une interface certes tr&egrave;s tape-&agrave;-l\'oeil mais assez bricol&eacute;e &agrave; quelques chose de sobre. Nous retrouvons aussi un menu plus fonctionel. Mais le gros plus r&eacute;side dans le fait que le site est maintenant responsive, c\'est &agrave; dire qu\'il s\'adapte &agrave; toutes les r&eacute;solutions et les tailles d\'&eacute;cran (PC/Mobile/Tablette).</p>\r\n<p>Voir l\'image de la nouvelle interface &agrave; gauche.</p>','2014-02-12 00:00:00','c5ead195a470331d93bd66854227cb551220ac70.png','0',10.00,12,29),(15,'Première version du site','Réalisation','<p>La premi&egrave;re version du site a &eacute;t&eacute; r&eacute;alis&eacute;e par un groupe de 12 &eacute;tudiants de la classe. Elle &eacute;tait assez esth&eacute;tique mais peu fonctionnelle. De plus, des erreurs d\'analyse ont &eacute;t&eacute; constat&eacute;es (absence de domaines par exemple, ce qui a remis en cause le choix initial de l\'interface utilisateur)</p>','2014-02-13 00:00:00','dfb25c55df968976768fb9d68dd17a50c305ec7d.png','1',10.00,11,29),(16,'Mise en forme de la liste des étapes','Libre','<p>Nous avons travaill&eacute; sur un belle pr&eacute;sentation de la liste des &eacute;tapes</p>','2014-02-13 00:00:00','97f84f2e4e8367ccc79562cd3e7bb4a105b552cf.png','1',20.00,12,29),(17,'Nouveauté sur la page d\'ajout d\'une étape','Réalisation','<p>Nous avons rajout&eacute; plusieurs &eacute;l&eacute;ments sur la page d\'ajout d\'une &eacute;tape.</p>\r\n<p>-Nous avons mis en place la gestion d\'upload d\'image (avec changement automatique de nom d\'images)</p>\r\n<p>-Mis en place de cat&eacute;gorie pour une &eacute;tape (Libre, Analyse/conception, r&eacute;alisation)</p>\r\n<p>Il nous faut rajouter une bonne mise en forme, enlever la date, et ajouter du texte pour aider les r&eacute;dacteurs.</p>','2014-02-13 00:00:00','f73333aa61475120a3e075dd2831987dd49d62ff.png','1',30.00,11,29);
 /*!40000 ALTER TABLE `Etape` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,7 +222,7 @@ CREATE TABLE `User` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_2DA1797792FC23A8` (`username_canonical`),
   UNIQUE KEY `UNIQ_2DA17977A0D96FBF` (`email_canonical`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,7 +231,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'sio','sio','sio@gmail.com','sio@gmail.com',1,'te1b57b6vrkc04gsc4gcwcsoco8cwww','qrKOJB3diDQbp68xP3fVwhz8r9eH13gtfFHfwHKyQ+++CQV4r/9eon3lZtkEv9T4SAQCTd05m9TRk/CfFx5xUQ==','2014-02-27 20:49:27',0,0,NULL,NULL,NULL,'a:2:{i:0;s:10:\"ROLE_ADMIN\";i:1;s:14:\"ROLE_REDACTEUR\";}',0,NULL,''),(8,'admin','admin','admin@admin.com','admin@admin.com',1,'dqmi8q8lsc8w4g4kow4oc8s88k0cksg','VWpjEUdg0MvttSnf5hgzAqhJ50X7GgUVlRBgt8FTbNdUk4QcJy9HsKr6/rtk6fZDsqu5cAwP1hl7DTx5hTe2dg==','2014-03-03 14:32:29',0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL,NULL),(9,'kpu','kpu','kpu@gmail.com','kpu@gmail.com',1,'hn0rpxn1hpckg0c4kososgw0k80w8ow','B3h+aHJniSuRwGHNSDWkeu8u2UlduJSk52QYZyNasXRZrZM/H8fRVsMMfFhg3F40H344kwxYmFPMNLT4KkuA5A==','2014-03-04 10:31:10',0,0,NULL,NULL,NULL,'a:1:{i:0;s:17:\"ROLE_GESTIONNAIRE\";}',0,NULL,NULL),(11,'slisik','slisik','slisik','slisik',1,'teg10qxnm1wwg4cs0wksg088cw44w8s','toP24r3h6HOuheIaecwejKQfISca0EU55Mfs/sR9nEzaPjomOyifbrwLTGHvHJvOdLmXd1qLYHG2pl0L4BLpKg==','2014-03-04 08:50:40',0,0,NULL,NULL,NULL,'a:1:{i:0;s:14:\"ROLE_REDACTEUR\";}',0,NULL,NULL),(12,'fcho','fcho','fcho','fcho',1,'srwp4ac9sms8c0wgw400c00404ow0ck','ntIQGmT+5vtN2SyDPF6bVGy8qXT8tw4K0XnAXMEvV4ujRJZ5bpmoXf9jZE5M78TyDgE+qYFvUzvPZWJfvDpclw==','2014-02-13 14:08:54',0,0,NULL,NULL,NULL,'a:1:{i:0;s:14:\"ROLE_REDACTEUR\";}',0,NULL,NULL);
+INSERT INTO `User` VALUES (1,'sio','sio','sio@gmail.com','sio@gmail.com',1,'te1b57b6vrkc04gsc4gcwcsoco8cwww','Egubi5Q1H2t/r+BZWIEZnSIPWrye7o2uEPFBKqrNjeZs4IEILsyhHfZ8xMwJIxhhSobDd9c5PdKzQuXVz3QlSw==','2014-03-27 22:37:12',0,0,NULL,NULL,NULL,'a:1:{i:0;s:14:\"ROLE_REDACTEUR\";}',0,NULL,''),(8,'admin','admin','admin@admin.com','admin@admin.com',1,'dqmi8q8lsc8w4g4kow4oc8s88k0cksg','VWpjEUdg0MvttSnf5hgzAqhJ50X7GgUVlRBgt8FTbNdUk4QcJy9HsKr6/rtk6fZDsqu5cAwP1hl7DTx5hTe2dg==','2014-03-28 20:51:42',0,0,NULL,NULL,NULL,'a:1:{i:0;s:16:\"ROLE_SUPER_ADMIN\";}',0,NULL,NULL),(9,'kpu','kpu','kpu@gmail.com','kpu@gmail.com',1,'hn0rpxn1hpckg0c4kososgw0k80w8ow','B3h+aHJniSuRwGHNSDWkeu8u2UlduJSk52QYZyNasXRZrZM/H8fRVsMMfFhg3F40H344kwxYmFPMNLT4KkuA5A==','2014-04-14 10:37:31',0,0,NULL,NULL,NULL,'a:1:{i:0;s:17:\"ROLE_GESTIONNAIRE\";}',0,NULL,NULL),(11,'slisik','slisik','slisik','slisik',1,'teg10qxnm1wwg4cs0wksg088cw44w8s','toP24r3h6HOuheIaecwejKQfISca0EU55Mfs/sR9nEzaPjomOyifbrwLTGHvHJvOdLmXd1qLYHG2pl0L4BLpKg==','2014-03-04 08:50:40',0,0,NULL,NULL,NULL,'a:1:{i:0;s:14:\"ROLE_REDACTEUR\";}',0,NULL,NULL),(12,'fcho','fcho','fcho','fcho',1,'srwp4ac9sms8c0wgw400c00404ow0ck','ntIQGmT+5vtN2SyDPF6bVGy8qXT8tw4K0XnAXMEvV4ujRJZ5bpmoXf9jZE5M78TyDgE+qYFvUzvPZWJfvDpclw==','2014-02-13 14:08:54',0,0,NULL,NULL,NULL,'a:1:{i:0;s:14:\"ROLE_REDACTEUR\";}',0,NULL,NULL),(13,'toto','toto','toto@tot.fr','toto@tot.fr',1,'o2l7artzoa8o0k044g0k00ckoogokss','50ktrFcbIQYcKs2WyzbpTOrRVLE8gmY/FzyiJ6aRuaPdDE5/OUZtcLhRLAQ8J5HwXPuaTlFMsLMFy1SK+UAVVQ==',NULL,0,0,NULL,NULL,NULL,'a:2:{i:0;s:14:\"ROLE_REDACTEUR\";i:1;s:17:\"ROLE_GESTIONNAIRE\";}',0,NULL,NULL);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,4 +272,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-04 11:20:14
+-- Dump completed on 2014-04-14 11:22:32
