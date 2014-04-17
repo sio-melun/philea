@@ -176,7 +176,8 @@ class RedactionController extends Controller {/**
             if ($request->getMethod() == 'POST') {
                 // On fait le lien Requête <-> Formulaire
                 // À partir de maintenant, la variable $etape contient les valeurs entrées dans le formulaire par le visiteur
-                $form->bind($request);
+                // $form->bind($request); déprécié, voir  http://symfony.com/doc/current/cookbook/form/direct_submit.html
+                $form->handleRequest($request);
 
                 // On vérifie que les valeurs entrées sont correctes
                 // (Nous verrons la validation des objets en détail dans le prochain chapitre)
@@ -218,7 +219,7 @@ class RedactionController extends Controller {/**
 
             return $this->redirect($this->generateUrl('philea_redacteurs'));
         } else {
-            throw $this->createNotFoundException('Vous n\'avez pas le droit d\'accéder à cette page');
+            throw $this->createNotFoundException('Opération non autorisée');
         }
     }
     

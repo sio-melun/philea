@@ -16,14 +16,7 @@ class ArticleController extends Controller {    /**
      * @Template()
      */
     public function ArticleAction() {
-        //Vérification dans la vue
-
-        /*$user = $this->getUser();
-
-        $userProjets = $user->getProjets();*/
-
         $articles = $this->getDoctrine()->getRepository('PhileaBundle:Article')->findAll();
-
         return $this->render('PhileaBundle:Article:article.html.twig', array('articles' => $articles));
     }
     
@@ -32,7 +25,7 @@ class ArticleController extends Controller {    /**
      * @Template()
      */
     public function ajoutArticleAction() {
-          $user = $this->getUser();
+            $user = $this->getUser();
 
             // On crée un objet etape
             $article = new Article();
@@ -53,19 +46,17 @@ class ArticleController extends Controller {    /**
             // On vérifie qu'elle est de type POST
             if ($request->getMethod() == 'POST') {
                 // On fait le lien Requête <-> Formulaire
-                // À partir de maintenant, la variable $etape contient les valeurs entrées dans le formulaire par le visiteur
-                $form->bind($request);
+                $form->handleRequest($request);
 
                 // On vérifie que les valeurs entrées sont correctes
                 // (Nous verrons la validation des objets en détail dans le prochain chapitre)
                 if ($form->isValid()) {
-                    // On l'enregistre notre objet $etape dans la base de données
+                    // On l'enregistre notre objet dans la base de données
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($article);
                     $em->flush();
 
-
-                    // On redirige vers la page de des rédacteurs
+                    // On redirige vers la page des articles
                     return $this->redirect($this->generateUrl('philea_article'));
                 }
             }
@@ -83,17 +74,12 @@ class ArticleController extends Controller {    /**
      * @Template()
      */
     public function publierArticleAction($id) {
-
-        
             $em = $this->getDoctrine()->getManager();
             $article = $em->getRepository('PhileaBundle:Article')->find($id);
-
             $article->setEtat(Article::VALIDE);
-
             $em->flush();
 
             return $this->redirect($this->generateUrl('philea_article'));
-       
     }
     
         /**
@@ -110,7 +96,7 @@ class ArticleController extends Controller {    /**
 
             // Si l'etape n'existe pas, on affiche une erreur 404
             if ($article == null) {
-                throw $this->createNotFoundException('article id=' . $id . '] inexistante');
+                throw $this->createNotFoundException('article id=' . $id . ' inexistant');
             }
             
             //J'ai choisis de ne pas modifier l'état de l'article
@@ -132,8 +118,7 @@ class ArticleController extends Controller {    /**
             // On vérifie qu'elle est de type POST
             if ($request->getMethod() == 'POST') {
                 // On fait le lien Requête <-> Formulaire
-                // À partir de maintenant, la variable $etape contient les valeurs entrées dans le formulaire par le visiteur
-                $form->bind($request);
+                $form->handleRequest($request);
 
                 // On vérifie que les valeurs entrées sont correctes
                 // (Nous verrons la validation des objets en détail dans le prochain chapitre)
@@ -144,9 +129,7 @@ class ArticleController extends Controller {    /**
                     $em->persist($article);
                     $em->flush();
 
-
-                    // On redirige vers la page de visualisation de l'etape nouvellement créé
-
+                    // On redirige vers la page des articles
                     return $this->redirect($this->generateUrl('philea_article'));
                 }
             }
@@ -166,7 +149,6 @@ class ArticleController extends Controller {    /**
             $article = $em->getRepository('PhileaBundle:Article')->find($id);
             $article->setEtat(Article::ATTENTE_VALIDATION);
             $em->flush();
-
 
             return $this->redirect($this->generateUrl('philea_article'));
     }
