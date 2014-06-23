@@ -129,7 +129,7 @@ fm_elfinder:
         roots:
             uploads:
                 driver: LocalFileSystem
-                path: images
+                path: img/upload/etape
                 upload_allow: ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4', 'video/avi', 'video/webm', 'video/ogv', 'video/ogg']
                 upload_deny: ['all']
                 upload_max_size: 15M
