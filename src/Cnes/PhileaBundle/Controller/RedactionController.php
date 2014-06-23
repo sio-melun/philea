@@ -11,9 +11,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 
 class RedactionController extends Controller {/**
-     * @Route("/redacteur/",name="philea_redacteurs")
-     * @Template()
-     */
+ * @Route("/redacteur/",name="philea_redacteurs")
+ * @Template()
+ */
+
     public function redacteurAction() {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $projets = $user->getProjets();
@@ -23,8 +24,8 @@ class RedactionController extends Controller {/**
 
         return $this->render('PhileaBundle:Default:redacteur.html.twig', array('projets' => $projets, 'etapes' => $etapes));
     }
-    
-        /**
+
+    /**
      *  détermine si l'idEtape est une étape d'un des projets de l'utilisateur courant
      *  @param $idEtape l'étape oBjet d'un traitement d'écriture
      *  @return true si etape->project in $user->projects, false sinon
@@ -33,13 +34,13 @@ class RedactionController extends Controller {/**
         //$user = $this->getUser();
         // obtenir les projets de l'utilisateur
         $projets = $user->getProjets();
-        
+
         //Récupère l'idProjet selon l'étape en cours
         $etape = $this->getDoctrine()
-                        ->getRepository('PhileaBundle:Etape')
-                        ->find($idEtape);
-        
-        if($etape)
+                ->getRepository('PhileaBundle:Etape')
+                ->find($idEtape);
+
+        if ($etape)
             $projetEtape = $etape->getProjet();
         else
             throw $this->createNotFoundException('Cette étape n\existe pas');
@@ -53,13 +54,13 @@ class RedactionController extends Controller {/**
         }
         return false;
     }
-    
+
     /**
      * @Route("/redacteur/ajoutEtape/{idProjet}/", name="philea_redacteur_etape_ajouter")
      * @Template()
      */
     public function ajoutEtapeAction($idProjet) {
-          $user = $this->getUser();
+        $user = $this->getUser();
 
         $projet = $this->getDoctrine()
                         ->getRepository('PhileaBundle:Projet')->find($idProjet);
@@ -92,9 +93,9 @@ class RedactionController extends Controller {/**
                         'required' => true,
                     ))
                     ->add('contenu', 'textarea', array(
-                        'attr' => array(
-                            'class' => 'tinymce',
-                            'data-theme' => 'advanced'), 'required' => true))
+                      'attr' => array(
+                      'class' => 'tinymce',
+                      'data-theme' => 'advanced'), 'required' => true))
                     ->add('file')
                     ->add('avancement', 'text', array('attr' => array('value' => $projet->getAvancementMaxNonPublie() + 1)))
                     ->add('Envoyer', 'submit')
@@ -139,7 +140,7 @@ class RedactionController extends Controller {/**
      */
     public function modifierAction($id) {
         $user = $this->getUser();
-        
+
         if ($this->isEtapeInUserProjects($id, $user)) {
             // On récupère l'EntityManager
             $em = $this->getDoctrine()->getManager();
@@ -208,8 +209,8 @@ class RedactionController extends Controller {/**
      */
     public function deleteEtapeAction($id) {
 
-       $user = $this->getUser();
-        
+        $user = $this->getUser();
+
         if ($this->isEtapeInUserProjects($id, $user)) {
             $em = $this->getDoctrine()->getManager();
             $etape = $em->getRepository('PhileaBundle:Etape')->find($id);
@@ -222,7 +223,5 @@ class RedactionController extends Controller {/**
             throw $this->createNotFoundException('Opération non autorisée');
         }
     }
-    
-    
-    
+
 }

@@ -132,7 +132,7 @@ class GestionController extends Controller {
                     ->add('contenu', 'textarea', array(
                         'attr' => array(
                             'class' => 'tinymce',
-                            'data-theme' => 'bbcode' // Skip it if you want to use default theme
+                            'data-theme' => 'advanced' // Skip it if you want to use default theme
                         )
                     ))
                     ->add('file')

@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
 	"friendsofsymfony/user-bundle": "dev-master", 
 	"stfalcon/tinymce-bundle": "dev-master",
-        "avalanche123/imagine-bundle": "v2.1"
+        "avalanche123/imagine-bundle": "v2.1",
+        "helios-ag/fm-elfinder-bundle": "1.*"
     },
     "scripts": {
         "post-install-cmd": [

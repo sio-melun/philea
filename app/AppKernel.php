@@ -19,7 +19,8 @@ class AppKernel extends Kernel
             new Cnes\PhileaBundle\PhileaBundle(),
 	    new FOS\UserBundle\FOSUserBundle(),
 	    new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
-            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle()
+            new Avalanche\Bundle\ImagineBundle\AvalancheImagineBundle(),
+            new FM\ElfinderBundle\FMElfinderBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
